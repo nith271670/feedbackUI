@@ -1,0 +1,16 @@
+
+<div class="justify-content-lg-center d-flex"> 
+<form class="col-6"  (ngSubmit)="onSubmit()" [ngClass]="{'was-validated': submitted==true }">
+  <div class="form-group">
+    <label for="username" required="required">Username:</label>
+    <input type="text" placeholder="Username" class="form-control" name="username" id="username" required [(ngModel)]=username>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" placeholder="Password" class="form-control" id="pwd" name="password" required [(ngModel)]=password >
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
+</div>

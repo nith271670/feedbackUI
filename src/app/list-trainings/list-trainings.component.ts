@@ -23,6 +23,9 @@ export class ListTrainingsComponent implements OnInit {
   dialogRef: MatDialogRef<AddTrainingComponent>;
 
   ngOnInit() {
+    if(localStorage.getItem('currentUser') != 'admin'){
+      location.href = '/login';
+    }
     this.httpService.getTrainingList().subscribe(response => {
       console.log(response);
       this.TrainingList = response as [];

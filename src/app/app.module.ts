@@ -29,9 +29,11 @@ import { TrainingExperienceComponent } from './charts/training-experience/traini
 import { GraphicalpresentationComponent } from './graphicalpresentation/graphicalpresentation.component';
 import { OrderModule } from 'ngx-order-pipe';
 import { TrainerQualificationComponent } from './charts/trainer-qualification/trainer-qualification.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home' , pathMatch: 'full'},
+  { path: '', redirectTo: '/login' , pathMatch: 'full'},
+  { path: 'login', component:LoginComponent },
   { path: 'home', component: ListTrainingsComponent },
   { path: 'list', component: ListComponent },
   { path: 'form', component: FormComponent },
@@ -64,7 +66,8 @@ const routes: Routes = [
     TrainingQualificationComponent,
     TrainingExperienceComponent,
     GraphicalpresentationComponent,
-    TrainerQualificationComponent
+    TrainerQualificationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
