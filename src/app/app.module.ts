@@ -30,6 +30,7 @@ import { GraphicalpresentationComponent } from './graphicalpresentation/graphica
 import { OrderModule } from 'ngx-order-pipe';
 import { TrainerQualificationComponent } from './charts/trainer-qualification/trainer-qualification.component';
 import { LoginComponent } from './login/login.component';
+import { EBGuideFormComponent } from './ebguide-form/ebguide-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login' , pathMatch: 'full'},
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'trainerqualification', component: TrainerQualificationComponent },
   { path: 'trainingexperience', component: TrainingExperienceComponent },
   { path: 'trainingform/:id', component: TrainingformComponent },
+  { path: 'ebguideform', component: EBGuideFormComponent},
   { path: 'success', component: SuccessComponent },
   { path: 'graphs', component: GraphicalpresentationComponent }
 ];
@@ -67,7 +69,8 @@ const routes: Routes = [
     TrainingExperienceComponent,
     GraphicalpresentationComponent,
     TrainerQualificationComponent,
-    LoginComponent
+    LoginComponent,
+    EBGuideFormComponent
   ],
   imports: [
     BrowserModule,

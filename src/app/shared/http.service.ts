@@ -24,6 +24,15 @@ export class HttpService {
           })
         );
   }
+  saveEbGuideForm(payLoad): Observable<any> {
+    return this.http
+      .post<any>('http://localhost:1337/feedback/createEbGuideForm', payLoad,
+        { headers: headers, observe: 'response' }).pipe(
+          tap(e => {
+            // this.routeToList(e);
+          })
+        );
+  }
   createTraining(trainingdetails): Observable<any> {
     return this.http
       .post<any>('https://feedback-eb-new.herokuapp.com/trainingdetails/add', trainingdetails,
@@ -44,9 +53,6 @@ export class HttpService {
   updateTraining(updatedData) {
      return this.http.post('https://feedback-eb-new.herokuapp.com/trainingdetails/update/' + updatedData.id, updatedData);
   }
- 
-  
-  
   getTrainingNameList() {
     return this.http.get('https://feedback-eb-new.herokuapp.com/trainingnames/list');
   }

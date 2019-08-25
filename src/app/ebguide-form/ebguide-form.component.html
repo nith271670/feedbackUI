@@ -1,0 +1,806 @@
+<div>
+  <div class="container mx-auto my-0" style="margin-top: -100px !important">
+    <img src="assets/images/header.png" alt="header" srcset="" width="100%">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div>
+        <div class="my-3 float-left col-lg-6">
+          <h4 class="title">
+            Training Feedback Form
+          </h4>
+
+        </div>
+        <!-- <div class="float-right mx-3">
+          <img src="assets/images/eb logo.jpg" alt="eb_logo" srcset="" height=100px width=100px>
+        </div> -->
+      </div>
+      <div class="my-3 float-left col-lg-12" formGroupName="participantName">
+        <p><label for="id_name">Your Name: </label></p>
+        <input type="text" name="id_name" id="id_name" formControlName="id_name"> <Small>(optional)</Small>
+      </div>
+      <div class="my-3 float-left col-lg-6">
+        <p>Training Name</p>
+        <div formGroupName="training_n">
+          <input type="text" name="training_name" id="training_name" formControlName="training_name" readonly
+            [value]=TrainingDetails?.training>
+        </div>
+      </div>
+      <div class="my-3 float-left col-lg-6">
+        <p>Trainer Names</p>
+        <div formGroupName="trainer_n">
+          <input type="text" name="trainer_names" id="trainer_names" formControlName="trainer_names" readonly
+            [value]=TrainingDetails?.trainers>
+        </div>
+      </div>
+      <div class="my-3 float-left col-lg-6">
+        <p>Location</p>
+        <div formGroupName="training_location">
+          <input type="text" name="location_name" id="location_name" formControlName="location_name" readonly
+            [value]=TrainingDetails?.location>
+        </div>
+      </div>
+      <div class="my-3 float-left col-lg-6">
+        <p>Date</p>
+        <div formGroupName="training_date">
+          <input type="text" name="t_date" id="t_date" formControlName="t_date" readonly [value]=trainingDate>
+        </div>
+      </div>
+      <div class="my-3 float-left col-lg-12">
+
+        <p>1.Content</p>
+        <p>
+          Please give marks: 1 = insufficient; 2 = sufficient; 3 = ok; 4 = good; 5 = excellent
+        </p>
+        <table class="table table-bordered table-secondary" formGroupName="question_1">
+          <thead>
+            <tr>
+              <th scope="col">
+                Part of the Training
+              </th>
+              <th scope="col">
+                Content
+              </th>
+              <th scope="col">Presentation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Architectural overview</td>
+              <td>
+                <input type="radio" id="one" name="arch_overview_content" formControlName="arch_overview_content"
+                  value=1>
+                <label for="one">1</label>
+                <input type="radio" id="two" name="arch_overview_content" formControlName="arch_overview_content"
+                  value=2>
+                <label for="two">2 </label>
+                <input type="radio" id="three" name="arch_overview_content" formControlName="arch_overview_content"
+                  value=3>
+                <label for="three">3 </label>
+                <input type="radio" id="four" name="arch_overview_content" formControlName="arch_overview_content"
+                  value=4>
+                <label for="four">4 </label>
+                <input type="radio" id="five" name="arch_overview_content" formControlName="arch_overview_content"
+                  value=5>
+                <label for="five">5 </label>
+                <div class="err_class"
+                  *ngIf="submitted == true && form.controls.question_1.value.arch_overview_content == ''">Please select
+                  a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="arch_overview_one" name="arch_overview_presentation"
+                  formControlName="arch_overview_presentation" value=1>
+                <label for="arch_overview_one">1</label>
+                <input type="radio" id="arch_overview_two" name="arch_overview_presentation"
+                  formControlName="arch_overview_presentation" value=2>
+                <label for="arch_overview_two">2 </label>
+                <input type="radio" id="arch_overview_three" name="arch_overview_presentation"
+                  formControlName="arch_overview_presentation" value=3>
+                <label for="arch_overview_three">3 </label>
+                <input type="radio" id="arch_overview_four" name="arch_overview_presentation"
+                  formControlName="arch_overview_presentation" value=4>
+                <label for="arch_overview_four">4 </label>
+                <input type="radio" id="arch_overview_five" name="arch_overview_presentation"
+                  formControlName="arch_overview_presentation" value=5>
+                <label for="arch_overview_five">5 </label>
+                <div class="err_class"
+                  *ngIf="submitted == true && form.controls.question_1.value.arch_overview_presentation == ''">Please
+                  select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Components of the GUI</td>
+              <td>
+                <input type="radio" id="GUI_c_one" name="GUI_c" formControlName="GUI_c" value=1>
+                <label for="GUI_c_one">1</label>
+                <input type="radio" id="GUI_c_two" name="GUI_c" formControlName="GUI_c" value=2>
+                <label for="GUI_c_two">2 </label>
+                <input type="radio" id="GUI_c_three" name="GUI_c" formControlName="GUI_c" value=3>
+                <label for="GUI_c_three">3 </label>
+                <input type="radio" id="GUI_c_four" name="GUI_c" formControlName="GUI_c" value=4>
+                <label for="GUI_c_four">4 </label>
+                <input type="radio" id="GUI_c_five" name="GUI_c" formControlName="GUI_c" value=5>
+                <label for="GUI_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.GUI_c == ''">Please
+                  select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="GUI_p_one" name="GUI_p" formControlName="GUI_p" value=1>
+                <label for="GUI_p_one">1</label>
+                <input type="radio" id="GUI_p_two" name="GUI_p" formControlName="GUI_p" value=2>
+                <label for="GUI_p_two">2 </label>
+                <input type="radio" id="GUI_p_three" name="GUI_p" formControlName="GUI_p" value=3>
+                <label for="GUI_p_three">3 </label>
+                <input type="radio" id="GUI_p_four" name="GUI_p" formControlName="GUI_p" value=4>
+                <label for="GUI_p_four">4 </label>
+                <input type="radio" id="GUI_p_five" name="GUI_p" formControlName="GUI_p" value=5>
+                <label for="GUI_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.GUI_p == ''">Please
+                  select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Creating your first EB GUIDE model</td>
+              <td>
+                <input type="radio" id="first_model_c_one" name="first_model_c" formControlName="first_model_c" value=1>
+                <label for="first_model_c_one">1</label>
+                <input type="radio" id="first_model_c_two" name="first_model_c" formControlName="first_model_c" value=2>
+                <label for="first_model_c_two">2 </label>
+                <input type="radio" id="first_model_c_three" name="first_model_c" formControlName="first_model_c"
+                  value=3>
+                <label for="first_model_c_three">3 </label>
+                <input type="radio" id="first_model_c_four" name="first_model_c" formControlName="first_model_c"
+                  value=4>
+                <label for="first_model_c_four">4 </label>
+                <input type="radio" id="first_model_c_five" name="first_model_c" formControlName="first_model_c"
+                  value=5>
+                <label for="first_model_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.first_model_c == ''">
+                  Please select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="first_model_p_one" name="first_model_p" formControlName="first_model_p" value=1>
+                <label for="first_model_p_one">1</label>
+                <input type="radio" id="first_model_p_two" name="first_model_p" formControlName="first_model_p" value=2>
+                <label for="first_model_p_two">2 </label>
+                <input type="radio" id="first_model_p_three" name="first_model_p" formControlName="first_model_p"
+                  value=3>
+                <label for="first_model_p_three">3 </label>
+                <input type="radio" id="first_model_p_four" name="first_model_p" formControlName="first_model_p"
+                  value=4>
+                <label for="first_model_p_four">4 </label>
+                <input type="radio" id="first_model_p_five" name="first_model_p" formControlName="first_model_p"
+                  value=5>
+                <label for="first_model_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.first_model_p == ''">
+                  Please select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Adding behaviour to your EB GUIDE model</td>
+              <td>
+                <input type="radio" id="add_model_c_one" name="add_model_c" formControlName="add_model_c" value=1>
+                <label for="add_model_c_one">1</label>
+                <input type="radio" id="add_model_c_two" name="add_model_c" formControlName="add_model_c" value=2>
+                <label for="add_model_c_two">2 </label>
+                <input type="radio" id="add_model_c_three" name="add_model_c" formControlName="add_model_c" value=3>
+                <label for="add_model_c_three">3 </label>
+                <input type="radio" id="add_model_c_four" name="add_model_c" formControlName="add_model_c" value=4>
+                <label for="add_model_c_four">4 </label>
+                <input type="radio" id="add_model_c_five" name="add_model_c" formControlName="add_model_c" value=5>
+                <label for="add_model_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.add_model_c == ''">
+                  Please select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="add_model_p_one" name="add_model_p" formControlName="add_model_p" value=1>
+                <label for="add_model_p_one">1</label>
+                <input type="radio" id="add_model_p_two" name="add_model_p" formControlName="add_model_p" value=2>
+                <label for="add_model_p_two">2 </label>
+                <input type="radio" id="add_model_p_three" name="add_model_p" formControlName="add_model_p" value=3>
+                <label for="add_model_p_three">3 </label>
+                <input type="radio" id="add_model_p_four" name="add_model_p" formControlName="add_model_p" value=4>
+                <label for="add_model_p_four">4 </label>
+                <input type="radio" id="add_model_p_five" name="add_model_p" formControlName="add_model_p" value=5>
+                <label for="add_model_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.add_model_p == ''">
+                  Please select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Working with templates</td>
+              <td>
+                <input type="radio" id="templates_c_one" name="templates_c" formControlName="templates_c" value=1>
+                <label for="templates_c_one">1</label>
+                <input type="radio" id="templates_c_two" name="templates_c" formControlName="templates_c" value=2>
+                <label for="templates_c_two">2 </label>
+                <input type="radio" id="templates_c_three" name="templates_c" formControlName="templates_c" value=3>
+                <label for="templates_c_three">3 </label>
+                <input type="radio" id="templates_c_four" name="templates_c" formControlName="templates_c" value=4>
+                <label for="templates_c_four">4 </label>
+                <input type="radio" id="templates_c_five" name="templates_c" formControlName="templates_c" value=5>
+                <label for="templates_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.templates_c == ''">
+                  Please select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="templates_p_one" name="templates_p" formControlName="templates_p" value=1>
+                <label for="templates_p_one">1</label>
+                <input type="radio" id="templates_p_two" name="templates_p" formControlName="templates_p" value=2>
+                <label for="templates_p_two">2 </label>
+                <input type="radio" id="templates_p_three" name="templates_p" formControlName="templates_p" value=3>
+                <label for="templates_p_three">3 </label>
+                <input type="radio" id="templates_p_four" name="templates_p" formControlName="templates_p" value=4>
+                <label for="templates_p_four">4 </label>
+                <input type="radio" id="templates_p_five" name="templates_p" formControlName="templates_p" value=5>
+                <label for="templates_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.templates_p == ''">
+                  Please select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Adding more functionality using widget features</td>
+              <td>
+                <input type="radio" id="add_func_c_one" name="add_func_c" formControlName="add_func_c" value=1>
+                <label for="add_func_c_one">1</label>
+                <input type="radio" id="add_func_c_two" name="add_func_c" formControlName="add_func_c" value=2>
+                <label for="add_func_c_two">2 </label>
+                <input type="radio" id="add_func_c_three" name="add_func_c" formControlName="add_func_c" value=3>
+                <label for="add_func_c_three">3 </label>
+                <input type="radio" id="add_func_c_four" name="add_func_c" formControlName="add_func_c" value=4>
+                <label for="add_func_c_four">4 </label>
+                <input type="radio" id="add_func_c_five" name="add_func_c" formControlName="add_func_c" value=5>
+                <label for="add_func_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.add_func_c == ''">
+                  Please select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="add_func_p_one" name="add_func_p" formControlName="add_func_p" value=1>
+                <label for="add_func_p_one">1</label>
+                <input type="radio" id="add_func_p_two" name="add_func_p" formControlName="add_func_p" value=2>
+                <label for="add_func_p_two">2 </label>
+                <input type="radio" id="add_func_p_three" name="add_func_p" formControlName="add_func_p" value=3>
+                <label for="add_func_p_three">3 </label>
+                <input type="radio" id="add_func_p_four" name="add_func_p" formControlName="add_func_p" value=4>
+                <label for="add_func_p_four">4 </label>
+                <input type="radio" id="add_func_p_five" name="add_func_p" formControlName="add_func_p" value=5>
+                <label for="add_func_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.add_func_p == ''">
+                  Please select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Creating a scrollable list with dynamic content</td>
+              <td>
+                <input type="radio" id="srcoll_c_one" name="srcoll_c" formControlName="srcoll_c" value=1>
+                <label for="srcoll_c_one">1</label>
+                <input type="radio" id="srcoll_c_two" name="srcoll_c" formControlName="srcoll_c" value=2>
+                <label for="srcoll_c_two">2 </label>
+                <input type="radio" id="srcoll_c_three" name="srcoll_c" formControlName="srcoll_c" value=3>
+                <label for="srcoll_c_three">3 </label>
+                <input type="radio" id="srcoll_c_four" name="srcoll_c" formControlName="srcoll_c" value=4>
+                <label for="srcoll_c_four">4 </label>
+                <input type="radio" id="srcoll_c_five" name="srcoll_c" formControlName="srcoll_c" value=5>
+                <label for="srcoll_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.srcoll_c == ''">Please
+                  select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="srcoll_p_one" name="srcoll_p" formControlName="srcoll_p" value=1>
+                <label for="srcoll_p_one">1</label>
+                <input type="radio" id="srcoll_p_two" name="srcoll_p" formControlName="srcoll_p" value=2>
+                <label for="srcoll_p_two">2 </label>
+                <input type="radio" id="srcoll_p_three" name="srcoll_p" formControlName="srcoll_p" value=3>
+                <label for="srcoll_p_three">3 </label>
+                <input type="radio" id="srcoll_p_four" name="srcoll_p" formControlName="srcoll_p" value=4>
+                <label for="srcoll_p_four">4 </label>
+                <input type="radio" id="srcoll_p_five" name="srcoll_p" formControlName="srcoll_p" value=5>
+                <label for="srcoll_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.srcoll_p == ''">Please
+                  select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Enhancing your EB GUIDE model with animations</td>
+              <td>
+                <input type="radio" id="enhance_c_one" name="enhance_c" formControlName="enhance_c" value=1>
+                <label for="enhance_c_one">1</label>
+                <input type="radio" id="enhance_c_two" name="enhance_c" formControlName="enhance_c" value=2>
+                <label for="enhance_c_two">2 </label>
+                <input type="radio" id="enhance_c_three" name="enhance_c" formControlName="enhance_c" value=3>
+                <label for="enhance_c_three">3 </label>
+                <input type="radio" id="enhance_c_four" name="enhance_c" formControlName="enhance_c" value=4>
+                <label for="enhance_c_four">4 </label>
+                <input type="radio" id="enhance_c_five" name="enhance_c" formControlName="enhance_c" value=5>
+                <label for="enhance_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.enhance_c == ''">
+                  Please select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="enhance_p_one" name="enhance_p" formControlName="enhance_p" value=1>
+                <label for="enhance_p_one">1</label>
+                <input type="radio" id="enhance_p_two" name="enhance_p" formControlName="enhance_p" value=2>
+                <label for="enhance_p_two">2 </label>
+                <input type="radio" id="enhance_p_three" name="enhance_p" formControlName="enhance_p" value=3>
+                <label for="enhance_p_three">3 </label>
+                <input type="radio" id="enhance_p_four" name="enhance_p" formControlName="enhance_p" value=4>
+                <label for="enhance_p_four">4 </label>
+                <input type="radio" id="enhance_p_five" name="enhance_p" formControlName="enhance_p" value=5>
+                <label for="enhance_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.enhance_p == ''">
+                  Please select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Adding conditional behaviour</td>
+              <td>
+                <input type="radio" id="conditional_c_one" name="conditional_c" formControlName="conditional_c" value=1>
+                <label for="conditional_c_one">1</label>
+                <input type="radio" id="conditional_c_two" name="conditional_c" formControlName="conditional_c" value=2>
+                <label for="conditional_c_two">2 </label>
+                <input type="radio" id="conditional_c_three" name="conditional_c" formControlName="conditional_c"
+                  value=3>
+                <label for="conditional_c_three">3 </label>
+                <input type="radio" id="conditional_c_four" name="conditional_c" formControlName="conditional_c"
+                  value=4>
+                <label for="conditional_c_four">4 </label>
+                <input type="radio" id="conditional_c_five" name="conditional_c" formControlName="conditional_c"
+                  value=5>
+                <label for="conditional_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.conditional_c == ''">
+                  Please select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="conditional_p_one" name="conditional_p" formControlName="conditional_p" value=1>
+                <label for="conditional_p_one">1</label>
+                <input type="radio" id="conditional_p_two" name="conditional_p" formControlName="conditional_p" value=2>
+                <label for="conditional_p_two">2 </label>
+                <input type="radio" id="conditional_p_three" name="conditional_p" formControlName="conditional_p"
+                  value=3>
+                <label for="conditional_p_three">3 </label>
+                <input type="radio" id="conditional_p_four" name="conditional_p" formControlName="conditional_p"
+                  value=4>
+                <label for="conditional_p_four">4 </label>
+                <input type="radio" id="conditional_p_five" name="conditional_p" formControlName="conditional_p"
+                  value=5>
+                <label for="conditional_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.conditional_p == ''">
+                  Please select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Modeling go-back functionality with history states</td>
+              <td>
+                <input type="radio" id="goBack_c_one" name="goBack_c" formControlName="goBack_c" value=1>
+                <label for="goBack_c_one">1</label>
+                <input type="radio" id="goBack_c_two" name="goBack_c" formControlName="goBack_c" value=2>
+                <label for="goBack_c_two">2 </label>
+                <input type="radio" id="goBack_c_three" name="goBack_c" formControlName="goBack_c" value=3>
+                <label for="goBack_c_three">3 </label>
+                <input type="radio" id="goBack_c_four" name="goBack_c" formControlName="goBack_c" value=4>
+                <label for="goBack_c_four">4 </label>
+                <input type="radio" id="goBack_c_five" name="goBack_c" formControlName="goBack_c" value=5>
+                <label for="goBack_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.goBack_c == ''">Please
+                  select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="goBack_p_one" name="goBack_p" formControlName="goBack_p" value=1>
+                <label for="goBack_p_one">1</label>
+                <input type="radio" id="goBack_p_two" name="goBack_p" formControlName="goBack_p" value=2>
+                <label for="goBack_p_two">2 </label>
+                <input type="radio" id="goBack_p_three" name="goBack_p" formControlName="goBack_p" value=3>
+                <label for="goBack_p_three">3 </label>
+                <input type="radio" id="goBack_p_four" name="goBack_p" formControlName="goBack_p" value=4>
+                <label for="goBack_p_four">4 </label>
+                <input type="radio" id="goBack_p_five" name="goBack_p" formControlName="goBack_p" value=5>
+                <label for="goBack_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.goBack_p == ''">Please
+                  select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Modeling pop-ups with dynamic state machines</td>
+              <td>
+                <input type="radio" id="popup_c_one" name="popup_c" formControlName="popup_c" value=1>
+                <label for="popup_c_one">1</label>
+                <input type="radio" id="popup_c_two" name="popup_c" formControlName="popup_c" value=2>
+                <label for="popup_c_two">2 </label>
+                <input type="radio" id="popup_c_three" name="popup_c" formControlName="popup_c" value=3>
+                <label for="popup_c_three">3 </label>
+                <input type="radio" id="popup_c_four" name="popup_c" formControlName="popup_c" value=4>
+                <label for="popup_c_four">4 </label>
+                <input type="radio" id="popup_c_five" name="popup_c" formControlName="popup_c" value=5>
+                <label for="popup_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.popup_c == ''">Please
+                  select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="popup_p_one" name="popup_p" formControlName="popup_p" value=1>
+                <label for="popup_p_one">1</label>
+                <input type="radio" id="popup_p_two" name="popup_p" formControlName="popup_p" value=2>
+                <label for="popup_p_two">2 </label>
+                <input type="radio" id="popup_p_three" name="popup_p" formControlName="popup_p" value=3>
+                <label for="popup_p_three">3 </label>
+                <input type="radio" id="popup_p_four" name="popup_p" formControlName="popup_p" value=4>
+                <label for="popup_p_four">4 </label>
+                <input type="radio" id="popup_p_five" name="popup_p" formControlName="popup_p" value=5>
+                <label for="popup_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.popup_p == ''">Please
+                  select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Working with multiple state machines</td>
+              <td>
+                <input type="radio" id="multiple_c_one" name="multiple_c" formControlName="multiple_c" value=1>
+                <label for="multiple_c_one">1</label>
+                <input type="radio" id="multiple_c_two" name="multiple_c" formControlName="multiple_c" value=2>
+                <label for="multiple_c_two">2 </label>
+                <input type="radio" id="multiple_c_three" name="multiple_c" formControlName="multiple_c" value=3>
+                <label for="multiple_c_three">3 </label>
+                <input type="radio" id="multiple_c_four" name="multiple_c" formControlName="multiple_c" value=4>
+                <label for="multiple_c_four">4 </label>
+                <input type="radio" id="multiple_c_five" name="multiple_c" formControlName="multiple_c" value=5>
+                <label for="multiple_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.multiple_c == ''">
+                  Please select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="multiple_p_one" name="multiple_p" formControlName="multiple_p" value=1>
+                <label for="multiple_p_one">1</label>
+                <input type="radio" id="multiple_p_two" name="multiple_p" formControlName="multiple_p" value=2>
+                <label for="multiple_p_two">2 </label>
+                <input type="radio" id="multiple_p_three" name="multiple_p" formControlName="multiple_p" value=3>
+                <label for="multiple_p_three">3 </label>
+                <input type="radio" id="multiple_p_four" name="multiple_p" formControlName="multiple_p" value=4>
+                <label for="multiple_p_four">4 </label>
+                <input type="radio" id="multiple_p_five" name="multiple_p" formControlName="multiple_p" value=5>
+                <label for="multiple_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.multiple_p == ''">
+                  Please select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Dealing with focus and key input features</td>
+              <td>
+                <input type="radio" id="focus_c_one" name="focus_c" formControlName="focus_c" value=1>
+                <label for="focus_c_one">1</label>
+                <input type="radio" id="focus_c_two" name="focus_c" formControlName="focus_c" value=2>
+                <label for="focus_c_two">2 </label>
+                <input type="radio" id="focus_c_three" name="focus_c" formControlName="focus_c" value=3>
+                <label for="focus_c_three">3 </label>
+                <input type="radio" id="focus_c_four" name="focus_c" formControlName="focus_c" value=4>
+                <label for="focus_c_four">4 </label>
+                <input type="radio" id="focus_c_five" name="focus_c" formControlName="focus_c" value=5>
+                <label for="focus_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.focus_c == ''">Please
+                  select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="focus_p_one" name="focus_p" formControlName="focus_p" value=1>
+                <label for="focus_p_one">1</label>
+                <input type="radio" id="focus_p_two" name="focus_p" formControlName="focus_p" value=2>
+                <label for="focus_p_two">2 </label>
+                <input type="radio" id="focus_p_three" name="focus_p" formControlName="focus_p" value=3>
+                <label for="focus_p_three">3 </label>
+                <input type="radio" id="focus_p_four" name="focus_p" formControlName="focus_p" value=4>
+                <label for="focus_p_four">4 </label>
+                <input type="radio" id="focus_p_five" name="focus_p" formControlName="focus_p" value=5>
+                <label for="focus_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.focus_p == ''">Please
+                  select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Adding support for multiple languages</td>
+              <td>
+                <input type="radio" id="languages_c_one" name="languages_c" formControlName="languages_c" value=1>
+                <label for="languages_c_one">1</label>
+                <input type="radio" id="languages_c_two" name="languages_c" formControlName="languages_c" value=2>
+                <label for="languages_c_two">2 </label>
+                <input type="radio" id="languages_c_three" name="languages_c" formControlName="languages_c" value=3>
+                <label for="languages_c_three">3 </label>
+                <input type="radio" id="languages_c_four" name="languages_c" formControlName="languages_c" value=4>
+                <label for="languages_c_four">4 </label>
+                <input type="radio" id="languages_c_five" name="languages_c" formControlName="languages_c" value=5>
+                <label for="languages_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.languages_c == ''">
+                  Please select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="languages_p_one" name="languages_p" formControlName="languages_p" value=1>
+                <label for="languages_p_one">1</label>
+                <input type="radio" id="languages_p_two" name="languages_p" formControlName="languages_p" value=2>
+                <label for="languages_p_two">2 </label>
+                <input type="radio" id="languages_p_three" name="languages_p" formControlName="languages_p" value=3>
+                <label for="languages_p_three">3 </label>
+                <input type="radio" id="languages_p_four" name="languages_p" formControlName="languages_p" value=4>
+                <label for="languages_p_four">4 </label>
+                <input type="radio" id="languages_p_five" name="languages_p" formControlName="languages_p" value=5>
+                <label for="languages_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.languages_p == ''">
+                  Please select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Working with EB GUIDE Speech</td>
+              <td>
+                <input type="radio" id="speech_c_one" name="speech_c" formControlName="speech_c" value=1>
+                <label for="speech_c_one">1</label>
+                <input type="radio" id="speech_c_two" name="speech_c" formControlName="speech_c" value=2>
+                <label for="speech_c_two">2 </label>
+                <input type="radio" id="speech_c_three" name="speech_c" formControlName="speech_c" value=3>
+                <label for="speech_c_three">3 </label>
+                <input type="radio" id="speech_c_four" name="speech_c" formControlName="speech_c" value=4>
+                <label for="speech_c_four">4 </label>
+                <input type="radio" id="speech_c_five" name="speech_c" formControlName="speech_c" value=5>
+                <label for="speech_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.speech_c == ''">Please
+                  select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="speech_p_one" name="speech_p" formControlName="speech_p" value=1>
+                <label for="speech_p_one">1</label>
+                <input type="radio" id="speech_p_two" name="speech_p" formControlName="speech_p" value=2>
+                <label for="speech_p_two">2 </label>
+                <input type="radio" id="speech_p_three" name="speech_p" formControlName="speech_p" value=3>
+                <label for="speech_p_three">3 </label>
+                <input type="radio" id="speech_p_four" name="speech_p" formControlName="speech_p" value=4>
+                <label for="speech_p_four">4 </label>
+                <input type="radio" id="speech_p_five" name="speech_p" formControlName="speech_p" value=5>
+                <label for="speech_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.speech_p == ''">Please
+                  select a rating</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Working with 3D objects</td>
+              <td>
+                <input type="radio" id="objects_c_one" name="objects_c" formControlName="objects_c" value=1>
+                <label for="objects_c_one">1</label>
+                <input type="radio" id="objects_c_two" name="objects_c" formControlName="objects_c" value=2>
+                <label for="objects_c_two">2 </label>
+                <input type="radio" id="objects_c_three" name="objects_c" formControlName="objects_c" value=3>
+                <label for="objects_c_three">3 </label>
+                <input type="radio" id="objects_c_four" name="objects_c" formControlName="objects_c" value=4>
+                <label for="objects_c_four">4 </label>
+                <input type="radio" id="objects_c_five" name="objects_c" formControlName="objects_c" value=5>
+                <label for="objects_c_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.objects_c == ''">
+                  Please select a rating</div>
+              </td>
+              <td>
+                <input type="radio" id="objects_p_one" name="objects_p" formControlName="objects_p" value=1>
+                <label for="objects_p_one">1</label>
+                <input type="radio" id="objects_p_two" name="objects_p" formControlName="objects_p" value=2>
+                <label for="objects_p_two">2 </label>
+                <input type="radio" id="objects_p_three" name="objects_p" formControlName="objects_p" value=3>
+                <label for="objects_p_three">3 </label>
+                <input type="radio" id="objects_p_four" name="objects_p" formControlName="objects_p" value=4>
+                <label for="objects_p_four">4 </label>
+                <input type="radio" id="objects_p_five" name="objects_p" formControlName="objects_p" value=5>
+                <label for="objects_p_five">5 </label>
+                <div class="err_class" *ngIf="submitted == true && form.controls.question_1.value.objects_p == ''">
+                  Please select a rating</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="my-3 float-left col-lg-12">
+        <p>2. Which important topic did you miss?</p>
+        <div formGroupName="question_2">
+          <input type="text" name="missed_topic" id="missed_topic" formControlName="missed_topic" required>
+          <div class="err_class" *ngIf="submitted == true && form.controls.question_2.value.missed_topic == ''">Please
+            enter a comment</div>
+        </div>
+      </div>
+      <div class="my-3 float-left col-lg-12">
+        <p>3. Exercises</p>
+        <p> Please give marks: 1 = insufficient; 2 = sufficient; 3 = ok; 4 = good; 5 = excellent</p>
+        <div formGroupName="question_3">
+          <table class="table table-bordered table-secondary">
+            <tbody>
+              <tr>
+                <td>Content</td>
+                <td>
+                  <input type="radio" id="content_one" name="content" formControlName="content" value=1>
+                  <label for="content_one">1</label>
+                  <input type="radio" id="content_two" name="content" formControlName="content" value=2>
+                  <label for="content_two">2 </label>
+                  <input type="radio" id="content_three" name="content" formControlName="content" value=3>
+                  <label for="content_three">3 </label>
+                  <input type="radio" id="content_four" name="content" formControlName="content" value=4>
+                  <label for="content_four">4 </label>
+                  <input type="radio" id="content_five" name="content" formControlName="content" value=5>
+                  <label for="content_five">5 </label>
+                  <div class="err_class" *ngIf="submitted == true && form.controls.question_3.value.content == ''">
+                    Please select a rating</div>
+                </td>
+              </tr>
+              <tr>
+                <td>Practical use</td>
+                <td>
+                  <input type="radio" id="practical_one" name="practical" formControlName="practical" value=1>
+                  <label for="practical_one">1</label>
+                  <input type="radio" id="practical_two" name="practical" formControlName="practical" value=2>
+                  <label for="practical_two">2 </label>
+                  <input type="radio" id="practical_three" name="practical" formControlName="practical" value=3>
+                  <label for="practical_three">3 </label>
+                  <input type="radio" id="practical_four" name="practical" formControlName="practical" value=4>
+                  <label for="practical_four">4 </label>
+                  <input type="radio" id="practical_five" name="practical" formControlName="practical" value=5>
+                  <label for="practical_five">5 </label>
+                  <div class="err_class" *ngIf="submitted == true && form.controls.question_3.value.practical == ''">
+                    Please select a rating</div>
+                </td>
+              </tr>
+              <tr>
+                <td>Comprehensibility</td>
+                <td>
+                  <input type="radio" id="comprehensibility_one" name="comprehensibility"
+                    formControlName="comprehensibility" value=1>
+                  <label for="comprehensibility_one">1</label>
+                  <input type="radio" id="comprehensibility_two" name="comprehensibility"
+                    formControlName="comprehensibility" value=2>
+                  <label for="comprehensibility_two">2 </label>
+                  <input type="radio" id="comprehensibility_three" name="comprehensibility"
+                    formControlName="comprehensibility" value=3>
+                  <label for="comprehensibility_three">3 </label>
+                  <input type="radio" id="comprehensibility_four" name="comprehensibility"
+                    formControlName="comprehensibility" value=4>
+                  <label for="comprehensibility_four">4 </label>
+                  <input type="radio" id="comprehensibility_five" name="comprehensibility"
+                    formControlName="comprehensibility" value=5>
+                  <label for="comprehensibility_five">5 </label>
+                  <div class="err_class"
+                    *ngIf="submitted == true && form.controls.question_3.value.comprehensibility == ''">Please select a
+                    rating</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="my-3 float-left col-lg-12">
+        <p>4. Did this training meet your expectations?</p>
+        <p> Please give marks: 1 = insufficient; 2 = sufficient; 3 = ok; 4 = good; 5 = excellent</p>
+        <div formGroupName="question_4">
+          <table class="table table-bordered table-secondary">
+            <tbody>
+              <tr>
+                <td>Structuring</td>
+                <td>
+                  <input type="radio" id="struct_one" name="struct" formControlName="struct" value=1>
+                  <label for="struct_one">1</label>
+                  <input type="radio" id="struct_two" name="struct" formControlName="struct" value=2>
+                  <label for="struct_two">2 </label>
+                  <input type="radio" id="struct_three" name="struct" formControlName="struct" value=3>
+                  <label for="struct_three">3 </label>
+                  <input type="radio" id="struct_four" name="struct" formControlName="struct" value=4>
+                  <label for="struct_four">4 </label>
+                  <input type="radio" id="struct_five" name="struct" formControlName="struct" value=5>
+                  <label for="struct_five">5 </label>
+                  <div class="err_class" *ngIf="submitted == true && form.controls.question_4.value.struct == ''">
+                    Please select a rating</div>
+                </td>
+              </tr>
+              <tr>
+                <td>Time management</td>
+                <td>
+                  <input type="radio" id="time_one" name="time" formControlName="time" value=1>
+                  <label for="time_one">1</label>
+                  <input type="radio" id="time_two" name="time" formControlName="time" value=2>
+                  <label for="time_two">2 </label>
+                  <input type="radio" id="time_three" name="time" formControlName="time" value=3>
+                  <label for="time_three">3 </label>
+                  <input type="radio" id="time_four" name="time" formControlName="time" value=4>
+                  <label for="time_four">4 </label>
+                  <input type="radio" id="time_five" name="time" formControlName="time" value=5>
+                  <label for="time_five">5 </label>
+                  <div class="err_class" *ngIf="submitted == true && form.controls.question_4.value.time == ''">
+                    Please select a rating</div>
+                </td>
+              </tr>
+              <tr>
+                <td>Overall rating</td>
+                <td>
+                  <input type="radio" id="rating_one" name="rating" formControlName="rating" value=1>
+                  <label for="rating_one">1</label>
+                  <input type="radio" id="rating_two" name="rating" formControlName="rating" value=2>
+                  <label for="rating_two">2 </label>
+                  <input type="radio" id="rating_three" name="rating" formControlName="rating" value=3>
+                  <label for="rating_three">3 </label>
+                  <input type="radio" id="rating_four" name="rating" formControlName="rating" value=4>
+                  <label for="rating_four">4 </label>
+                  <input type="radio" id="rating_five" name="rating" formControlName="rating" value=5>
+                  <label for="rating_five">5 </label>
+                  <div class="err_class" *ngIf="submitted == true && form.controls.question_4.value.rating == ''">Please
+                    select a rating</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="my-3 float-left col-lg-12">
+        <p>5. General Conditions (optional)</p>
+        <p> Please give marks: 1 = insufficient; 2 = sufficient; 3 = ok; 4 = good; 5 = excellent</p>
+        <div formGroupName="question_5">
+          <table class="table table-bordered table-secondary">
+            <tbody>
+              <tr>
+                <td>Organization</td>
+                <td>
+                  <input type="radio" id="org_one" name="org" formControlName="org" value=1>
+                  <label for="org_one">1</label>
+                  <input type="radio" id="org_two" name="org" formControlName="org" value=2>
+                  <label for="org_two">2 </label>
+                  <input type="radio" id="org_three" name="org" formControlName="org" value=3>
+                  <label for="org_three">3 </label>
+                  <input type="radio" id="org_four" name="org" formControlName="org" value=4>
+                  <label for="org_four">4 </label>
+                  <input type="radio" id="org_five" name="org" formControlName="org" value=5>
+                  <label for="org_five">5 </label>
+                  <div class="err_class" *ngIf="submitted == true && form.controls.question_5.value.org == ''">
+                    Please select a rating</div>
+                </td>
+              </tr>
+              <tr>
+                <td>Location</td>
+                <td>
+                  <input type="radio" id="location_one" name="location" formControlName="location" value=1>
+                  <label for="location_one">1</label>
+                  <input type="radio" id="location_two" name="location" formControlName="location" value=2>
+                  <label for="location_two">2 </label>
+                  <input type="radio" id="location_three" name="location" formControlName="location" value=3>
+                  <label for="location_three">3 </label>
+                  <input type="radio" id="location_four" name="location" formControlName="location" value=4>
+                  <label for="location_four">4 </label>
+                  <input type="radio" id="location_five" name="location" formControlName="location" value=5>
+                  <label for="location_five">5 </label>
+                  <div class="err_class" *ngIf="submitted == true && form.controls.question_5.value.location == ''">
+                    Please select a rating</div>
+                </td>
+              </tr>
+              <tr>
+                <td>Catering</td>
+                <td>
+                  <input type="radio" id="catr_one" name="catr" formControlName="catr" value=1>
+                  <label for="catr_one">1</label>
+                  <input type="radio" id="catr_two" name="catr" formControlName="catr" value=2>
+                  <label for="catr_two">2 </label>
+                  <input type="radio" id="catr_three" name="catr" formControlName="catr" value=3>
+                  <label for="catr_three">3 </label>
+                  <input type="radio" id="catr_four" name="catr" formControlName="catr" value=4>
+                  <label for="catr_four">4 </label>
+                  <input type="radio" id="catr_five" name="catr" formControlName="catr" value=5>
+                  <label for="catr_five">5 </label>
+                  <div class="err_class" *ngIf="submitted == true && form.controls.question_5.value.catr == ''">Please
+                    select a rating</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="my-3 float-left col-lg-12">
+        <p>6.Own remarks</p>
+        <h6>(Please let us know which impressions you received from the training and give us your suggestion for improvements.)</h6>
+        <div formGroupName="question_6">
+          <textarea type="text" name="suggestions" id="suggestions"
+            formControlName="suggestions" style="width: 90%" required>
+            </textarea>
+          <div class="err_class" *ngIf="submitted == true && form.controls.question_6.value.suggestions == ''">
+            Please enter a comment</div>
+        </div>
+      </div>
+      <div class="my-3 float-left col-lg-12">
+        <button class="btn btn-success" type="submit"> Submit </button>
+      </div>
+    </form>
+
+    <!-- <img src="assets/images/footer2.png" alt="header" srcset="" width="100%"> -->
+    <img src="assets/images/footer1.png" alt="header" srcset="" width="100%">
+  </div>
+</div>
