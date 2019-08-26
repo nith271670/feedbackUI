@@ -107,31 +107,31 @@ export class EBGuideFormComponent {
   });
   constructor(private fb: FormBuilder, private httpService: HttpService,
     private router: Router) {
-      this.getTrainingDetailsFromApi();
-     }
+    this.getTrainingDetailsFromApi();
+  }
   getTrainingDetailsFromApi() {
-  this.href = this.router.url;
-  this.trainingForm = this.href.split('/').pop();
-  this.httpService.getTrainingDetails(this.trainingForm).subscribe(response => {
-    console.log(response);
-    this.TrainingDetails = response as {};
-    this.trainingName = this.TrainingDetails['training'];
-    this.trainerNames = this.TrainingDetails['trainers'].toString();
+    this.href = this.router.url;
+    this.trainingForm = this.href.split('/').pop();
+    this.httpService.getTrainingDetails(this.trainingForm).subscribe(response => {
+      console.log(response);
+      this.TrainingDetails = response as {};
+      this.trainingName = this.TrainingDetails['training'];
+      this.trainerNames = this.TrainingDetails['trainers'].toString();
 
-    this.trainingLocation = this.TrainingDetails['location'];
-    if (this.TrainingDetails['from_date'] === this.TrainingDetails['to_date']) {
-      this.trainingDate = this.TrainingDetails['from_date'];
-    } else {
-      this.trainingDate = this.TrainingDetails['from_date'] + ' to ' + this.TrainingDetails['to_date'];
-    }
-    for (let i = 0; i < this.TrainingDetails['trainers'].length; i++) {
-      this.trainersPresentationRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
-      this.trainersUnderstandabilityRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
-      this.trainersExpertiseRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
-      this.trainersInteractionRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
-    }
-  });
-}
+      this.trainingLocation = this.TrainingDetails['location'];
+      if (this.TrainingDetails['from_date'] === this.TrainingDetails['to_date']) {
+        this.trainingDate = this.TrainingDetails['from_date'];
+      } else {
+        this.trainingDate = this.TrainingDetails['from_date'] + ' to ' + this.TrainingDetails['to_date'];
+      }
+      for (let i = 0; i < this.TrainingDetails['trainers'].length; i++) {
+        this.trainersPresentationRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
+        this.trainersUnderstandabilityRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
+        this.trainersExpertiseRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
+        this.trainersInteractionRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
+      }
+    });
+  }
   onSubmit() {
     this.submitted = true;
     this.p_rating = false;
@@ -154,13 +154,11 @@ export class EBGuideFormComponent {
         this.i_rating = true;
       }
     }
-
     console.log(JSON.stringify(this.form.value));
     if (this.form.valid && this.p_rating === false && this.u_rating === false && this.e_rating === false && this.i_rating === false) {
       this.convertResponseToPost();
       console.log('success');
     }
-
   }
 
   handleChange(evt, index, topic) {
@@ -204,13 +202,10 @@ export class EBGuideFormComponent {
         this.i_rating = true;
       }
     }
-
     this.presentation_sum = this.presentation_sum / this.trainersPresentationRatingArr.length;
     this.understanding_sum = this.understanding_sum / this.trainersPresentationRatingArr.length;
     this.expertise_sum = this.expertise_sum / this.trainersPresentationRatingArr.length;
     this.interaction_sum = this.interaction_sum / this.trainersPresentationRatingArr.length;
-
-
   }
   convertResponseToPost() {
 
@@ -223,8 +218,7 @@ export class EBGuideFormComponent {
       'questions': [{
         'question': 'Content',
         'question_type': 'rating',
-        'answer': '',
-        'comments': '',
+        'answer': null,
         'subQuestions': [{
           'sub_ques': 'Architectural overview',
           'content_rating': this.form.controls['question_1'].value.arch_overview_content,
@@ -309,75 +303,71 @@ export class EBGuideFormComponent {
       },
       {
         'question': 'Which important topic did you miss?',
-        'question_type': '',
+        'question_type': null,
         'answer': this.form.controls['question_2'].value.missed_topic,
-        'comments': '',
         'subQuestions': []
       },
       {
         'question': 'Exercises',
-        'question_type': '',
-        'answer': '',
-        'comments': '',
+        'question_type': 'rating',
+        'answer': null,
         'subQuestions': [{
           'sub_ques': 'Content',
-          'content_rating': '',
+          'content_rating': null,
           'presentation_rating': this.form.controls['question_3'].value.content
         },
         {
           'sub_ques': 'Practical use',
-          'content_rating': '',
+          'content_rating': null,
           'presentation_rating': this.form.controls['question_3'].value.practical
         },
         {
           'sub_ques': 'Comprehensibility',
-          'content_rating': '',
+          'content_rating': null,
           'presentation_rating': this.form.controls['question_3'].value.comprehensibility
         }
         ]
       },
       {
         'question': 'Did this training meet your expectations?',
-        'question_type': '',
-        'answer': this.form.controls['question_4'].value.valuable_comment,
-        'comments': '',
+        'question_type': 'rating',
+        'answer': null,
         'subQuestions': [
           {
             'sub_ques': 'Structuring',
-            'content_rating': '',
+            'content_rating': null,
             'presentation_rating': this.form.controls['question_4'].value.struct
           },
           {
             'sub_ques': 'Time management',
-            'content_rating': '',
+            'content_rating': null,
             'presentation_rating': this.form.controls['question_4'].value.time
           },
           {
             'sub_ques': 'Overall rating',
-            'content_rating': '',
+            'content_rating': null,
             'presentation_rating': this.form.controls['question_4'].value.rating
           }
         ]
       },
       {
         'question': 'General Conditions (optional)',
-        'question_type': '',
-        'answer': '',
-        'comments': '',
+        'question_type': 'rating',
+        'answer': null,
         'subQuestions': [
           {
             'sub_ques': 'Organization',
-            'content_rating': '',
+            'content_rating': null,
             'presentation_rating': this.form.controls['question_5'].value.org
           },
           {
             'sub_ques': 'Location',
-            'content_rating': '',
+            'content_rating': null,
             'presentation_rating': this.form.controls['question_5'].value.location
           },
           {
             'sub_ques': 'Catering',
-            'content_rating': '',
+            'content_rating': null,
             'presentation_rating': this.form.controls['question_5'].value.catr
           }
 
@@ -385,9 +375,8 @@ export class EBGuideFormComponent {
       },
       {
         'question': 'How long did you already work with EB Product (Months or Years)',
-        'question_type': '',
+        'question_type': null,
         'answer': this.form.controls['question_6'].value.suggestions,
-        'comments': '',
         'subQuestions': []
       }
       ]
