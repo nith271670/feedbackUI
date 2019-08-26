@@ -33,9 +33,9 @@ export class HttpService {
           })
         );
   }
-  createTraining(trainingdetails): Observable<any> {
+  createTraining(trainingDetails): Observable<any> {
     return this.http
-      .post<any>('https://feedback-eb-new.herokuapp.com/trainingdetails/add', trainingdetails,
+      .post<any>('https://feedback-eb-new.herokuapp.com/trainingdetails/add', trainingDetails,
         { headers: headers, observe: 'response'}).pipe(
           tap(e => {
             // this.routeToList(e);
@@ -47,7 +47,7 @@ export class HttpService {
     return this.http.get('https://feedback-eb-new.herokuapp.com/trainingdetails/edit/' + trainingId);
   }
   deleteTraining(trainingId) {
-    return this.http.post('https://feedback-eb-new.herokuapp.com/trainingdetails/delete/' + trainingId,"delete");
+    return this.http.post('https://feedback-eb-new.herokuapp.com/trainingdetails/delete/' + trainingId, 'delete');
   }
 
   updateTraining(updatedData) {
@@ -59,15 +59,15 @@ export class HttpService {
   getTrainerNameList() {
     return this.http.get('https://feedback-eb-new.herokuapp.com/trainernames/list');
   }
-  addTrainerName(name){
-    return this.http.post('https://feedback-eb-new.herokuapp.com/trainernames/add/',name);
+  addTrainerName(name) {
+    return this.http.post('https://feedback-eb-new.herokuapp.com/trainernames/add/', name);
   }
   getTrainingList() {
     return this.http.get('https://feedback-eb-new.herokuapp.com/trainingdetails/list');
   }
 
- addTrainingName(name){
-    return this.http.post('https://feedback-eb-new.herokuapp.com/trainingnames/add/',name);
+ addTrainingName(name) {
+    return this.http.post('https://feedback-eb-new.herokuapp.com/trainingnames/add/', name);
   }
 
   getTrainingDetails(trainingId) {

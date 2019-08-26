@@ -1,19 +1,7 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  FormBuilder,
-  Validators,
-  FormGroup,
-  FormArray
-} from '@angular/forms';
-import {
-  HttpService
-} from '../shared/http.service';
-import {
-  Router
-} from '@angular/router';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpService } from '../shared/http.service';
 
 @Component({
   selector: 'app-ebguide-form',
@@ -21,10 +9,10 @@ import {
   styleUrls: ['./ebguide-form.component.css']
 })
 
-export class EBGuideFormComponent implements OnInit {
+export class EBGuideFormComponent {
 
-  trainingform = '';
-  public href = '';
+  trainingForm = '';
+  href = '';
   TrainingDetails = {};
   trainingName = '';
   trainerNames = '';
@@ -46,27 +34,21 @@ export class EBGuideFormComponent implements OnInit {
 
   form = this.fb.group({
     participantName: this.fb.group({
-
       id_name: [''],
     }),
     training_n: this.fb.group({
-
       training_name: [''],
     }),
     trainer_n: this.fb.group({
-
       trainer_names: [''],
     }),
     training_location: this.fb.group({
-
       location_name: [''],
     }),
     training_date: this.fb.group({
-
       t_date: [''],
     }),
     question_1: this.fb.group({
-
       arch_overview_content: ['', Validators.required],
       arch_overview_presentation: ['', Validators.required],
       GUI_c: ['', Validators.required],
@@ -79,8 +61,8 @@ export class EBGuideFormComponent implements OnInit {
       templates_p: ['', Validators.required],
       add_func_c: ['', Validators.required],
       add_func_p: ['', Validators.required],
-      srcoll_c: ['', Validators.required],
-      srcoll_p: ['', Validators.required],
+      scroll_c: ['', Validators.required],
+      scroll_p: ['', Validators.required],
       enhance_c: ['', Validators.required],
       enhance_p: ['', Validators.required],
       conditional_c: ['', Validators.required],
@@ -99,7 +81,6 @@ export class EBGuideFormComponent implements OnInit {
       speech_p: ['', Validators.required],
       objects_c: ['', Validators.required],
       objects_p: ['', Validators.required],
-
     }),
     question_2: this.fb.group({
       missed_topic: ['', Validators.required]
@@ -115,7 +96,6 @@ export class EBGuideFormComponent implements OnInit {
       rating: ['', Validators.required],
     }),
     question_5: this.fb.group({
-
       org: ['', Validators.required],
       location: ['', Validators.required],
       catr: ['', Validators.required],
@@ -126,36 +106,32 @@ export class EBGuideFormComponent implements OnInit {
     })
   });
   constructor(private fb: FormBuilder, private httpService: HttpService,
-    private router: Router) { }
+    private router: Router) {
+      this.getTrainingDetailsFromApi();
+     }
+  getTrainingDetailsFromApi() {
+  this.href = this.router.url;
+  this.trainingForm = this.href.split('/').pop();
+  this.httpService.getTrainingDetails(this.trainingForm).subscribe(response => {
+    console.log(response);
+    this.TrainingDetails = response as {};
+    this.trainingName = this.TrainingDetails['training'];
+    this.trainerNames = this.TrainingDetails['trainers'].toString();
 
-  ngOnInit() {
-    // document.getElementById('main_hd').style.display = "none";
-    this.href = this.router.url;
-    this.trainingform = this.href.split('/').pop();
-    console.log(this.trainingform);
-    this.httpService.getTrainingDetails(this.trainingform).subscribe(response => {
-      console.log(response);
-      this.TrainingDetails = response as {};
-      this.trainingName = this.TrainingDetails['training'];
-      this.trainerNames = this.TrainingDetails['trainers'].toString();
-
-      this.trainingLocation = this.TrainingDetails['location'];
-      if (this.TrainingDetails['from_date'] == this.TrainingDetails['to_date']) {
-        this.trainingDate = this.TrainingDetails['from_date'];
-      } else {
-        this.trainingDate = this.TrainingDetails['from_date'] + ' to ' + this.TrainingDetails['to_date'];
-      }
-
-      for (let i = 0; i < this.TrainingDetails['trainers'].length; i++) {
-        this.trainersPresentationRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
-        this.trainersUnderstandabilityRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
-        this.trainersExpertiseRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
-        this.trainersInteractionRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
-      }
-
-    });
-  }
-
+    this.trainingLocation = this.TrainingDetails['location'];
+    if (this.TrainingDetails['from_date'] === this.TrainingDetails['to_date']) {
+      this.trainingDate = this.TrainingDetails['from_date'];
+    } else {
+      this.trainingDate = this.TrainingDetails['from_date'] + ' to ' + this.TrainingDetails['to_date'];
+    }
+    for (let i = 0; i < this.TrainingDetails['trainers'].length; i++) {
+      this.trainersPresentationRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
+      this.trainersUnderstandabilityRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
+      this.trainersExpertiseRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
+      this.trainersInteractionRatingArr[i] = { 'name': this.TrainingDetails['trainers'][i], 'rating': 0 };
+    }
+  });
+}
   onSubmit() {
     this.submitted = true;
     this.p_rating = false;
@@ -181,7 +157,7 @@ export class EBGuideFormComponent implements OnInit {
 
     console.log(JSON.stringify(this.form.value));
     if (this.form.valid && this.p_rating === false && this.u_rating === false && this.e_rating === false && this.i_rating === false) {
-      this.convertResponseToPost(this.form.value);
+      this.convertResponseToPost();
       console.log('success');
     }
 
@@ -236,7 +212,7 @@ export class EBGuideFormComponent implements OnInit {
 
 
   }
-  convertResponseToPost(formValue) {
+  convertResponseToPost() {
 
     const finalResponse = {
       'name': this.form.controls['participantName'].value.id_name,
@@ -249,7 +225,7 @@ export class EBGuideFormComponent implements OnInit {
         'question_type': 'rating',
         'answer': '',
         'comments': '',
-        'subquestions': [{
+        'subQuestions': [{
           'sub_ques': 'Architectural overview',
           'content_rating': this.form.controls['question_1'].value.arch_overview_content,
           'presentation_rating': this.form.controls['question_1'].value.arch_overview_presentation,
@@ -265,7 +241,7 @@ export class EBGuideFormComponent implements OnInit {
           'presentation_rating': this.form.controls['question_1'].value.first_model_p
         },
         {
-          'sub_ques': 'Adding behaviour to your EB GUIDE model',
+          'sub_ques': 'Adding behavior to your EB GUIDE model',
           'content_rating': this.form.controls['question_1'].value.add_model_c,
           'presentation_rating': this.form.controls['question_1'].value.add_model_p
         },
@@ -281,8 +257,8 @@ export class EBGuideFormComponent implements OnInit {
         },
         {
           'sub_ques': 'Creating a scrollable list with dynamic content',
-          'content_rating': this.form.controls['question_1'].value.srcoll_c,
-          'presentation_rating': this.form.controls['question_1'].value.srcoll_p
+          'content_rating': this.form.controls['question_1'].value.scroll_c,
+          'presentation_rating': this.form.controls['question_1'].value.scroll_p
         },
         {
           'sub_ques': 'Enhancing your EB GUIDE model with animations',
@@ -290,7 +266,7 @@ export class EBGuideFormComponent implements OnInit {
           'presentation_rating': this.form.controls['question_1'].value.enhance_p
         },
         {
-          'sub_ques': 'Adding conditional behaviour',
+          'sub_ques': 'Adding conditional behavior',
           'content_rating': this.form.controls['question_1'].value.conditional_c,
           'presentation_rating': this.form.controls['question_1'].value.conditional_p
         },
@@ -336,14 +312,14 @@ export class EBGuideFormComponent implements OnInit {
         'question_type': '',
         'answer': this.form.controls['question_2'].value.missed_topic,
         'comments': '',
-        'subquestions': []
+        'subQuestions': []
       },
       {
         'question': 'Exercises',
         'question_type': '',
         'answer': '',
         'comments': '',
-        'subquestions': [{
+        'subQuestions': [{
           'sub_ques': 'Content',
           'content_rating': '',
           'presentation_rating': this.form.controls['question_3'].value.content
@@ -365,7 +341,7 @@ export class EBGuideFormComponent implements OnInit {
         'question_type': '',
         'answer': this.form.controls['question_4'].value.valuable_comment,
         'comments': '',
-        'subquestions': [
+        'subQuestions': [
           {
             'sub_ques': 'Structuring',
             'content_rating': '',
@@ -388,7 +364,7 @@ export class EBGuideFormComponent implements OnInit {
         'question_type': '',
         'answer': '',
         'comments': '',
-        'subquestions': [
+        'subQuestions': [
           {
             'sub_ques': 'Organization',
             'content_rating': '',
@@ -408,26 +384,26 @@ export class EBGuideFormComponent implements OnInit {
         ]
       },
       {
-        'question': 'How long did you already work with EB Product (Months r Years)',
+        'question': 'How long did you already work with EB Product (Months or Years)',
         'question_type': '',
         'answer': this.form.controls['question_6'].value.suggestions,
         'comments': '',
-        'subquestions': []
+        'subQuestions': []
       }
       ]
     };
     console.log(finalResponse);
-    this.makeApiCall(finalResponse);
+    this.postRequest(finalResponse);
   }
-  makeApiCall(payload) {
+
+  postRequest(payload) {
     this.httpService.saveEbGuideForm(payload).subscribe(a => {
       console.log(a);
       if (a.status === 200) {
         this.router.navigate(['success']);
       } else {
-        alert('Some Error Occured. Please Try Again!');
+        alert('Some Error Occurred. Please Try Again!');
       }
     });
   }
-
 }
