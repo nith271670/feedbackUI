@@ -1,13 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
-
-import { MAT_DIALOG_DATA } from '@angular/material';
-
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { HttpService } from '../../shared/http.service';
+import { Component, Inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material";
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import { $ } from 'protractor';
+import { HttpService } from '../../shared/http.service';
+
+
 
 @Component({
   selector: 'app-add-training',
@@ -25,12 +22,13 @@ export class AddTrainingComponent {
   training = this.fb.group({
     newTraining: this.fb.group({
       new_training: [this.data.newTraining],
+      ebGuideForm: [this.data.ebGuideForm]
     })
   });
 
   trainerForm = this.fb.group({
-    newTainer: this.fb.group({
-      new_trainer: [this.data.newTainer],
+    newTrainer: this.fb.group({
+      new_trainer: [this.data.newTrainer],
     })
   });
 
@@ -57,7 +55,6 @@ export class AddTrainingComponent {
   constructor(private fb: FormBuilder, private httpService: HttpService,
     private router: Router, public dialogRef: MatDialogRef<AddTrainingComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-
   ngOnInit() {
 
     this.httpService.getTrainingNameList().subscribe(response => {
@@ -71,21 +68,21 @@ export class AddTrainingComponent {
   }
 
   onSubmit() {
-
+    console.log(this.data);
     const finalResponse = {
-      "id": this.data.id,
-      "training": this.form.controls['training'].value.training_name,
-      "trainers": this.form.controls['trainers'].value.trainer_name,
-      "location": this.form.controls['location'].value.location_name,
-      "from_date": this.form.controls['sel_from_date'].value.from_date,
-      "to_date": this.form.controls['sel_to_date'].value.to_date,
+      'id': this.data.id,
+      'training': this.form.controls['training'].value.training_name.training,
+      'trainers': this.form.controls['trainers'].value.trainer_name,
+      'location': this.form.controls['location'].value.location_name,
+      'from_date': this.form.controls['sel_from_date'].value.from_date,
+      'to_date': this.form.controls['sel_to_date'].value.to_date,
+      'enableEbGuideForm': this.form.controls['training'].value.training_name.enableEbGuideForm,
     };
-    console.log(this.data.id);
     if (!this.data.id) {
       this.httpService.createTraining(finalResponse)
         .subscribe(a => {
         }, error => {
-          if (error.status == 200) {
+          if (error.status === 200) {
             this.dialogRef.close();
             this.dialogRef.afterClosed().subscribe(result => {
               this.httpService.getTrainingList().subscribe(response => {
@@ -101,7 +98,7 @@ export class AddTrainingComponent {
       this.httpService.updateTraining(finalResponse)
         .subscribe(a => {
         }, error => {
-          if (error.status == 200) {
+          if (error.status === 200) {
             this.dialogRef.close();
             this.dialogRef.afterClosed().subscribe(result => {
               this.httpService.getTrainingList().subscribe(response => {
@@ -116,56 +113,48 @@ export class AddTrainingComponent {
 
   }
 
-  showTrainingPopUp(){
+  showTrainingPopUp() {
     this.trainingPopUp = true;
   }
 
-  showTrainerPopUp(){
+  showTrainerPopUp() {
     this.trainerPopUp = true;
   }
 
 
-  addTraining(tr) {
-    let trainingObj = {
-      "training": this.training.controls['newTraining'].value.new_training
+  addTraining() {
+    const trainingObj = {
+      'training': this.training.controls['newTraining'].value.new_training,
+      'enableEbGuideForm': this.training.controls['newTraining'].value.ebGuideForm
     };
     this.trainingPopUp = false;
     this.httpService.addTrainingName(trainingObj)
       .subscribe(a => {
         console.log(a);
       }, error => {
-        if (error.status == 200) {
-
+        if (error.status === 200) {
           this.httpService.getTrainingNameList().subscribe(response => {
             console.log(response);
             this.trainingList = response as [];
           });
         }
       });
-
-
   }
   addTrainer() {
     let trainerObj = {
-      "trainers": this.trainerForm.controls['newTainer'].value.new_trainer
+      'trainers': this.trainerForm.controls['newTrainer'].value.new_trainer
     };
-
     this.trainerPopUp = false;
     this.httpService.addTrainerName(trainerObj)
       .subscribe(a => {
         console.log(a);
       }, error => {
-        if (error.status == 200) {
-
+        if (error.status === 200) {
           this.httpService.getTrainerNameList().subscribe(response => {
             console.log(response);
             this.trainerList = response as [];
           });
         }
       });
-
-
   }
-
-
 }

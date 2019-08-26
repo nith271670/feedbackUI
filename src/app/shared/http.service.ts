@@ -1,8 +1,7 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
 @Injectable({
@@ -35,8 +34,8 @@ export class HttpService {
   }
   createTraining(trainingDetails): Observable<any> {
     return this.http
-      .post<any>('https://feedback-eb-new.herokuapp.com/trainingdetails/add', trainingDetails,
-        { headers: headers, observe: 'response'}).pipe(
+      .post<any>('http://localhost:1337/trainingdetails/add', trainingDetails,
+        { headers: headers, observe: 'response' }).pipe(
           tap(e => {
             // this.routeToList(e);
           })
@@ -51,7 +50,7 @@ export class HttpService {
   }
 
   updateTraining(updatedData) {
-     return this.http.post('https://feedback-eb-new.herokuapp.com/trainingdetails/update/' + updatedData.id, updatedData);
+    return this.http.post('https://feedback-eb-new.herokuapp.com/trainingdetails/update/' + updatedData.id, updatedData);
   }
   getTrainingNameList() {
     return this.http.get('https://feedback-eb-new.herokuapp.com/trainingnames/list');
@@ -66,8 +65,8 @@ export class HttpService {
     return this.http.get('https://feedback-eb-new.herokuapp.com/trainingdetails/list');
   }
 
- addTrainingName(name) {
-    return this.http.post('https://feedback-eb-new.herokuapp.com/trainingnames/add/', name);
+  addTrainingName(newTrainingDetails) {
+    return this.http.post('http://localhost:1337/trainingnames/add/', newTrainingDetails);
   }
 
   getTrainingDetails(trainingId) {

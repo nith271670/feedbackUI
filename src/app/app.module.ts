@@ -46,7 +46,7 @@ const routes: Routes = [
   { path: 'trainerqualification', component: TrainerQualificationComponent },
   { path: 'trainingexperience', component: TrainingExperienceComponent },
   { path: 'trainingform/:id', component: TrainingformComponent },
-  { path: 'ebguideform', component: EBGuideFormComponent},
+  { path: 'ebguideform/:id', component: EBGuideFormComponent},
   { path: 'success', component: SuccessComponent },
   { path: 'graphs', component: GraphicalpresentationComponent }
 ];

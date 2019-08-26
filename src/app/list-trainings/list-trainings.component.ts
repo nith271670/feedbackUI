@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { HttpService } from '../shared/http.service';
-import { AddTrainingComponent } from '../list-trainings/add-training/add-training.component';
-import { MatDialog,  MatDialogConfig, MatDialogRef} from "@angular/material";
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from "@angular/material";
 import { OrderPipe } from 'ngx-order-pipe';
+import { AddTrainingComponent } from '../list-trainings/add-training/add-training.component';
+import { HttpService } from '../shared/http.service';
 
 @Component({
   selector: 'app-list-trainings',
@@ -14,18 +14,18 @@ import { OrderPipe } from 'ngx-order-pipe';
 export class ListTrainingsComponent implements OnInit {
   isPopupOpened = true;
   TrainingList = [];
-  trainingname ='';
-  trainingId=0;
+  trainingName = '';
+  trainingId = 0;
   confirmStatus = false;
-  order: string = 'createdAt';
+  order = 'createdAt';
 
   constructor(private httpService: HttpService, private dialog: MatDialog, private orderPipe: OrderPipe) { }
   dialogRef: MatDialogRef<AddTrainingComponent>;
 
   ngOnInit() {
-    if(localStorage.getItem('currentUser') != 'admin'){
-      location.href = '/login';
-    }
+    // if(localStorage.getItem('currentUser') != 'admin'){
+    //   location.href = '/login';
+    // }
     this.httpService.getTrainingList().subscribe(response => {
       console.log(response);
       this.TrainingList = response as [];
@@ -58,28 +58,27 @@ export class ListTrainingsComponent implements OnInit {
       });
     });
   }
-
-  showConfirmPopUp(id, trainingname) {
+   showConfirmPopUp(id, trainingName) {
     this.confirmStatus = true;
     this.trainingId = id;
-    this.trainingname = trainingname;
+    this.trainingName = trainingName;
   }
 
-  cancelDelete(){
+  cancelDelete() {
     this.confirmStatus = false;
   }
 
-  deleteTraining(){
+  deleteTraining() {
     this.confirmStatus = false;
     this.httpService.deleteTraining(this.trainingId)
       .subscribe(a => {
       }, error => {
-          if ( error.status == 200 ) {
-              this.httpService.getTrainingList().subscribe(response => {
-                console.log(response);
-                this.TrainingList = response as [];
-            });
-          }
+        if (error.status === 200) {
+          this.httpService.getTrainingList().subscribe(response => {
+            console.log(response);
+            this.TrainingList = response as [];
+          });
+        }
       });
 
   }

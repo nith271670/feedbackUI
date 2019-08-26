@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { HttpService } from '../shared/http.service';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpService } from '../shared/http.service';
 
 @Component({
   selector: 'app-createtraining',
@@ -34,40 +34,40 @@ export class CreatetrainingComponent implements OnInit {
   constructor(private fb: FormBuilder, private httpService: HttpService,
     private router: Router) { }
 
-    ngOnInit() {
-      this.httpService.getTrainingNameList().subscribe(response => {
-        console.log(response);
-        this.trainingList = response as [];
-      });
-      this.httpService.getTrainerNameList().subscribe(response => {
-        console.log(response);
-        this.trainerList = response as [];
-      });
-    }
-
-  onSubmit() {
-    console.log(JSON.stringify(this.form.value));
-    this.convertResponseToPost(this.form.value);
+  ngOnInit() {
+    this.httpService.getTrainingNameList().subscribe(response => {
+      console.log(response);
+      this.trainingList = response as [];
+    });
+    this.httpService.getTrainerNameList().subscribe(response => {
+      console.log(response);
+      this.trainerList = response as [];
+    });
   }
 
-  convertResponseToPost(formValue) {
+  onSubmit() {
+    console.log(this.form.value);
+    this.convertResponseToPost();
+  }
+
+  convertResponseToPost() {
     const finalResponse = {
-      "training": this.form.controls['training'].value.training_name,
-      "trainers": this.form.controls['trainers'].value.trainer_name,
-      "location": this.form.controls['location'].value.location_name,
-      "from_date": this.form.controls['sel_from_date'].value.from_date,
-      "to_date": this.form.controls['sel_to_date'].value.to_date,
+      'training': this.form.controls['training'].value.training_name,
+      'trainers': this.form.controls['trainers'].value.trainer_name,
+      'location': this.form.controls['location'].value.location_name,
+      'from_date': this.form.controls['sel_from_date'].value.from_date,
+      'to_date': this.form.controls['sel_to_date'].value.to_date,
     };
 
     this.makeApiCall(finalResponse);
   }
 
-  makeApiCall(trainingdetails) {
-    this.httpService.createTraining(trainingdetails).subscribe(a => {
+  makeApiCall(trainingDetails) {
+    this.httpService.createTraining(trainingDetails).subscribe(a => {
       if (a.status === 200) {
 
       } else {
-        alert("Some Error Occured. Please Try Again!");
+        alert('Some Error Occurred. Please Try Again!');
       }
     });
 
