@@ -130,8 +130,9 @@
           <div formGroupName="newTraining" class="form-group my-2">
             <input name="new_training" id="new_training" formControlName="new_training" placeholder="Enter Training"
               class="form-control col-lg-10 float-left"><br>
-            <input type="checkbox" name="ebGuideForm" id="" formControlName="ebGuideForm">Check for EB guide Training
-            <button type="button" (click)="addTraining()" class="btn btn-secondary float-left ml-2">Add</button>
+              <label for="ebGuideForm" id="checkboxLabel">Check for EB guide Training</label>
+            <input type="checkbox" name="ebGuideForm" id="" formControlName="ebGuideForm">
+            <button type="button" (click)="addTraining()" class="btn btn-secondary float-right ml-2">Add</button>
             <div class="clearfix"></div>
           </div>
         </form>

@@ -5,3 +5,9 @@
 .modal{
     display: block !important; z-index: 2000 !important;
 }
+#checkboxLabel{
+    margin-right: 10px;
+}
+#new_training{
+    margin-bottom: 10px;
+}
