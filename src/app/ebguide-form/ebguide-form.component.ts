@@ -23,14 +23,6 @@ export class EBGuideFormComponent {
   trainersUnderstandabilityRatingArr = [];
   trainersExpertiseRatingArr = [];
   trainersInteractionRatingArr = [];
-  presentation_sum = 0;
-  understanding_sum = 0;
-  expertise_sum = 0;
-  interaction_sum = 0;
-  p_rating = false;
-  u_rating = false;
-  e_rating = false;
-  i_rating = false;
 
   form = this.fb.group({
     participantName: this.fb.group({
@@ -134,79 +126,14 @@ export class EBGuideFormComponent {
   }
   onSubmit() {
     this.submitted = true;
-    this.p_rating = false;
-    this.u_rating = false;
-    this.e_rating = false;
-    this.i_rating = false;
 
-    for (let i = 0; i < this.trainersPresentationRatingArr.length; i++) {
-
-      if (this.trainersPresentationRatingArr[i]['rating'] === 0 && this.p_rating === false) {
-        this.p_rating = true;
-      }
-      if (this.trainersUnderstandabilityRatingArr[i]['rating'] === 0 && this.u_rating === false) {
-        this.u_rating = true;
-      }
-      if (this.trainersExpertiseRatingArr[i]['rating'] === 0 && this.e_rating === false) {
-        this.e_rating = true;
-      }
-      if (this.trainersInteractionRatingArr[i]['rating'] === 0 && this.i_rating === false) {
-        this.i_rating = true;
-      }
-    }
     console.log(JSON.stringify(this.form.value));
-    if (this.form.valid && this.p_rating === false && this.u_rating === false && this.e_rating === false && this.i_rating === false) {
+    if (this.form.valid) {
       this.convertResponseToPost();
       console.log('success');
     }
   }
 
-  handleChange(evt, index, topic) {
-    console.log(topic);
-    if (topic === 'presentation') {
-      this.trainersPresentationRatingArr[index]['rating'] = parseInt(evt.target.value);
-      console.log(this.trainersPresentationRatingArr[index]['rating']);
-    } else if (topic === 'understanding') {
-      this.trainersUnderstandabilityRatingArr[index]['rating'] = parseInt(evt.target.value);
-    } else if (topic === 'expertise') {
-      this.trainersExpertiseRatingArr[index]['rating'] = parseInt(evt.target.value);
-    } else {
-      this.trainersInteractionRatingArr[index]['rating'] = parseInt(evt.target.value);
-    }
-
-    this.presentation_sum = 0;
-    this.understanding_sum = 0;
-    this.expertise_sum = 0;
-    this.interaction_sum = 0;
-    this.p_rating = false;
-    this.u_rating = false;
-    this.e_rating = false;
-    this.i_rating = false;
-
-    for (let i = 0; i < this.trainersPresentationRatingArr.length; i++) {
-      this.presentation_sum += this.trainersPresentationRatingArr[i]['rating'];
-      this.understanding_sum += this.trainersUnderstandabilityRatingArr[i]['rating'];
-      this.expertise_sum += this.trainersExpertiseRatingArr[i]['rating'];
-      this.interaction_sum += this.trainersInteractionRatingArr[i]['rating'];
-
-      if (this.trainersPresentationRatingArr[i]['rating'] === 0 && this.p_rating === false) {
-        this.p_rating = true;
-      }
-      if (this.trainersUnderstandabilityRatingArr[i]['rating'] === 0 && this.u_rating === false) {
-        this.u_rating = true;
-      }
-      if (this.trainersExpertiseRatingArr[i]['rating'] === 0 && this.e_rating === false) {
-        this.e_rating = true;
-      }
-      if (this.trainersInteractionRatingArr[i]['rating'] === 0 && this.i_rating === false) {
-        this.i_rating = true;
-      }
-    }
-    this.presentation_sum = this.presentation_sum / this.trainersPresentationRatingArr.length;
-    this.understanding_sum = this.understanding_sum / this.trainersPresentationRatingArr.length;
-    this.expertise_sum = this.expertise_sum / this.trainersPresentationRatingArr.length;
-    this.interaction_sum = this.interaction_sum / this.trainersPresentationRatingArr.length;
-  }
   convertResponseToPost() {
 
     const finalResponse = {

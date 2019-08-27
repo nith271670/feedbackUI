@@ -25,7 +25,7 @@ export class HttpService {
   }
   saveEbGuideForm(payLoad): Observable<any> {
     return this.http
-      .post<any>('http://localhost:1337/feedback/createEbGuideForm', payLoad,
+      .post<any>('https://feedback-eb-new.herokuapp.com/feedback/createEbGuideForm', payLoad,
         { headers: headers, observe: 'response' }).pipe(
           tap(e => {
             // this.routeToList(e);
@@ -34,7 +34,7 @@ export class HttpService {
   }
   createTraining(trainingDetails): Observable<any> {
     return this.http
-      .post<any>('http://localhost:1337/trainingdetails/add', trainingDetails,
+      .post<any>('https://feedback-eb-new.herokuapp.com/trainingdetails/add', trainingDetails,
         { headers: headers, observe: 'response' }).pipe(
           tap(e => {
             // this.routeToList(e);
@@ -66,7 +66,7 @@ export class HttpService {
   }
 
   addTrainingName(newTrainingDetails) {
-    return this.http.post('http://localhost:1337/trainingnames/add/', newTrainingDetails);
+    return this.http.post('https://feedback-eb-new.herokuapp.com/trainingnames/add/', newTrainingDetails);
   }
 
   getTrainingDetails(trainingId) {
