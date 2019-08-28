@@ -31,6 +31,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { TrainerQualificationComponent } from './charts/trainer-qualification/trainer-qualification.component';
 import { LoginComponent } from './login/login.component';
 import { EBGuideFormComponent } from './ebguide-form/ebguide-form.component';
+import { GraphicalRepresentationComponent } from './graphical-representation/graphical-representation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login' , pathMatch: 'full'},
@@ -48,7 +49,9 @@ const routes: Routes = [
   { path: 'trainingform/:id', component: TrainingformComponent },
   { path: 'ebguideform/:id', component: EBGuideFormComponent},
   { path: 'success', component: SuccessComponent },
-  { path: 'graphs', component: GraphicalpresentationComponent }
+  { path: 'graphs', component: GraphicalpresentationComponent },
+  { path: 'graphicalRepresentation', component: GraphicalRepresentationComponent }
+  
 ];
 @NgModule({
   declarations: [
@@ -70,7 +73,8 @@ const routes: Routes = [
     GraphicalpresentationComponent,
     TrainerQualificationComponent,
     LoginComponent,
-    EBGuideFormComponent
+    EBGuideFormComponent,
+    GraphicalRepresentationComponent
   ],
   imports: [
     BrowserModule,
@@ -97,4 +101,7 @@ const routes: Routes = [
     AddTrainingComponent
   ]
 })
-export class AppModule { }
+export class AppModule {
+
+  
+ }

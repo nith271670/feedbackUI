@@ -39,11 +39,12 @@ svg .axis--x .tick {
 
 
 .axis--x text{
-    transform: rotate(-5deg);
+    transform: rotate(-10deg);
     /* width: 100px !important; */
     /* word-wrap: none !important; */
     width: 100px !important;
-    word-wrap: break-word !important;
+	word-wrap: break-word !important;
+	margin-top: 2px;
    
 }
 
