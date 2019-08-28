@@ -67,7 +67,7 @@ thead > tr {
   vertical-align: middle;
 }
 table>tbody>tr>td:first-child{
-  background-color: chartreuse
+  background-color:#00A200;
 }
 table{
   width: fit-content;
