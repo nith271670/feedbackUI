@@ -82,6 +82,11 @@ export class AddTrainingComponent {
       'training_hours' :this.form.controls['training_hours'].value.training_hours_input,
       'enableEbGuideForm': this.form.controls['training'].value.training_name.enableEbGuideForm,
     };
+
+    if(finalResponse.training_hours == null){
+      finalResponse.training_hours = 0;
+    }
+    
     if (!this.data.id) {
       this.httpService.createTraining(finalResponse)
         .subscribe(a => {
@@ -127,10 +132,16 @@ export class AddTrainingComponent {
 
 
   addTraining() {
+
+   
     const trainingObj = {
       'training': this.training.controls['newTraining'].value.new_training,
       'enableEbGuideForm': this.training.controls['newTraining'].value.ebGuideForm
     };
+
+    if(trainingObj.enableEbGuideForm == null){
+      trainingObj.enableEbGuideForm = false;
+    }
     this.trainingPopUp = false;
     this.httpService.addTrainingName(trainingObj)
       .subscribe(a => {

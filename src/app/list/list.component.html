@@ -57,7 +57,9 @@
           <div class="col-sm-12">
             <div class="row" *ngIf="item.question_type=== 'rating'">
               <div class="col-12 col-sm-3" *ngFor="let question of item?.subquestions">
-                {{question?.rating}}<span *ngIf="question.comments">, {{question?.comments}}</span>
+                <span *ngIf="i!=1">{{question?.rating}}<span *ngIf="question.comments">, {{question?.comments}}</span></span>
+                <span *ngIf="i==1"><b *ngIf="question?.trainerrating">Overall: </b>{{question?.rating}}<span *ngIf="question.comments">, {{question?.comments}}</span></span><br />
+                <span *ngFor="let trainerrating of question?.trainerrating"><b>{{trainerrating?.name}} :</b>{{trainerrating?.rating}}<br/></span>
               </div>
             </div>
             <div class="row" *ngIf="item.question_type=== 'yes or No'">

@@ -277,25 +277,25 @@ export class TrainingformComponent implements OnInit {
         "comments": "",
         "subquestions": [{
           "sub_ques": "Presentation Skills",
-          "rating": this.presentation_sum,
+          "rating": this.presentation_sum.toFixed(2),
           "comments": this.form.controls['question_2'].value.presentation_comment,
           "trainerrating": this.trainersPresentationRatingArr
         },
         {
           "sub_ques": "Understandability of Explanations",
-          "rating": this.understanding_sum,
+          "rating": this.understanding_sum.toFixed(2),
           "comments": this.form.controls['question_2'].value.understanding_comment,
           "trainerrating": this.trainersUnderstandabilityRatingArr
         },
         {
           "sub_ques": "Product expertise",
-          "rating": this.expertise_sum,
+          "rating": this.expertise_sum.toFixed(2),
           "comments": this.form.controls['question_2'].value.expertise_comment,
           "trainerrating": this.trainersExpertiseRatingArr
         },
         {
           "sub_ques": "Interaction with Participants",
-          "rating": this.interaction_sum,
+          "rating": this.interaction_sum.toFixed(2),
           "comments": this.form.controls['question_2'].value.interaction_comment,
           "trainerrating": this.trainersInteractionRatingArr
         }

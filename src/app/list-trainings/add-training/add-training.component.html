@@ -17,7 +17,7 @@
             <mat-form-field style="width: 100%">
               <mat-select placeholder="Select Training" name="training_name" id="training_name"
                 formControlName="training_name">
-                <mat-option *ngFor="let training of trainingList" [value]="training">{{training.training}}
+                <mat-option *ngFor="let training of trainingList" [value]=training>{{training.training}}
                 </mat-option>
                 <!-- <mat-option disabled="disabled" class="filter-option">
                       <form [formGroup]="training">
@@ -52,8 +52,8 @@
             <!-- <input type="text" name="trainer_name" id="trainer_name" formControlName="trainer_name" required> -->
             <mat-form-field style="width: 100%">
               <mat-select multiple placeholder="Select Trainers" formControlName="trainer_name">
-                <mat-option *ngFor="let trainer of trainerList" [value]="trainer?.trainers">
-                  {{trainer?.trainers}}
+                <mat-option *ngFor="let trainer of trainerList" [value]="trainer.trainers">
+                  {{trainer.trainers}}
                 </mat-option>
                 <!-- <mat-option disabled="disabled" class="filter-option"> -->
                 <!-- <form [formGroup]="trainerForm" class="form-group ml-3 my-2">
@@ -107,7 +107,7 @@
         <div class="my-3 float-left col-lg-2 form-group">
           <h6>Hours</h6>
           <div formGroupName="training_hours">
-            <input type="number" name="training_hours_input" id="training_hours_input" class="form-control" formControlName="training_hours_input" required>
+            <input type="number" name="training_hours_input" id="training_hours_input" class="form-control" formControlName="training_hours_input" [value]="0">
           </div>
         </div>
         <div class="my-3 float-left col-lg-12">
@@ -137,7 +137,7 @@
             <input name="new_training" id="new_training" formControlName="new_training" placeholder="Enter Training"
               class="form-control col-lg-10 float-left"><br>
               <label for="ebGuideForm" id="checkboxLabel">Check for EB guide Training</label>
-            <input type="checkbox" name="ebGuideForm" id="" formControlName="ebGuideForm">
+            <input type="checkbox" name="ebGuideForm" id="" formControlName="ebGuideForm" >
             <button type="button" (click)="addTraining()" class="btn btn-secondary float-right ml-2">Add</button>
             <div class="clearfix"></div>
           </div>
