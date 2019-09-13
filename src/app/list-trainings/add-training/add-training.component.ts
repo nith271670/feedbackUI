@@ -50,6 +50,9 @@ export class AddTrainingComponent {
     sel_to_date: this.fb.group({
       to_date: [this.data.to_date, Validators.required],
     }),
+    training_hours:this.fb.group({
+      training_hours_input:[this.data.training_hours],
+    })
   });
 
   constructor(private fb: FormBuilder, private httpService: HttpService,
@@ -76,6 +79,7 @@ export class AddTrainingComponent {
       'location': this.form.controls['location'].value.location_name,
       'from_date': this.form.controls['sel_from_date'].value.from_date,
       'to_date': this.form.controls['sel_to_date'].value.to_date,
+      'training_hours' :this.form.controls['training_hours'].value.training_hours_input,
       'enableEbGuideForm': this.form.controls['training'].value.training_name.enableEbGuideForm,
     };
     if (!this.data.id) {

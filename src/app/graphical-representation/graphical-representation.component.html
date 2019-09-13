@@ -34,6 +34,19 @@
           </ul>
         </div>
         <div class="clearfix"></div>
+        <div id="{{'trainerQ'+i}}" >
+         
+          <div *ngFor="let trainer of feedBackListGrouped[i].trainingData[0].questions[1].subquestions[0]?.trainerrating; let j=index" class="float-left gh_div" id="{{'graph1'+i+j}}">
+              <h5 *ngIf="j==0" style="margin-bottom: 20px; margin-top:-44px;">Trainer Qualification</h5>
+            <h6>{{trainer?.name}}</h6>
+            <svg id="{{'svg4'+i+j}}" width="400" height="350"></svg>
+         
+            
+          </div>
+        
+     
+         
+        <div class="clearfix"></div>
         </div>
      </div>
     </div>

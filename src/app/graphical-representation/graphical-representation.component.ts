@@ -20,6 +20,7 @@ export class GraphicalRepresentationComponent implements OnInit {
     activeTab = 0;
     trainingContent = [];
     trainingExperience = [];
+    trainingQualification = [];
     initializeGraph = false;
     comment = [];
     YesNoCount = [];
@@ -36,7 +37,6 @@ export class GraphicalRepresentationComponent implements OnInit {
     private labelArc: any;
     private pie: any;
     private color: any;
-    
 
   constructor(private httpService: HttpService) { 
     this.width = 400 - this.margin.left - this.margin.right;
@@ -97,15 +97,14 @@ export class GraphicalRepresentationComponent implements OnInit {
       var sumte3 = 0;
       var sumte4 = 0;
 
-      var sumtq1 = 0;
-      var sumtq2 = 0;
-      var sumtq3 = 0;
-      var sumtq4 = 0;
-
+      var sumtrq = [];
       var yesCount = 0;
       var noCount = 0;
-      // var sumte2 = 0;
+      
       this.comment[j] = new Array();
+
+      var ratingCount = [];
+
     for(let i=0;i<this.feedBackListGrouped[j].trainingData.length;i++){
          
 
@@ -119,8 +118,56 @@ export class GraphicalRepresentationComponent implements OnInit {
                sumte3 = sumte3 + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[7].subquestions[2].rating);
                sumte4 = sumte4 + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[7].subquestions[3].rating);
 
+               if(i==0){
+                ratingCount[j] = 0;
+               }
+
+               if( this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[0].trainerrating != undefined)
+               {
+                 if(i==0){
+                  ratingCount[j] = 0;
+                 }
+                ratingCount[j] = ratingCount[j] +1;
+                var numTrainers = this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[0].trainerrating.length;
+                
+
+                // for(var p=0;p<numTrainers;p++){
+                //   sumtrq[p] = [];
+                //   for(var k=0;k<4;k++){
+                //       if(k==0){
+                //         sumtrq[p][k] = 0;
+                //       }
+                //       sumtrq[p][k] = sumtrq[p][k] + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[k].trainerrating[p].rating);
+                //     }
+                //   }
+
+                for(var k=0;k<numTrainers;k++){
+
+                    if(sumtrq[k]==undefined){
+                      sumtrq[k] = [];
+                      sumtrq[k][0] = 0;
+                      sumtrq[k][1] = 0;
+                      sumtrq[k][2] = 0;
+                      sumtrq[k][3] = 0;
+                    }
+                    
+
+                   
+
+                  
+                  sumtrq[k][0] = sumtrq[k][0] + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[0].trainerrating[k].rating);
+                  sumtrq[k][1] = sumtrq[k][1] + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[1].trainerrating[k].rating);
+                  sumtrq[k][2] = sumtrq[k][2] + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[2].trainerrating[k].rating);
+                  sumtrq[k][3] = sumtrq[k][3] + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[3].trainerrating[k].rating);
+
+
+                }
                
+
+               }
+
               
+
               if(this.feedBackListGrouped[j].trainingData[i].questions[2].answer == 'yes'){
                 yesCount++;
               } else{
@@ -130,10 +177,14 @@ export class GraphicalRepresentationComponent implements OnInit {
                     this.comment[j].push(this.feedBackListGrouped[j].trainingData[i].questions[2].subquestions[0].comments);
                 }
               }
-   
+
+              // console.log(sumtrq);
 
   }
-
+  // console.log(this.feedBackListGrouped[j].trainingName)
+  // console.log(sumtrq);
+  // console.log(ratingCount[j]);
+ 
           sum1 = sum1/this.feedBackListGrouped[j].trainingData.length;
           sum2 = sum2/this.feedBackListGrouped[j].trainingData.length;
           sum3 = sum3/this.feedBackListGrouped[j].trainingData.length;
@@ -144,7 +195,25 @@ export class GraphicalRepresentationComponent implements OnInit {
           sumte3 = sumte3/this.feedBackListGrouped[j].trainingData.length;
           sumte4 = sumte4/this.feedBackListGrouped[j].trainingData.length;
 
+          this.trainingQualification[j] = [];
+          for(var p = 0;p<sumtrq.length;p++){
+            this.trainingQualification[j][p] = new Array();
+            sumtrq[p][0] = sumtrq[p][0]/ratingCount[j];
+            sumtrq[p][1] = sumtrq[p][1]/ratingCount[j];
+            sumtrq[p][2] = sumtrq[p][2]/ratingCount[j];
+            sumtrq[p][3] = sumtrq[p][3]/ratingCount[j];
+          if( this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p] != undefined)
+          {
+            this.trainingQualification[j][p].push({"name":this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p].name,"Topic": "Presentation Skills","Rating":sumtrq[p][0].toFixed(2)});
+            this.trainingQualification[j][p].push({"name":this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p].name,"Topic": "Understandability","Rating":sumtrq[p][1].toFixed(2)});
+            this.trainingQualification[j][p].push({"name":this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p].name,"Topic": "Product expertise","Rating":sumtrq[p][2].toFixed(2)});
+            this.trainingQualification[j][p].push({"name":this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p].name,"Topic": "Interaction","Rating":sumtrq[p][3].toFixed(2)});
+            
+            }
+            
+          }
 
+          
           this.trainingContent[j] = new Array();
           this.trainingContent[j].push({"Topic": "Quality of Content","Rating":sum1.toFixed(2)});
           this.trainingContent[j].push({"Topic": "Value Of Content","Rating":sum2.toFixed(2)});
@@ -157,23 +226,50 @@ export class GraphicalRepresentationComponent implements OnInit {
           this.trainingExperience[j].push({"Topic": "Applicability","Rating":sumte3.toFixed(2)});
           this.trainingExperience[j].push({"Topic": "Overall Experience","Rating":sumte4.toFixed(2)});
 
+         
           this.YesNoCount[j] = new Array();
           this.YesNoCount[j].push({value: 'Yes', count: yesCount});
           this.YesNoCount[j].push({value: 'No', count: noCount});
 
-          this.drawGraph(1,j,this.trainingContent[j]);
-          this.drawGraph(2,j,this.trainingExperience[j]);
+          this.drawGraph(1,j,this.trainingContent[j],0);
+          this.drawGraph(2,j,this.trainingExperience[j],0);
           this.drawPieChart(3,j,this.YesNoCount[j]);
+         
+          for(var p = 0;p<sumtrq.length;p++){
+            this.drawGraph(4,p,this.trainingQualification[j][p],j);
+          }
+
 }
+
+console.log(this.trainingQualification);
+
   }
 
-  private drawGraph(QId,graphId, data) {
-    this.initSvg('#svg'+QId+ graphId, data);
+  private drawGraph(QId,graphId, data,j) {
+    console.log("QID"+QId);
+    console.log("j"+j);
+    console.log("graphId"+graphId);
+    if(QId == 4 ){
+      if(j!=0){
+        this.initSvg('#svg'+QId+j+ graphId, data);
+        console.log('#svg'+QId+j+ graphId);
+      }
+      
+    }
+    else{
+      this.initSvg('#svg'+QId+ graphId, data);
+    }
+
+    // if(QId == 4){
+    //   console.log("QID"+QId);
+    //   // console.log(data);
+    // // }
   }
 
   private initSvg(svgid, data) {
+ 
     this.svg = d3.select(svgid);
-    this.width = +this.svg.attr('width') - this.margin.left - this.margin.right;
+    this.width =  +this.svg.attr('width') - this.margin.left - this.margin.right;
     this.height = +this.svg.attr('height') - this.margin.top - this.margin.bottom;
     this.g = this.svg.append('g')
         .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
