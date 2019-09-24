@@ -78,8 +78,17 @@ export class ListComponent implements OnInit {
       for(var j = 0;j< this.feedBackList[i].questions.length; j++){
         if(this.feedBackList[i].questions[j].question_type == "rating"){          
           for(var k = 0;k< this.feedBackList[i].questions[j].subquestions.length; k++){
-            question_json[this.feedBackList[i].questions[j].subquestions[k].sub_ques+"(rating)"] = this.feedBackList[i].questions[j].subquestions[k].rating;
+            question_json[this.feedBackList[i].questions[j].subquestions[k].sub_ques+"(rating)"] = parseFloat(this.feedBackList[i].questions[j].subquestions[k].rating).toFixed(2);
             question_json[this.feedBackList[i].questions[j].subquestions[k].sub_ques+"(comment)"] = this.feedBackList[i].questions[j].subquestions[k].comments;
+            if(j==1){
+              if(this.feedBackList[i].questions[j].subquestions[k].trainerrating != undefined){
+                question_json[this.feedBackList[i].questions[j].subquestions[k].sub_ques+"(rating)"] = "Overall: "+this.feedBackList[i].questions[j].subquestions[k].rating+ ", ";
+                for(var q =0; q<this.feedBackList[i].questions[j].subquestions[k].trainerrating.length;q++){
+                  question_json[this.feedBackList[i].questions[j].subquestions[k].sub_ques+"(rating)"] += this.feedBackList[i].questions[j].subquestions[k].trainerrating[q].name +": "+ parseFloat(this.feedBackList[i].questions[j].subquestions[k].trainerrating[q].rating).toFixed(2) + ", ";
+                }
+              }
+              
+            }
           }         
         }
         else if(this.feedBackList[i].questions[j].question_type == "yes or No"){
