@@ -3,20 +3,28 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+// const api_url = 'https://feedback-eb-new.herokuapp.com';
+const api_url = 'http://localhost:1337';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
+
+
   constructor(private http: HttpClient) { }
 
+
+
   getList() {
-    return this.http.get('https://feedback-eb-new.herokuapp.com/feedback/list');
+    return this.http.get(api_url+'/feedback/list');
   }
+
+
   sendFeedback(payLoad): Observable<any> {
     return this.http
-      .post<any>('https://feedback-eb-new.herokuapp.com/feedback/create', payLoad,
+      .post<any>(api_url+'/feedback/create', payLoad,
         { headers: headers, observe: 'response' }).pipe(
           tap(e => {
             // this.routeToList(e);
@@ -25,7 +33,7 @@ export class HttpService {
   }
   saveEbGuideForm(payLoad): Observable<any> {
     return this.http
-      .post<any>('https://feedback-eb-new.herokuapp.com/feedback/createEbGuideForm', payLoad,
+      .post<any>(api_url+'/feedback/createEbGuideForm', payLoad,
         { headers: headers, observe: 'response' }).pipe(
           tap(e => {
             // this.routeToList(e);
@@ -34,7 +42,7 @@ export class HttpService {
   }
   createTraining(trainingDetails): Observable<any> {
     return this.http
-      .post<any>('https://feedback-eb-new.herokuapp.com/trainingdetails/add', trainingDetails,
+      .post<any>(api_url+'/trainingdetails/add', trainingDetails,
         { headers: headers, observe: 'response' }).pipe(
           tap(e => {
             // this.routeToList(e);
@@ -43,34 +51,34 @@ export class HttpService {
   }
 
   editTraining(trainingId) {
-    return this.http.get('https://feedback-eb-new.herokuapp.com/trainingdetails/edit/' + trainingId);
+    return this.http.get(api_url+'/trainingdetails/edit/' + trainingId);
   }
   deleteTraining(trainingId) {
-    return this.http.post('https://feedback-eb-new.herokuapp.com/trainingdetails/delete/' + trainingId, 'delete');
+    return this.http.post(api_url+'/trainingdetails/delete/' + trainingId, 'delete');
   }
 
   updateTraining(updatedData) {
-    return this.http.post('https://feedback-eb-new.herokuapp.com/trainingdetails/update/' + updatedData.id, updatedData);
+    return this.http.post(api_url+'/trainingdetails/update/' + updatedData.id, updatedData);
   }
   getTrainingNameList() {
-    return this.http.get('https://feedback-eb-new.herokuapp.com/trainingnames/list');
+    return this.http.get(api_url+'/trainingnames/list');
   }
   getTrainerNameList() {
-    return this.http.get('https://feedback-eb-new.herokuapp.com/trainernames/list');
+    return this.http.get(api_url+'/trainernames/list');
   }
   addTrainerName(name) {
-    return this.http.post('https://feedback-eb-new.herokuapp.com/trainernames/add/', name);
+    return this.http.post(api_url+'/trainernames/add/', name);
   }
   getTrainingList() {
-    return this.http.get('https://feedback-eb-new.herokuapp.com/trainingdetails/list');
+    return this.http.get(api_url+'/trainingdetails/list');
   }
 
   addTrainingName(newTrainingDetails) {
-    return this.http.post('https://feedback-eb-new.herokuapp.com/trainingnames/add/', newTrainingDetails);
+    return this.http.post(api_url+'/trainingnames/add/', newTrainingDetails);
   }
 
   getTrainingDetails(trainingId) {
-    return this.http.get('https://feedback-eb-new.herokuapp.com/trainingdetails/details/' + trainingId);
+    return this.http.get(api_url+'/trainingdetails/details/' + trainingId);
   }
 }
 

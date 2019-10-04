@@ -32,6 +32,7 @@ import { TrainerQualificationComponent } from './charts/trainer-qualification/tr
 import { LoginComponent } from './login/login.component';
 import { EBGuideFormComponent } from './ebguide-form/ebguide-form.component';
 import { GraphicalRepresentationComponent } from './graphical-representation/graphical-representation.component';
+import { ListEBGuideComponent } from './list-ebguide/list-ebguide.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login' , pathMatch: 'full'},
@@ -50,7 +51,8 @@ const routes: Routes = [
   { path: 'ebguideform/:id', component: EBGuideFormComponent},
   { path: 'success', component: SuccessComponent },
   { path: 'graphs', component: GraphicalpresentationComponent },
-  { path: 'graphicalRepresentation', component: GraphicalRepresentationComponent }
+  { path: 'graphicalRepresentation', component: GraphicalRepresentationComponent },
+  { path: 'list-ebguide', component: ListEBGuideComponent }
   
 ];
 @NgModule({
@@ -74,7 +76,8 @@ const routes: Routes = [
     TrainerQualificationComponent,
     LoginComponent,
     EBGuideFormComponent,
-    GraphicalRepresentationComponent
+    GraphicalRepresentationComponent,
+    ListEBGuideComponent
   ],
   imports: [
     BrowserModule,
