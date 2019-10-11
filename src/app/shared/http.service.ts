@@ -41,7 +41,7 @@ export class HttpService {
         );
   }
   getEBGuideFeedbackList() {
-    return this.http.get('https://feedback-eb-new.herokuapp.com/feedback/ebguidelist');
+    return this.http.get(api_url+'/feedback/ebguidelist');
   }
   createTraining(trainingDetails): Observable<any> {
     return this.http

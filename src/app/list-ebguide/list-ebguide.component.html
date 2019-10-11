@@ -1,0 +1,87 @@
+
+<div class="container-fluid mx-auto my-3">
+  <div>
+    <div class="col-lg-12">
+      <h4 class="title float-left ">
+        EBGuide feedback-Report
+      </h4>
+      <button class="btn btn-success download-btn float-right" (click)="exportAsXLSX()">Download Excel Report</button>
+      <a href="/graphicalRepresentation" class="btn btn-success graph-btn float-right">Graphical Presentation</a>
+    </div>
+    
+
+  </div>
+  </div>
+
+  <div class="col-lg-12 mx-4 my-3" style="clear: both;"><br/>
+  <label for ="training_name" style="font-weight: bold;">Filter By Training Name: &nbsp;&nbsp;</label><select class="custom-select col-6" (ngModelChange)="updateSelectedValue($event)"  [(ngModel)]="selectedValue"  name="training_name" id="training_name">
+      <option [ngValue]="undefined">all</option>
+      <option *ngFor="let training of trainingList" [ngValue]="training.training">{{training.training}}</option>
+  </select>
+</div>
+
+
+
+<!--EBGuide Table-->
+{{feedBackListTabulated[1].formValue.questions[0].subQuestions[0].sub_ques}}
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+
+      <th>Name</th>
+      <th>Training</th>
+      <th>Trainers</th>            <!--Table headings-->
+      <th>Location</th>
+      <th>Date</th>  
+      <th colspan="2" *ngFor="let item1 of feedBackListTabulated[0].formValue.questions[0].subQuestions; let j = index">
+        <p >{{item1.sub_ques}}</p>
+        <div class="row">
+            <div class="col-sm-6">
+              <p>content rating</p>
+            </div>
+            <div class="col-sm-6">
+              <p>presentation rating</p>
+            </div>
+          </div>
+      </th>
+
+      
+    </tr>
+   </thead>
+
+   
+
+   <tbody>
+      <tr *ngFor="let list of feedBackListTabulated | selectbox: selectedValue; let i = index" >
+          <td>{{i+1}}</td>
+    
+          <td>{{list.formValue.name}}</td>
+          <td>{{list.formValue.training}}</td>
+          <td>{{list.formValue.trainers}}</td>
+          <td>{{list.formValue.location}}</td>
+          <td>{{list.formValue.date}}</td>
+          <!-- <template > -->
+          <td class="content" *ngFor="let items of list.formValue.questions[i].subQuestions; let j = index">
+
+            <div></div>
+            <div></div>
+
+              <p>{{items.content_rating}}</p>
+              
+              
+          </td>
+          <td class="presentation" *ngFor="let items of list.formValue.questions[i].subQuestions; let j = index">
+
+              <p>{{items.presentation_rating}}</p>
+          </td>
+          
+        <!-- </template> -->
+      </tr>    
+   </tbody>
+
+
+
+
+
+</table>    

@@ -1,0 +1,37 @@
+table{
+    width: max-content;
+    text-align: center;
+    margin-top:20px;
+}
+
+.download-btn{
+    margin-left: 15px;
+    font-weight: bold;
+    position: fixed;
+    top: 5px;
+    right: 20px;
+    z-index: 99999;
+}
+
+.graph-btn{
+    margin-left: 15px;
+    font-weight: bold;
+    position: fixed;
+    top: 5px;
+    right: 250px;
+    z-index: 99999;
+}
+
+.title{
+    font-size: 36px;
+}
+
+.container-fluid{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    /* padding-top: 100px; */
+    background: #fff;
+    /* z-index: 1000; */
+    /* border-bottom: 2px solid #00A200; */
+}
