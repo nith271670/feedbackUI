@@ -61,22 +61,16 @@
           <td>{{list.formValue.trainers}}</td>
           <td>{{list.formValue.location}}</td>
           <td>{{list.formValue.date}}</td>
-          <!-- <template > -->
-          <td class="content" *ngFor="let items of list.formValue.questions[i].subQuestions; let j = index">
-
-            <div></div>
-            <div></div>
-
-              <p>{{items.content_rating}}</p>
-              
-              
+          <td colspan="2" *ngFor="let item1 of feedBackListTabulated[i].formValue.questions[0].subQuestions; let j = index">
+            <div class="row">
+                <div class="col-sm-6">
+                  <p>{{item1.content_rating}}</p>
+                </div>
+                <div class="col-sm-6">
+                  <p>{{item1.presentation_rating}}</p>
+                </div>
+              </div>
           </td>
-          <td class="presentation" *ngFor="let items of list.formValue.questions[i].subQuestions; let j = index">
-
-              <p>{{items.presentation_rating}}</p>
-          </td>
-          
-        <!-- </template> -->
       </tr>    
    </tbody>
 
