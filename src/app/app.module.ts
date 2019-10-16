@@ -33,6 +33,7 @@ import { LoginComponent } from './login/login.component';
 import { EBGuideFormComponent } from './ebguide-form/ebguide-form.component';
 import { GraphicalRepresentationComponent } from './graphical-representation/graphical-representation.component';
 import { ListEBGuideComponent } from './list-ebguide/list-ebguide.component';
+import { GraphEbguideComponent } from './graph-ebguide/graph-ebguide.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login' , pathMatch: 'full'},
@@ -52,7 +53,8 @@ const routes: Routes = [
   { path: 'success', component: SuccessComponent },
   { path: 'graphs', component: GraphicalpresentationComponent },
   { path: 'graphicalRepresentation', component: GraphicalRepresentationComponent },
-  { path: 'list-ebguide', component: ListEBGuideComponent }
+  { path: 'list-ebguide', component: ListEBGuideComponent },
+  { path: 'ebguide-graph', component: GraphEbguideComponent }
   
 ];
 @NgModule({
@@ -77,7 +79,8 @@ const routes: Routes = [
     LoginComponent,
     EBGuideFormComponent,
     GraphicalRepresentationComponent,
-    ListEBGuideComponent
+    ListEBGuideComponent,
+    GraphEbguideComponent
   ],
   imports: [
     BrowserModule,
