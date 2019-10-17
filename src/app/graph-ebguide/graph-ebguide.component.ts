@@ -18,7 +18,10 @@ export class GraphEbguideComponent implements OnInit {
     feedBackListGrouped = [];
     activeTab = 0;
     trainingContent = [];
+    trainingpresentation = [];
     trainingExperience = [];
+    trainingExperiencea = [];
+    trainingExperienceb = [];
     trainingQualification = [];
     initializeGraph = false;
     comment = [];
@@ -111,6 +114,25 @@ export class GraphEbguideComponent implements OnInit {
       var sum14 = 0;
       var sum15 = 0;
 
+      var sumd0 = 0;
+      var sumd1 = 0;
+      var sumd2 = 0;
+      var sumd3 = 0;
+      var sumd4 = 0;
+      var sumd5 = 0;
+      var sumd6 = 0;
+      var sumd7 = 0;
+      var sumd8 = 0;
+      var sumd9 = 0;
+      var sumd10 = 0;
+      var sumd11 = 0;
+      var sumd12 = 0;
+      var sumd13 = 0;
+      var sumd14 = 0;
+      var sumd15 = 0;
+
+      
+
       var suma0 = 0;
       var suma1 = 0;
       var suma2 = 0;
@@ -155,17 +177,35 @@ export class GraphEbguideComponent implements OnInit {
                sum15 = sum15+ parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[15].content_rating);
 
 
-               suma0 = suma0 + parseInt(this.feedBackListTabulated[j].formValue.questions[2].subQuestions[0].content_rating);
-               suma1 = suma1 + parseInt(this.feedBackListTabulated[j].formValue.questions[2].subQuestions[1].content_rating);
-               suma2 = suma2 + parseInt(this.feedBackListTabulated[j].formValue.questions[2].subQuestions[2].content_rating);
+               sumd0 = sumd0 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[0].presentation_rating);
+               sumd1 = sumd1 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[1].presentation_rating);
+               sumd2 = sumd2 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[2].presentation_rating);
+               sumd3 = sumd3 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[3].presentation_rating);
+               sumd4 = sumd4 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[4].presentation_rating);
+               sumd5 = sumd5 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[5].presentation_rating);
+               sumd6 = sumd6 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[6].presentation_rating);
+               sumd7 = sumd7 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[7].presentation_rating);
+               sumd8 = sumd8 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[8].presentation_rating);
+               sumd9 = sumd9 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[9].presentation_rating);
+               sumd10 = sumd10 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[10].presentation_rating);
+               sumd11 = sumd11 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[11].presentation_rating);
+               sumd12 = sumd12 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[12].presentation_rating);
+               sumd13 = sumd13+ parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[13].presentation_rating);
+               sumd14 = sumd14 + parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[14].presentation_rating);
+               sumd15 = sumd15+ parseInt(this.feedBackListTabulated[j].formValue.questions[0].subQuestions[15].presentation_rating);
+
+
+               suma0 = suma0 + parseInt(this.feedBackListTabulated[j].formValue.questions[2].subQuestions[0].presentation_rating);
+               suma1 = suma1 + parseInt(this.feedBackListTabulated[j].formValue.questions[2].subQuestions[1].presentation_rating);
+               suma2 = suma2 + parseInt(this.feedBackListTabulated[j].formValue.questions[2].subQuestions[2].presentation_rating);
 
                sumb0 = sumb0 + parseInt(this.feedBackListTabulated[j].formValue.questions[3].subQuestions[0].presentation_rating);
                sumb1 = sumb1 + parseInt(this.feedBackListTabulated[j].formValue.questions[3].subQuestions[1].presentation_rating);
                sumb2 = sumb2 + parseInt(this.feedBackListTabulated[j].formValue.questions[3].subQuestions[2].presentation_rating);
 
-               sumc0 = sumc0 + parseInt(this.feedBackListTabulated[j].formValue.questions[4].subQuestions[0].content_rating);
-               sumc1 = sumc1 + parseInt(this.feedBackListTabulated[j].formValue.questions[4].subQuestions[1].content_rating);
-               sumc2 = sumc2 + parseInt(this.feedBackListTabulated[j].formValue.questions[4].subQuestions[2].content_rating);
+               sumc0 = sumc0 + parseInt(this.feedBackListTabulated[j].formValue.questions[4].subQuestions[0].presentation_rating);
+               sumc1 = sumc1 + parseInt(this.feedBackListTabulated[j].formValue.questions[4].subQuestions[1].presentation_rating);
+               sumc2 = sumc2 + parseInt(this.feedBackListTabulated[j].formValue.questions[4].subQuestions[2].presentation_rating);
 
                
                
@@ -268,30 +308,58 @@ export class GraphEbguideComponent implements OnInit {
 
           
           this.trainingContent[j] = new Array();
-          this.trainingContent[j].push({"Topic": "Quality of Content","Rating":sum0.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Value Of Content","Rating":sum1.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Relavance of exercises","Rating":sum2.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Logical structute","Rating":sum3.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Quality","Rating":sum4.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Valuef Content","Rating":sum5.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Rance of exercises","Rating":sum6.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Local structute","Rating":sum7.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Quay of Content","Rating":sum8.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "VaContent","Rating":sum9.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "vance of exercises","Rating":sum10.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "ogical structute","Rating":sum11.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Quality of nt","Rating":sum12.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Value Of Content","Rating":sum13.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Relf exercises","Rating":sum14.toFixed(2)});
-          this.trainingContent[j].push({"Topic": "Logicalute","Rating":sum15.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Architectural overview","Rating":sumd0.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Components of the GUI","Rating":sumd1.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Creating your first EB GUIDE model","Rating":sumd2.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Adding behavior to your EB GUIDE model","Rating":sumd3.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Adding behavior to your EB GUIDE model","Rating":sumd4.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Working with templates","Rating":sumd5.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Adding more functionality using widget features","Rating":sumd6.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Creating a scrollable list with dynamic content","Rating":sumd7.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Enhancing your EB GUIDE model with animations","Rating":sumd8.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Adding conditional behavior","Rating":sumd9.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Modeling go-back functionality with history states","Rating":sumd10.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Modeling pop-ups with dynamic state machines","Rating":sumd11.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Working with multiple state machines","Rating":sumd12.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Dealing with focus and key input features","Rating":sumd13.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Adding support for multiple languages","Rating":sumd14.toFixed(2)});
+          this.trainingContent[j].push({"Topic": "Working with EB GUIDE Speech","Rating":sumd15.toFixed(2)});
 
+          this.trainingpresentation[j] = new Array();
+          this.trainingpresentation[j].push({"Topic": "Architectural overview","Rating":sum0.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Components of the GUI","Rating":sum1.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Creating your first EB GUIDE model","Rating":sum2.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Adding behavior to your EB GUIDE model","Rating":sum3.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Adding behavior to your EB GUIDE model","Rating":sum4.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Working with templates","Rating":sum5.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Adding more functionality using widget features","Rating":sum6.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Creating a scrollable list with dynamic content","Rating":sum7.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Enhancing your EB GUIDE model with animations","Rating":sum8.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Adding conditional behavior","Rating":sum9.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Modeling go-back functionality with history states","Rating":sum10.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Modeling pop-ups with dynamic state machines","Rating":sum11.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Working with multiple state machines","Rating":sum12.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Dealing with focus and key input features","Rating":sum13.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Adding support for multiple languages","Rating":sum14.toFixed(2)});
+          this.trainingpresentation[j].push({"Topic": "Working with EB GUIDE Speech","Rating":sum15.toFixed(2)});
 
 
 
           this.trainingExperience[j] = new Array();
-          this.trainingExperience[j].push({"Topic": "O","Rating":sumb0.toFixed(2)});
-          this.trainingExperience[j].push({"Topic": "T","Rating":sumb1.toFixed(2)});
-          this.trainingExperience[j].push({"Topic": "E","Rating":sumb2.toFixed(2)});
+          this.trainingExperience[j].push({"Topic": "Content","Rating":suma0.toFixed(2)});
+          this.trainingExperience[j].push({"Topic": "Practical use","Rating":suma1.toFixed(2)});
+          this.trainingExperience[j].push({"Topic": "Comprehensibility","Rating":suma2.toFixed(2)});
+
+
+          this.trainingExperiencea[j] = new Array();
+          this.trainingExperiencea[j].push({"Topic": "Structuring","Rating":sumb0.toFixed(2)});
+          this.trainingExperiencea[j].push({"Topic": "Time management","Rating":sumb1.toFixed(2)});
+          this.trainingExperiencea[j].push({"Topic": "Overall rating","Rating":sumb2.toFixed(2)});
+
+          this.trainingExperienceb[j] = new Array();
+          this.trainingExperienceb[j].push({"Topic": "Organization","Rating":sumc0.toFixed(2)});
+          this.trainingExperienceb[j].push({"Topic": "Location","Rating":sumc1.toFixed(2)});
+          this.trainingExperienceb[j].push({"Topic": "Catering","Rating":sumc2.toFixed(2)});
           
          
           // this.YesNoCount[j] = new Array();
@@ -299,7 +367,10 @@ export class GraphEbguideComponent implements OnInit {
           // this.YesNoCount[j].push({value: 'No', count: noCount});
 
           this.drawGraph(1,j,this.trainingContent[j],0);
-          this.drawGraph(2,j,this.trainingExperience[j],0);
+          this.drawGraph(2,j,this.trainingpresentation[j],0);
+          this.drawGraph(3,j,this.trainingExperience[j],0);
+          this.drawGraph(4,j,this.trainingExperiencea[j],0);
+          this.drawGraph(5,j,this.trainingExperienceb[j],0);
           // this.drawPieChart(3,j,this.YesNoCount[j]);
          
           // for(var p = 0;p<sumtrq.length;p++){
@@ -316,7 +387,7 @@ export class GraphEbguideComponent implements OnInit {
     console.log("QID"+QId);
     console.log("j"+j);
     console.log("graphId"+graphId);
-    if(QId == 4 ){
+    if(QId == 6 ){
       if(j!=0){
         this.initSvg('#svg'+QId+j+ graphId, data);
         console.log('#svg'+QId+j+ graphId);
