@@ -40,6 +40,7 @@ import { AppGlobals } from './shared/global';
 import { DirectAccessGuard } from './shared/DirectAccessGuard';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
+import { GraphEbguideComponent } from './graph-ebguide/graph-ebguide.component';
 
 const routes: Routes = [
   { path: '', component:LoginComponent},
@@ -65,8 +66,9 @@ const routes: Routes = [
   { path: 'home/:users/:trainingGroups/:list/:list-ebguide', component: LoginComponent, canActivate: [DirectAccessGuard] },
   //{ path: 'users', component: LoginComponent, canActivate: [DirectAccessGuard] },
   //{ path: 'trainingGroups', component: LoginComponent, canActivate: [DirectAccessGuard] },
-  { path: 'list', component: ListComponent, canActivate: [DirectAccessGuard] }
+  { path: 'list', component: ListComponent, canActivate: [DirectAccessGuard] },
  
+  { path: 'ebguide-graph', component: GraphEbguideComponent }
   
 ];
 @NgModule({
@@ -95,7 +97,8 @@ const routes: Routes = [
     GraphicalRepresentationComponent,
     ListEBGuideComponent,
     UsersComponent,
-    TrainingGroupsComponent
+    TrainingGroupsComponent,
+    GraphEbguideComponent
   ],
   imports: [
     BrowserModule,

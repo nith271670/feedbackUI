@@ -1,0 +1,102 @@
+.bar {
+    fill: #00A200
+}
+
+.bar:hover {
+    fill: #777777;
+}
+
+.axis-title {
+    fill: none;
+    stroke: black;
+    stroke-width: 0.5px;
+}
+
+
+nav{
+    padding-bottom: 0px;
+}
+
+nav .nav-item{
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.nav-link:hover{
+    font-weight: bold;
+    color: #00A200 !important;
+}
+
+.side_nav{
+    width: 350px;
+    background: #777777;
+    height: 100%;
+    min-height: 100%;
+    position: fixed;
+    top: 50px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-left: 0px;
+}
+
+.side_nav li{
+    display: block;
+    width: 100%;
+}
+
+.side_nav li a{
+    color: #fff !important; 
+    font-size: 20px;
+    border-width: 0px !important;
+    font-weight: 100;
+ }
+
+ .nav-link.disabled{
+    color: #fff !important;
+    text-align: center;
+    font-size: 25px !important;
+    font-weight: bold !important;
+}
+
+.nav-item:hover{
+    background: #333;
+    
+}
+
+.fade:not(.show){
+    opacity: 1;
+}
+
+
+.active{
+    background: #00A200;
+    font-weight: bold;
+}
+
+.graph_container div{
+    width: 100%;
+   
+}
+
+.gh_div{
+    width: 450px !important;
+}
+
+.tab-content>.active{
+    background: none;
+}
+
+.axis--x text{
+
+    margin-top: 10px;
+    /* transform: rotate(0deg) !important; */
+    /* width: 100px !important; */
+    /* word-wrap: none !important; */
+    /* width: 100px !important; */
+    /* word-wrap: break-word !important; */
+   
+}
+
+.gh_txt_0 ul li{
+    font-weight: 100;
+}

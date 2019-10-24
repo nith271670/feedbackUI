@@ -231,7 +231,7 @@ export class GraphicalRepresentationComponent implements OnInit {
           this.YesNoCount[j].push({value: 'Yes', count: yesCount});
           this.YesNoCount[j].push({value: 'No', count: noCount});
 
-          this.drawGraph(1,j,this.trainingContent[j],0);
+         this.drawGraph(1,j,this.trainingContent[j],0);
           this.drawGraph(2,j,this.trainingExperience[j],0);
           this.drawPieChart(3,j,this.YesNoCount[j]);
          

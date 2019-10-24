@@ -1,0 +1,59 @@
+<ul class=" float-left side_nav nav-tabs" >              
+    <li class="nav-item" style="border-bottom: 2px solid #fff">
+      <a class="nav-link disabled py-4" href="#">Training List</a>
+    </li>
+    <li class="nav-item" *ngFor="let training of feedBackListTabulated; let i = index" [ngClass]="{ 'active':activeTab===i}">
+      <a class="nav-link py-3" data-toggle="tab" (click)="tabSwitch(i)"   >{{training.formValue.training}}</a>
+    </li>
+     
+  </ul>
+
+  <div  class="graph_container justify-content-center">
+      <div class="tab-content">
+        <div  *ngFor="let training of feedBackListTabulated let i = index" id="{{'menu'+i}}" class="tab-pane fade in" [ngClass]="{ 'active':activeTab===i}">
+          <h3>{{training.formValue.training}}</h3>
+          <div style="width: 900px !important">
+            <div class="float-left gh_div" id="{{'graph1'+i}}" >
+                    <h5>Content</h5>
+            <svg id="{{'svg1'+i}}" width="1200" height="350"></svg>
+            </div>
+            <div class="float-left" id="{{'graph1'+i}}" >
+              <h5> Presentation  </h5>
+              <svg id="{{'svg2'+i}}" width="1000" height="350"></svg>
+            </div>
+            <div class="float-left gh_div gh_txt_0" id="{{'graph1'+i}}" >
+              <h5>Exercise</h5>
+              <svg id="{{'svg3'+i}}" width="400" height="350"></svg>
+            </div>
+            <div class="float-left gh_div gh_txt_0" id="{{'graph1'+i}}" >
+              <h5>Did the training meet your expectation?</h5>
+              <svg id="{{'svg4'+i}}" width="400" height="350"></svg>
+            </div>
+            <div class="float-left gh_div gh_txt_0" id="{{'graph1'+i}}" >
+              <h5>General Conditions</h5>
+              <svg id="{{'svg5'+i}}" width="400" height="350"></svg>
+            </div>
+            <div class="clearfix"></div>
+            <!-- <div id="{{'trainerQ'+i}}" >
+             
+              <div *ngFor="let trainer of feedBackListGrouped[i].trainingData[feedBackListGrouped[i].trainingData.length -1].questions[1].subquestions[0]?.trainerrating; let j=index" class="float-left gh_div" id="{{'graph1'+i+j}}">
+                  <h5 *ngIf="j==0" style="margin-bottom: 20px; margin-top:-44px;">Trainer Qualification</h5>
+                <h6>{{trainer?.name}}</h6>
+                <svg id="{{'svg4'+i+j}}" width="400" height="350"></svg>
+             
+                
+              </div>
+            
+         
+             
+            <div class="clearfix"></div>
+            </div> -->
+         </div>
+        </div>
+    
+        </div>
+
+        
+
+
+  
