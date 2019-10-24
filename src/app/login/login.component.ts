@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../shared/http.service';
+import { AppGlobals } from '../shared/global';
 
 @Component({
   selector: 'app-login',
@@ -10,23 +12,42 @@ export class LoginComponent implements OnInit {
   submitted = false;
   username='';
   password='';
+  user;
 
-  constructor() { }
+  users = [
+    {role:'superadmin', username: "superadmin",password:"superadmin"},
+    {role:'admin', username: "admin",password:"admin"},
+    {role:'others', username: "admin",password:"admin"}
+  ];
+
+  constructor(private httpService: HttpService, private _global: AppGlobals) { }
+
 
   ngOnInit() {
-    if(localStorage.getItem('currentUser') == 'admin'){
+ // debugger;
+    if(this._global.currentUser == 'admin'){
       location.href = '/home';
     }
+    /*else if(this._global.currentUser == 'other'){
+      location.href = '/graphicalRepresentation';
+    }*/
   }
 
   onSubmit(){
     this.submitted = true;
-    console.log(this.username);
-    if(this.username =="admin" && this.password == "admin"){
-      localStorage.setItem('currentUser', this.username);
-      location.href = '/home';
+    this.httpService.getUser(this.username).subscribe(response => {
+      console.log(response);
+      this.user = response as Object;
+      console.log(this.user);
+      if(this.user){
+        localStorage.setItem('currentUser', JSON.stringify(this.user));
+        location.href = '/home';
+  
+      }
+     
+    });
 
-    }
+    
   }
 
 }

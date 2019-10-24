@@ -11,7 +11,11 @@ nav .nav-item{
     border-top-left-radius: .25rem;
     border-top-right-radius: .25rem;
 }
-
+.btn-group-vertical>.btn, .btn-group>.btn {
+    position: relative;
+    flex: 1 1 auto;
+    background-color: #00A200
+}
 .nav-link:hover{
     font-weight: bold;
     color: #00A200 !important;

@@ -8,16 +8,16 @@ table{
     margin-left: 15px;
     font-weight: bold;
     position: fixed;
-    top: 5px;
+    top: 60px;
     right: 20px;
-    z-index: 99999;
+    z-index: -1;
 }
 
 .graph-btn{
     margin-left: 15px;
     font-weight: bold;
     position: fixed;
-    top: 5px;
+    top: 60px;
     right: 250px;
     z-index: 99999;
 }

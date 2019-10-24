@@ -6,9 +6,18 @@
           <h4 class="title">
             Create New Training
           </h4>
+        </div>
       </div>
+      <div class="my-6 float-left col-lg-12">
+        <p>Training Group</p>
+        <div formGroupName="training_group">
+          <!-- <input type="text" name="training_name" id="training_name" formControlName="training_name" required> -->
+          <select class="custom-select"  name="training_group" id="training_group"  formControlName="training_group">
+              <option value="" disabled>Choose Training group</option>
+              <option *ngFor="let group of trainingGroupList" [ngValue]="group.groupId">{{group.group_name}}</option>
+              </select>
+        </div>
       </div>
-   
       <div class="my-3 float-left col-lg-12">
         <p>Training Name</p>
         <div formGroupName="training">
@@ -32,7 +41,7 @@
         </div>
       </div>
       <div class="my-3 float-left col-lg-6">
-          <p>Location</p>
+          <p>Locationasdasdad</p>
           <div formGroupName="location">
             <input type="text" name="location_name" id="location_name" formControlName="location_name" required>
           </div>

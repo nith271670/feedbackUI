@@ -33,9 +33,16 @@ import { LoginComponent } from './login/login.component';
 import { EBGuideFormComponent } from './ebguide-form/ebguide-form.component';
 import { GraphicalRepresentationComponent } from './graphical-representation/graphical-representation.component';
 import { ListEBGuideComponent } from './list-ebguide/list-ebguide.component';
+import { UsersComponent } from './users/users.component';
+import { TrainingGroupsComponent } from './training-groups/training-groups.component';
+import { FilterPipe } from './shared/filter.pipe';
+import { AppGlobals } from './shared/global';
+import { DirectAccessGuard } from './shared/DirectAccessGuard';
+import { DataTablesModule } from 'angular-datatables';
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login' , pathMatch: 'full'},
+  { path: '', component:LoginComponent},
   { path: 'login', component:LoginComponent },
   { path: 'home', component: ListTrainingsComponent },
   { path: 'list', component: ListComponent },
@@ -52,7 +59,14 @@ const routes: Routes = [
   { path: 'success', component: SuccessComponent },
   { path: 'graphs', component: GraphicalpresentationComponent },
   { path: 'graphicalRepresentation', component: GraphicalRepresentationComponent },
-  { path: 'list-ebguide', component: ListEBGuideComponent }
+  { path: 'list-ebguide', component: ListEBGuideComponent },
+  { path: 'users', component: UsersComponent },
+  { path: 'trainingGroups', component:  TrainingGroupsComponent},
+  { path: 'home/:users/:trainingGroups/:list/:list-ebguide', component: LoginComponent, canActivate: [DirectAccessGuard] },
+  //{ path: 'users', component: LoginComponent, canActivate: [DirectAccessGuard] },
+  //{ path: 'trainingGroups', component: LoginComponent, canActivate: [DirectAccessGuard] },
+  { path: 'list', component: ListComponent, canActivate: [DirectAccessGuard] }
+ 
   
 ];
 @NgModule({
@@ -66,6 +80,8 @@ const routes: Routes = [
     TrainingformComponent,
     HomeComponent,
     SelectboxPipe,
+   
+    FilterPipe,
     AddTrainingComponent,
     BarChartComponent,
     AnalysisComponent,
@@ -77,7 +93,9 @@ const routes: Routes = [
     LoginComponent,
     EBGuideFormComponent,
     GraphicalRepresentationComponent,
-    ListEBGuideComponent
+    ListEBGuideComponent,
+    UsersComponent,
+    TrainingGroupsComponent
   ],
   imports: [
     BrowserModule,
@@ -88,17 +106,19 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatDialogModule,
     MatCardModule,
+    DataTablesModule,
     MatIconModule,
     MatToolbarModule,
     MatSelectModule,
     MatListModule,
     MatButtonModule,
     MatOptionModule,
-    OrderModule
+    OrderModule,
+    NgxUiLoaderModule
 
   ],
-  exports: [SelectboxPipe],
-  providers: [ExcelService],
+  exports: [SelectboxPipe,FilterPipe],
+  providers: [ExcelService,AppGlobals,DirectAccessGuard ],
   bootstrap: [AppComponent],
   entryComponents: [
     AddTrainingComponent

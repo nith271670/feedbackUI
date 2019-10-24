@@ -12,12 +12,22 @@
             </h4>
           </div>
         </div>
+        <div class="my-6 float-left col-lg-12">
+          <p>Training Group</p>
+          <div formGroupName="training_group">
+            <!-- <input type="text" name="training_name" id="training_name" formControlName="training_name" required> -->
+            <select class="custom-select"  name="training_group" id="training_group"  formControlName="training_group" ([ngModel])="value" (ngModelChange)="getGroupId($event)">
+                <option value="" disabled>Choose Training group</option>
+                <option *ngFor="let group of trainingGroupList" [ngValue]="group.groupId" >{{group.group_name}}</option>
+                </select>
+          </div>
+        </div>
         <div class="my-3 float-left col-lg-6">
           <div formGroupName="training">
             <mat-form-field style="width: 100%">
-              <mat-select placeholder="Select Training" name="training_name" id="training_name"
+              <mat-select placeholder="Select Training" name="training_name" id="training_name" ([ngModel])="value"
                 formControlName="training_name">
-                <mat-option *ngFor="let training of trainingList" [value]=training>{{training.training}}
+                <mat-option *ngFor="let training of trainingList | filter : trainingListByGroupId" [value]=training>{{training.training}}
                 </mat-option>
                 <!-- <mat-option disabled="disabled" class="filter-option">
                       <form [formGroup]="training">
@@ -134,6 +144,7 @@
       <div class="modal-body">
         <form [formGroup]="training">
           <div formGroupName="newTraining" class="form-group my-2">
+            Select training group is: {{selectedProduct}}
             <input name="new_training" id="new_training" formControlName="new_training" placeholder="Enter Training"
               class="form-control col-lg-10 float-left"><br>
               <label for="ebGuideForm" id="checkboxLabel">Check for EB guide Training</label>

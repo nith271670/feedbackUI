@@ -83,5 +83,37 @@ export class HttpService {
   getTrainingDetails(trainingId) {
     return this.http.get(api_url+'/trainingdetails/details/' + trainingId);
   }
+
+  getUserList() {
+    return this.http.get(api_url+'/users/list');
+  }
+  getUser(username) {
+    return this.http.get(api_url+'/users/getuser/'+username);
+  }
+  
+
+  addUser(userDetails): Observable<any> {
+    console.log(userDetails)
+    return this.http
+      .post<any>(api_url+'/users/add', userDetails,
+        { headers: headers, observe: 'response' }).pipe(
+          tap(e => {
+             console.log(userDetails)
+          })
+        );
+  }
+
+  getRoleList() {
+    return this.http.get(api_url+'/UsersGroup/list');
+  }
+  addTrainingGroup(groupDetails) {
+    console.log(groupDetails)
+    return this.http.post(api_url+'/Traininggroups/add', groupDetails);
+  }
+
+  getTrainingGroupList(){
+    return this.http.get(api_url+'/Traininggroups/list');
+  }
 }
 
+ 

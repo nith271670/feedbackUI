@@ -22,9 +22,9 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('currentUser') != 'admin'){
+    /*if(localStorage.getItem('currentUser') != 'admin'){
       location.href = '/login';
-    }
+    }*/
     this.httpService.getList().subscribe(response => {
       console.log(response);
       this.feedBackListTabulated = response as [];

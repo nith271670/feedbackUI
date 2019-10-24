@@ -3,13 +3,17 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { HttpService } from '../../shared/http.service';
+import { FilterPipe } from '../../shared/filter.pipe';
+import { AppGlobals } from '../../shared/global';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 
 
 @Component({
   selector: 'app-add-training',
   templateUrl: './add-training.component.html',
-  styleUrls: ['./add-training.component.css']
+  styleUrls: ['./add-training.component.css'],
+  providers: [AppGlobals]
 })
 export class AddTrainingComponent {
 
@@ -18,6 +22,9 @@ export class AddTrainingComponent {
   TrainingList = [];
   trainingPopUp = false;
   trainerPopUp = false;
+  trainingGroupList=[];
+  trainingListByGroupId = '';
+  selectedProduct ="";
 
   training = this.fb.group({
     newTraining: this.fb.group({
@@ -31,10 +38,12 @@ export class AddTrainingComponent {
       new_trainer: [this.data.newTrainer],
     })
   });
-
+  
   form = this.fb.group({
     id: [this.data.id],
-
+    training_group: this.fb.group({
+      training_group: [this.data.group, Validators.required],
+    }),
     training: this.fb.group({
       training_name: [this.data.training, Validators.required],
     }),
@@ -52,14 +61,18 @@ export class AddTrainingComponent {
     }),
     training_hours:this.fb.group({
       training_hours_input:[this.data.training_hours],
+    }),
+    createdBy:this.fb.group({
+      createdBy:[this._global.currentUser],
     })
   });
 
-  constructor(private fb: FormBuilder, private httpService: HttpService,
+  constructor(private fb: FormBuilder, private httpService: HttpService, private ngxLoader: NgxUiLoaderService, private _global: AppGlobals,
     private router: Router, public dialogRef: MatDialogRef<AddTrainingComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
-
   ngOnInit() {
 
+    this.trainingListByGroupId = this.form.controls['training_group'].value.training_group;
+    //this.form.controls['training'].value.training_name.training = this.form.controls['training'].value.training_name;
     this.httpService.getTrainingNameList().subscribe(response => {
       console.log(response);
       this.trainingList = response as [];
@@ -68,21 +81,42 @@ export class AddTrainingComponent {
       console.log(response);
       this.trainerList = response as [];
     });
+    this.httpService.getTrainingGroupList().subscribe(response => {
+      //console.log(response);
+      this.trainingGroupList = response as [];
+    });
+  }
+  getGroupId(groupId){
+    console.log(groupId);
+    this.trainingListByGroupId = groupId;
+
+    console.log(Object.values(this.trainerList).includes(groupId))
+    for (let element of this.trainingGroupList) {
+      if(element.groupId == groupId){
+          this.selectedProduct = element.group_name;
+      }
+  }
+  
+    return this.trainingListByGroupId;
+    
   }
 
   onSubmit() {
-    console.log(this.data);
+    //debugger;
+    //console.log(this.form.controls['training'].value.training_name);
     const finalResponse = {
       'id': this.data.id,
+      'group': this.form.controls['training_group'].value.training_group,
       'training': this.form.controls['training'].value.training_name.training,
       'trainers': this.form.controls['trainers'].value.trainer_name,
       'location': this.form.controls['location'].value.location_name,
       'from_date': this.form.controls['sel_from_date'].value.from_date,
       'to_date': this.form.controls['sel_to_date'].value.to_date,
       'training_hours' :this.form.controls['training_hours'].value.training_hours_input,
+      'createdBy' :this.form.controls['createdBy'].value.createdBy.username,
       'enableEbGuideForm': this.form.controls['training'].value.training_name.enableEbGuideForm,
     };
-
+console.log(finalResponse);
     if(finalResponse.training_hours == null){
       finalResponse.training_hours = 0;
     }
@@ -133,10 +167,11 @@ export class AddTrainingComponent {
 
   addTraining() {
 
-   
+    console.log(this.trainingListByGroupId);
     const trainingObj = {
       'training': this.training.controls['newTraining'].value.new_training,
-      'enableEbGuideForm': this.training.controls['newTraining'].value.ebGuideForm
+      'enableEbGuideForm': this.training.controls['newTraining'].value.ebGuideForm,
+      "groupId": this.trainingListByGroupId
     };
 
     if(trainingObj.enableEbGuideForm == null){

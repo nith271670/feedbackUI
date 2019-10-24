@@ -3,11 +3,15 @@ import { MatDialog, MatDialogRef } from "@angular/material";
 import { OrderPipe } from 'ngx-order-pipe';
 import { AddTrainingComponent } from '../list-trainings/add-training/add-training.component';
 import { HttpService } from '../shared/http.service';
+import { AppGlobals } from '../shared/global';
+import { FilterPipe } from '../shared/filter.pipe';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-list-trainings',
   templateUrl: './list-trainings.component.html',
-  styleUrls: ['./list-trainings.component.css']
+  styleUrls: ['./list-trainings.component.css'],
+  providers: [AppGlobals]
 })
 
 
@@ -16,19 +20,32 @@ export class ListTrainingsComponent implements OnInit {
   TrainingList = [];
   trainingName = '';
   trainingId = 0;
+  currentUserRole:any;
+  currentUser:any;
   confirmStatus = false;
   order = 'createdAt';
 
-  constructor(private httpService: HttpService, private dialog: MatDialog, private orderPipe: OrderPipe) { }
+  constructor(private httpService: HttpService, private ngxLoader: NgxUiLoaderService, private dialog: MatDialog, private orderPipe: OrderPipe,private _global: AppGlobals) { }
   dialogRef: MatDialogRef<AddTrainingComponent>;
 
   ngOnInit() {
     // if(localStorage.getItem('currentUser') != 'admin'){
     //   location.href = '/login';
     // }
+    console.log(this._global.currentUser);
+    if(Object.values(this._global.currentUser).includes('admin')){
+      this.currentUserRole = this._global.currentUser.role;
+      this.currentUser = this._global.currentUser.username;
+    }
+    else{ 
+      this.currentUserRole = '';
+      this.currentUser = "";
+    }
+    this.ngxLoader.start();
     this.httpService.getTrainingList().subscribe(response => {
       console.log(response);
       this.TrainingList = response as [];
+      this.ngxLoader.stop();
     });
 
 
@@ -47,14 +64,18 @@ export class ListTrainingsComponent implements OnInit {
 
   editTraining(id: number) {
     this.isPopupOpened = true;
+    this.ngxLoader.start();
     this.httpService.editTraining(id).subscribe(training => {
-
+    //console.log(training);
+    
       const dialogRef = this.dialog.open(AddTrainingComponent, {
         data: training
+        
       });
-
+      this.ngxLoader.stop();
       dialogRef.afterClosed().subscribe(result => {
         this.isPopupOpened = false;
+        //this.ngxLoader.stop();
       });
     });
   }
@@ -70,6 +91,7 @@ export class ListTrainingsComponent implements OnInit {
 
   deleteTraining() {
     this.confirmStatus = false;
+    this.ngxLoader.start();
     this.httpService.deleteTraining(this.trainingId)
       .subscribe(a => {
       }, error => {
@@ -77,6 +99,7 @@ export class ListTrainingsComponent implements OnInit {
           this.httpService.getTrainingList().subscribe(response => {
             console.log(response);
             this.TrainingList = response as [];
+            this.ngxLoader.stop();
           });
         }
       });

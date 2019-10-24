@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSubmit()">
+ 
+  <div class="form-group">
+        <p>Training Group</p>
+        
+          <!-- <input type="text" name="training_name" id="training_name" formControlName="training_name" required> -->
+          <select class="custom-select"  (change)="getRole($event.target.value)">
+              <option value="" disabled>Choose Role</option>
+              <option *ngFor="let user of userList" [ngValue]="user.role" >{{user.role}}</option>
+              </select>
+        </div>      
+  <div class="form-group">
+      <label for="body">User Name</label>
+      <input type="text" name="username" class="form-control"  required [(ngModel)]=data.username/>
+  </div>
+  <div class="form-group">
+      <label for="body">password</label>
+      <input type="password" name="password" class="form-control"  required [(ngModel)]=data.password/>
+  </div>
+  <input type="submit" value="Submit" class="btn btn-primary">
+</form>
