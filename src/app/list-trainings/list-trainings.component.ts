@@ -34,8 +34,8 @@ export class ListTrainingsComponent implements OnInit {
     // }
     console.log(this._global.currentUser);
     if(Object.values(this._global.currentUser).includes('admin')){
-      this.currentUserRole = this._global.currentUser.role;
-      this.currentUser = this._global.currentUser.username;
+      this.currentUserRole = this._global.currentUser["role"];
+      this.currentUser = this._global.currentUser["username"];
     }
     else{ 
       this.currentUserRole = '';

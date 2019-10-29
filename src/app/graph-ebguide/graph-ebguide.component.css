@@ -1,5 +1,5 @@
-.bar {
-    fill: #00A200
+rect.bar {
+    fill: #00A200 !important;
 }
 
 .bar:hover {
@@ -65,6 +65,10 @@ nav .nav-item{
 
 .fade:not(.show){
     opacity: 1;
+}
+
+svg{
+    overflow: visible !important;
 }
 
 

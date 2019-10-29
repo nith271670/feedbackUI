@@ -43,6 +43,7 @@ export class TrainingformComponent implements OnInit {
   u_rating = false;
   e_rating = false;
   i_rating = false;
+  submitBtn_disabled = false;
 
   form = this.fb.group({
     participantName: this.fb.group({
@@ -177,6 +178,7 @@ export class TrainingformComponent implements OnInit {
 
     console.log(JSON.stringify(this.form.value));
     if (this.form.valid && this.p_rating == false && this.u_rating == false && this.e_rating == false && this.i_rating == false) {
+      this.submitBtn_disabled = true;
       this.convertResponseToPost(this.form.value);
       console.log("success");
     }

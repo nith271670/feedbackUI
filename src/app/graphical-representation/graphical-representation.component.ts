@@ -98,6 +98,8 @@ export class GraphicalRepresentationComponent implements OnInit {
       var sumte4 = 0;
 
       var sumtrq = [];
+      var num_trainingsByTrainer = [];
+      var nameOfTrainer = [];
       var yesCount = 0;
       var noCount = 0;
       
@@ -151,6 +153,12 @@ export class GraphicalRepresentationComponent implements OnInit {
                       sumtrq[k][3] = 0;
                     }
                     
+                    if(num_trainingsByTrainer[k] == undefined){
+                      num_trainingsByTrainer[k]=0;
+                      nameOfTrainer[k] = '';
+                    }
+                    
+                    
 
                    
 
@@ -159,8 +167,12 @@ export class GraphicalRepresentationComponent implements OnInit {
                   sumtrq[k][1] = sumtrq[k][1] + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[1].trainerrating[k].rating);
                   sumtrq[k][2] = sumtrq[k][2] + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[2].trainerrating[k].rating);
                   sumtrq[k][3] = sumtrq[k][3] + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[3].trainerrating[k].rating);
-
-
+                  num_trainingsByTrainer[k] = parseInt(num_trainingsByTrainer[k])+1;
+                  if(nameOfTrainer.indexOf(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[3].trainerrating[k].name) == -1){
+                    nameOfTrainer[k] = this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[3].trainerrating[k].name;
+                  }
+                  
+                  
                 }
                
 
@@ -182,7 +194,8 @@ export class GraphicalRepresentationComponent implements OnInit {
 
   }
   // console.log(this.feedBackListGrouped[j].trainingName)
-  // console.log(sumtrq);
+  console.log(nameOfTrainer);
+   console.log(num_trainingsByTrainer);
   // console.log(ratingCount[j]);
  
           sum1 = sum1/this.feedBackListGrouped[j].trainingData.length;
@@ -198,10 +211,11 @@ export class GraphicalRepresentationComponent implements OnInit {
           this.trainingQualification[j] = [];
           for(var p = 0;p<sumtrq.length;p++){
             this.trainingQualification[j][p] = new Array();
-            sumtrq[p][0] = sumtrq[p][0]/ratingCount[j];
-            sumtrq[p][1] = sumtrq[p][1]/ratingCount[j];
-            sumtrq[p][2] = sumtrq[p][2]/ratingCount[j];
-            sumtrq[p][3] = sumtrq[p][3]/ratingCount[j];
+            sumtrq[p][0] = sumtrq[p][0]/num_trainingsByTrainer[p];
+            sumtrq[p][1] = sumtrq[p][1]/num_trainingsByTrainer[p];
+            sumtrq[p][2] = sumtrq[p][2]/num_trainingsByTrainer[p];
+            sumtrq[p][3] = sumtrq[p][3]/num_trainingsByTrainer[p];
+          
           if( this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p] != undefined)
           {
             this.trainingQualification[j][p].push({"name":this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p].name,"Topic": "Presentation Skills","Rating":sumtrq[p][0].toFixed(2)});
@@ -252,7 +266,7 @@ console.log(this.trainingQualification);
     if(QId == 4 ){
       if(j!=0){
         this.initSvg('#svg'+QId+j+ graphId, data);
-        console.log('#svg'+QId+j+ graphId);
+        // console.log('#svg'+QId+j+ graphId);
       }
       
     }

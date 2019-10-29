@@ -23,7 +23,8 @@ export class EBGuideFormComponent {
   trainersUnderstandabilityRatingArr = [];
   trainersExpertiseRatingArr = [];
   trainersInteractionRatingArr = [];
-
+  submitBtn_disabled = false;
+  
   form = this.fb.group({
     participantName: this.fb.group({
       id_name: [''],
@@ -129,6 +130,7 @@ export class EBGuideFormComponent {
 
     console.log(JSON.stringify(this.form.value));
     if (this.form.valid) {
+      this.submitBtn_disabled = true;
       this.convertResponseToPost();
       console.log('success');
     }
@@ -301,7 +303,7 @@ export class EBGuideFormComponent {
         ]
       },
       {
-        'question': 'How long did you already work with EB Product (Months or Years)',
+        'question': 'Own remarks',
         'question_type': null,
         'answer': this.form.controls['question_6'].value.suggestions,
         'subQuestions': []

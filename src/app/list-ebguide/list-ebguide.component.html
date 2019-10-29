@@ -13,12 +13,12 @@
   </div>
   </div>
 
-  <div class="col-lg-12 mx-4 my-3" style="clear: both;"><br/>
+  <!-- <div class="col-lg-12 mx-4 my-3" style="clear: both;"><br/>
   <label for ="training_name" style="font-weight: bold;">Filter By Training Name: &nbsp;&nbsp;</label><select class="custom-select col-6" (ngModelChange)="updateSelectedValue($event)"  [(ngModel)]="selectedValue"  name="training_name" id="training_name">
       <option [ngValue]="undefined">all</option>
       <option *ngFor="let training of trainingList" [ngValue]="training.training">{{training.training}}</option>
   </select>
-</div>
+</div> -->
 
 
 
@@ -45,8 +45,17 @@
             </div>
           </div>
       </th>
-
-      
+      <th>Which important topic did you miss?</th>
+      <th  *ngFor="let item1 of feedBackListTabulated[0].formValue.questions[2].subQuestions; let j = index">
+        <p >Exercises ({{item1.sub_ques}})</p>
+      </th>
+      <th  *ngFor="let item1 of feedBackListTabulated[0].formValue.questions[3].subQuestions; let j = index">
+        <p >Did this training meet your expectations? ({{item1.sub_ques}})</p>
+      </th>
+      <th  *ngFor="let item1 of feedBackListTabulated[0].formValue.questions[4].subQuestions; let j = index">
+        <p >General Conditions ({{item1.sub_ques}})</p>
+      </th>
+      <th>Own remarks</th>
     </tr>
    </thead>
 
@@ -71,6 +80,17 @@
                 </div>
               </div>
           </td>
+          <td>{{list.formValue.questions[1].answer}}</td>
+          <td  *ngFor="let item1 of feedBackListTabulated[i].formValue.questions[2].subQuestions; let j = index">
+            <p >{{item1.presentation_rating}}</p>
+          </td>
+          <td  *ngFor="let item1 of feedBackListTabulated[i].formValue.questions[3].subQuestions; let j = index">
+            <p >{{item1.presentation_rating}}</p>
+          </td>
+          <td  *ngFor="let item1 of feedBackListTabulated[i].formValue.questions[4].subQuestions; let j = index">
+            <p >{{item1.presentation_rating}}</p>
+          </td>
+          <td>{{list.formValue.questions[5].answer}}</td>
       </tr>    
    </tbody>
 

@@ -384,9 +384,7 @@ export class GraphEbguideComponent implements OnInit {
   }
 
   private drawGraph(QId,graphId, data,j) {
-    console.log("QID"+QId);
-    console.log("j"+j);
-    console.log("graphId"+graphId);
+
     if(QId == 6 ){
       if(j!=0){
         this.initSvg('#svg'+QId+j+ graphId, data);
@@ -434,9 +432,10 @@ private drawAxis(data) {
         .append('text')
         .attr('class', 'axis-title')
         .attr('transform', 'rotate(-90)')
-        .attr('y', 6)
-        .attr('dy', '0.71em')
+        .attr('y', 16)
+        .attr('dy', '1em')
         .attr('text-anchor', 'end')
+        .attr('fill','#eee' )
         .text('Rating');
 
     this.drawBars(data);

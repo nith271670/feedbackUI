@@ -28,8 +28,7 @@ export class AddTrainingComponent {
 
   training = this.fb.group({
     newTraining: this.fb.group({
-      new_training: [this.data.newTraining],
-      ebGuideForm: [this.data.ebGuideForm]
+      new_training: [this.data.newTraining]
     })
   });
 
@@ -64,6 +63,9 @@ export class AddTrainingComponent {
     }),
     createdBy:this.fb.group({
       createdBy:[this._global.currentUser],
+    }),
+    ebGuideForm1:this.fb.group({
+      ebGuideForm_check:[this.data.ebGuideForm1],
     })
   });
 
@@ -114,11 +116,15 @@ export class AddTrainingComponent {
       'to_date': this.form.controls['sel_to_date'].value.to_date,
       'training_hours' :this.form.controls['training_hours'].value.training_hours_input,
       'createdBy' :this.form.controls['createdBy'].value.createdBy.username,
-      'enableEbGuideForm': this.form.controls['training'].value.training_name.enableEbGuideForm,
+      'enableEbGuideForm': this.form.controls['ebGuideForm1'].value.ebGuideForm_check,
     };
 console.log(finalResponse);
     if(finalResponse.training_hours == null){
       finalResponse.training_hours = 0;
+    }
+
+    if(finalResponse.enableEbGuideForm == null){
+      finalResponse.enableEbGuideForm = false;
     }
     
     if (!this.data.id) {
@@ -170,13 +176,9 @@ console.log(finalResponse);
     console.log(this.trainingListByGroupId);
     const trainingObj = {
       'training': this.training.controls['newTraining'].value.new_training,
-      'enableEbGuideForm': this.training.controls['newTraining'].value.ebGuideForm,
       "groupId": this.trainingListByGroupId
     };
 
-    if(trainingObj.enableEbGuideForm == null){
-      trainingObj.enableEbGuideForm = false;
-    }
     this.trainingPopUp = false;
     this.httpService.addTrainingName(trainingObj)
       .subscribe(a => {
