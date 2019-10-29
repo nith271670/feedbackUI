@@ -32,7 +32,7 @@ export class ListTrainingsComponent implements OnInit {
     // if(localStorage.getItem('currentUser') != 'admin'){
     //   location.href = '/login';
     // }
-    console.log(this._global.currentUser);
+    //consolconsole.log(this._global.currentUser);
     if(Object.values(this._global.currentUser).includes('admin')){
       this.currentUserRole = this._global.currentUser["role"];
       this.currentUser = this._global.currentUser["username"];
@@ -66,7 +66,7 @@ export class ListTrainingsComponent implements OnInit {
     this.isPopupOpened = true;
     this.ngxLoader.start();
     this.httpService.editTraining(id).subscribe(training => {
-    //console.log(training);
+    console.log(training);
     
       const dialogRef = this.dialog.open(AddTrainingComponent, {
         data: training
@@ -97,7 +97,7 @@ export class ListTrainingsComponent implements OnInit {
       }, error => {
         if (error.status === 200) {
           this.httpService.getTrainingList().subscribe(response => {
-            console.log(response);
+            //console.log(response);
             this.TrainingList = response as [];
             this.ngxLoader.stop();
           });

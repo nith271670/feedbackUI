@@ -26,7 +26,7 @@
           <div formGroupName="training">
             <mat-form-field style="width: 100%">
               <mat-select placeholder="Select Training" name="training_name" id="training_name" ([ngModel])="value" formControlName="training_name">
-                <mat-option *ngFor="let training of trainingList | filter : trainingListByGroupId" [value]=training>{{training.training}}
+                <mat-option *ngFor="let training of trainingList | filter : trainingListByGroupId" [value]="training.training">{{training.training}}
                 </mat-option>
                 <!-- <mat-option disabled="disabled" class="filter-option">
                       <form [formGroup]="training">

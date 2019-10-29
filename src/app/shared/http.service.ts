@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 const api_url = 'https://feedback-eb-new.herokuapp.com';
-// const api_url = 'http://localhost:1337';
+//const api_url = 'http://localhost:1337';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +61,7 @@ export class HttpService {
   }
 
   updateTraining(updatedData) {
+    console.log(updatedData);
     return this.http.post(api_url+'/trainingdetails/update/' + updatedData.id, updatedData);
   }
   getTrainingNameList() {

@@ -407,6 +407,7 @@ export class GraphEbguideComponent implements OnInit {
     this.svg = d3.select(svgid);
     this.width =  +this.svg.attr('width') - this.margin.left - this.margin.right;
     this.height = +this.svg.attr('height') - this.margin.top - this.margin.bottom;
+    
     this.g = this.svg.append('g')
         .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
         this.initAxis(data);
@@ -451,6 +452,7 @@ private drawBars(data) {
         .data(data)
         .enter().append('rect')
         .attr('class', 'bar')
+        .attr('fill', 'green')
         .attr('x', (d) => this.x(d.Topic) )
         .attr('y', (d) => this.y(d.Rating) )
         .attr('width', this.x.bandwidth())

@@ -65,13 +65,15 @@ export class AddTrainingComponent {
       createdBy:[this._global.currentUser],
     }),
     ebGuideForm1:this.fb.group({
-      ebGuideForm_check:[this.data.ebGuideForm1],
+      ebGuideForm_check:[this.data.enableEbGuideForm],
     })
   });
 
   constructor(private fb: FormBuilder, private httpService: HttpService, private ngxLoader: NgxUiLoaderService, private _global: AppGlobals,
     private router: Router, public dialogRef: MatDialogRef<AddTrainingComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
   ngOnInit() {
+
+    
 
     this.trainingListByGroupId = this.form.controls['training_group'].value.training_group;
     //this.form.controls['training'].value.training_name.training = this.form.controls['training'].value.training_name;
@@ -105,11 +107,11 @@ export class AddTrainingComponent {
 
   onSubmit() {
     //debugger;
-    //console.log(this.form.controls['training'].value.training_name);
+    console.log(this.form.controls['training'].value.training_name);
     const finalResponse = {
       'id': this.data.id,
       'group': this.form.controls['training_group'].value.training_group,
-      'training': this.form.controls['training'].value.training_name.training,
+      'training': this.form.controls['training'].value.training_name,
       'trainers': this.form.controls['trainers'].value.trainer_name,
       'location': this.form.controls['location'].value.location_name,
       'from_date': this.form.controls['sel_from_date'].value.from_date,
