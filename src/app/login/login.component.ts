@@ -40,10 +40,15 @@ export class LoginComponent implements OnInit {
       this.user = response as Object;
       console.log(this.user);
       if(this.user){
-        localStorage.setItem('currentUser', JSON.stringify(this.user));
-        location.href = '/home';
-  
-      }
+                localStorage.setItem('currentUser', JSON.stringify(this.user));
+                if(this.user.role == 'admin'){
+                 
+                  location.href = '/home';  
+                }
+                else if(this.user.role == 'other'){
+                  location.href = '/list'; 
+                }
+              }
      
     });
 

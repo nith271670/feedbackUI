@@ -62,8 +62,9 @@ this.subQuestObj = this.feedBackListTabulated[0].formValue.questions[0].subQuest
       
       var question_json = {};
       console.log(this.feedBackList[i]);
-      
-      
+      // this.feedBackList.push( this.feedBackList[i].formValue.name);
+      // this.feedBackList.push( this.feedBackList[i].formValue.training);
+      // this.feedBackList.push( this.feedBackList[i].formValue.trainers);
       for(var j = 0;j< this.feedBackList[i].formValue.questions.length; j++){
         if(this.feedBackList[i].formValue.questions[j].question_type == "rating"){          
           if(j==0){
@@ -93,7 +94,7 @@ this.subQuestObj = this.feedBackListTabulated[0].formValue.questions[0].subQuest
         }
       }
     
-     delete this.feedBackList[i].formValue; 
+    // delete this.feedBackList[i].formValue; 
      delete this.feedBackList[i].id; 
      delete this.feedBackList[i].createdAt; 
      delete this.feedBackList[i].updatedAt; 

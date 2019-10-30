@@ -20,9 +20,9 @@ export class AppComponent {
   ngOnInit(){
     this.otherUser = Object.values(this._global.currentUser).includes('other');
     this.superAdmin = Object.values(this._global.currentUser).includes('superadmin');
-    if(Object.values(this._global.currentUser).includes('other')){
-      this.router.navigate(['/list'])
-    }
+    // if(Object.values(this._global.currentUser).includes('other')){
+    //   this.router.navigate(['/list'])
+    // }
     //console.log(this._global.currentUser.username);   
 
   }

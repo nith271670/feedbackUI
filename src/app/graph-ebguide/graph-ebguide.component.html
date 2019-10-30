@@ -3,7 +3,9 @@
       <a class="nav-link disabled py-4" href="#">Training List</a>
     </li>
     <li class="nav-item" *ngFor="let training of feedBackListTabulated; let i = index" [ngClass]="{ 'active':activeTab===i}">
-      <a class="nav-link py-3" data-toggle="tab" (click)="tabSwitch(i)"   >{{training.formValue.training}}</a>
+      <a class="nav-link py-3" data-toggle="tab" (click)="tabSwitch(i)">{{training.formValue.training}}
+      <br>  <span style="font-size: 11px;">{{training.formValue.date}}</span>
+      </a>
     </li>
      
   </ul>
