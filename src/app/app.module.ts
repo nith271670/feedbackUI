@@ -37,7 +37,7 @@ import { UsersComponent } from './users/users.component';
 import { TrainingGroupsComponent } from './training-groups/training-groups.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { AppGlobals } from './shared/global';
-import { DirectAccessGuard } from './shared/DirectAccessGuard';
+import { DirectAccessGuard } from './shared/directAccessGuard';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
 import { GraphEbguideComponent } from './graph-ebguide/graph-ebguide.component';
