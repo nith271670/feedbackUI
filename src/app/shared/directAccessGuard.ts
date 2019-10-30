@@ -8,7 +8,7 @@ export class DirectAccessGuard implements CanActivate {
   constructor(private router: Router,private _global: AppGlobals) {}
 
   canActivate(
-    next: ActivatedRouteSnapshot,
+    next: ActivatedRouteSnapshot, 
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     // If the previous URL was blank, then the user is directly accessing this page
     if (this.router.url === '/') {
