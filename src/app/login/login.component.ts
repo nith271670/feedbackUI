@@ -48,6 +48,9 @@ export class LoginComponent implements OnInit {
                 else if(this.user.role == 'other'){
                   location.href = '/list'; 
                 }
+        else{
+          location.href = '/home';  
+        }
               }
      
     });
