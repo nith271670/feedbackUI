@@ -388,7 +388,6 @@ export class GraphEbguideComponent implements OnInit {
     if(QId == 6 ){
       if(j!=0){
         this.initSvg('#svg'+QId+j+ graphId, data);
-        console.log('#svg'+QId+j+ graphId);
       }
       
     }
@@ -417,7 +416,7 @@ private initAxis(data) {
     this.x = d3Scale.scaleBand().rangeRound([0, this.width]).padding(0.1);
     this.y = d3Scale.scaleLinear().rangeRound([this.height, 0]);
     this.x.domain(data.map((d) => d.Topic));
-    this.y.domain([0, 6]);
+    this.y.domain([0, 5]);
     this.drawAxis(data);
 }
 
@@ -426,6 +425,7 @@ private drawAxis(data) {
         .attr('class', 'axis axis--x')
         .attr('transform', 'translate(0,' + this.height + ')')
         .call(d3Axis.axisBottom(this.x));
+
 
     this.g.append('g')
         .attr('class', 'axis axis--y')
@@ -436,11 +436,12 @@ private drawAxis(data) {
         .attr('y', 16)
         .attr('dy', '1em')
         .attr('text-anchor', 'end')
-        .attr('fill','#eee' )
         .text('Rating');
-
+        
+      
     this.drawBars(data);
 }
+
 
 private drawBars(data) {
 
@@ -452,7 +453,7 @@ private drawBars(data) {
         .data(data)
         .enter().append('rect')
         .attr('class', 'bar')
-        .attr('fill', 'green')
+        .attr('fill', '#00A200')
         .attr('x', (d) => this.x(d.Topic) )
         .attr('y', (d) => this.y(d.Rating) )
         .attr('width', this.x.bandwidth())
@@ -469,40 +470,6 @@ private drawBars(data) {
 
 
 }
-
-private drawPieChart(QId,graphId, data){
-  this.initPieSvg(QId,graphId);
-  this.drawPie(data);
-}
-
-private initPieSvg(QId,graphId) {
-  this.color = d3Scale.scaleOrdinal()
-      .range(['#00A200', '#777777']);
-  this.arc = d3Shape.arc()
-      .outerRadius(this.radius - 10)
-      .innerRadius(0);
-  this.labelArc = d3Shape.arc()
-      .outerRadius(this.radius - 40)
-      .innerRadius(this.radius - 40);
-  this.pie = d3Shape.pie()
-      .sort(null)
-      .value((d: any) => d.count);
-  this.svg = d3.select('#svg'+QId+graphId)
-      .append('g')
-      .attr('transform', 'translate(' + this.width / 2 + ',' + this.height / 2 + ')');
-}
-
-private drawPie(data) {
-  let g = this.svg.selectAll('.arc')
-      .data(this.pie(data))
-      .enter().append('g')
-      .attr('class', 'arc');
-  g.append('path').attr('d', this.arc)
-      .style('fill', (d: any) => this.color(d.data.value) );
-  g.append('text').attr('transform', (d: any) => 'translate(' + this.labelArc.centroid(d) + ')')
-      .attr('dy', '-1em')
-      .text((d: any) => d.data.value +"("+d.data.count+")");
-} 
 
 }
 

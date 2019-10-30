@@ -16,7 +16,9 @@ import * as _ from "lodash";
 export class GraphicalRepresentationComponent implements OnInit {
     feedBackList = [];
 
+    feedBackListGrouped_initial = [];
     feedBackListGrouped = [];
+    feedbackBasedOnDate = [];
     activeTab = 0;
     trainingContent = [];
     trainingExperience = [];
@@ -47,8 +49,25 @@ export class GraphicalRepresentationComponent implements OnInit {
   ngOnInit() {
     this.httpService.getList().subscribe(response => {
       this.feedBackList = response as [];
-      this.feedBackListGrouped = this.groupBy(this.feedBackList, 'training', 'trainingName', 'trainingData');
-      console.log(this.feedBackListGrouped);
+      this.feedBackListGrouped_initial = this.groupBy(this.feedBackList, 'training', 'trainingName', 'trainingData');
+      // console.log(this.feedBackListGrouped);
+
+      // this.feedBackListGrouped = this.groupBy(this.feedBackList, 'date', 'trainingName', 'trainingData');
+      console.log(this.feedBackListGrouped_initial);
+
+      for(var i = 0; i < this.feedBackListGrouped_initial.length; i++){
+        this.feedbackBasedOnDate.push(this.groupBy(this.feedBackListGrouped_initial[i].trainingData, 'date', 'date', 'trainingData'));
+      }
+      console.log(this.feedbackBasedOnDate);
+      for(var i=0;i<this.feedbackBasedOnDate.length;i++){
+        for(var j=0;j<this.feedbackBasedOnDate[i].length;j++){
+          // console.log(this.feedbackBasedOnDate[i][j].trainingData);
+            this.feedBackListGrouped.push({"trainingData":this.feedbackBasedOnDate[i][j].trainingData});
+        }
+      }
+console.log(this.feedBackListGrouped);
+
+
     });
   }
 
@@ -157,12 +176,7 @@ export class GraphicalRepresentationComponent implements OnInit {
                       num_trainingsByTrainer[k]=0;
                       nameOfTrainer[k] = '';
                     }
-                    
-                    
 
-                   
-
-                  
                   sumtrq[k][0] = sumtrq[k][0] + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[0].trainerrating[k].rating);
                   sumtrq[k][1] = sumtrq[k][1] + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[1].trainerrating[k].rating);
                   sumtrq[k][2] = sumtrq[k][2] + parseInt(this.feedBackListGrouped[j].trainingData[i].questions[1].subquestions[2].trainerrating[k].rating);
@@ -190,13 +204,10 @@ export class GraphicalRepresentationComponent implements OnInit {
                 }
               }
 
-              // console.log(sumtrq);
+      
 
   }
-  // console.log(this.feedBackListGrouped[j].trainingName)
-  console.log(nameOfTrainer);
-   console.log(num_trainingsByTrainer);
-  // console.log(ratingCount[j]);
+
  
           sum1 = sum1/this.feedBackListGrouped[j].trainingData.length;
           sum2 = sum2/this.feedBackListGrouped[j].trainingData.length;
@@ -218,6 +229,7 @@ export class GraphicalRepresentationComponent implements OnInit {
           
           if( this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p] != undefined)
           {
+            console.log(this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p].name);
             this.trainingQualification[j][p].push({"name":this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p].name,"Topic": "Presentation Skills","Rating":sumtrq[p][0].toFixed(2)});
             this.trainingQualification[j][p].push({"name":this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p].name,"Topic": "Understandability","Rating":sumtrq[p][1].toFixed(2)});
             this.trainingQualification[j][p].push({"name":this.feedBackListGrouped[j].trainingData[this.feedBackListGrouped[j].trainingData.length-1].questions[1].subquestions[0].trainerrating[p].name,"Topic": "Product expertise","Rating":sumtrq[p][2].toFixed(2)});
@@ -251,22 +263,18 @@ export class GraphicalRepresentationComponent implements OnInit {
          
           for(var p = 0;p<sumtrq.length;p++){
             this.drawGraph(4,p,this.trainingQualification[j][p],j);
+            console.log(this.trainingQualification[j][p]);
           }
 
 }
 
-console.log(this.trainingQualification);
-
   }
 
   private drawGraph(QId,graphId, data,j) {
-    console.log("QID"+QId);
-    console.log("j"+j);
-    console.log("graphId"+graphId);
+
     if(QId == 4 ){
       if(j!=0){
         this.initSvg('#svg'+QId+j+ graphId, data);
-        // console.log('#svg'+QId+j+ graphId);
       }
       
     }
@@ -274,10 +282,7 @@ console.log(this.trainingQualification);
       this.initSvg('#svg'+QId+ graphId, data);
     }
 
-    // if(QId == 4){
-    //   console.log("QID"+QId);
-    //   // console.log(data);
-    // // }
+
   }
 
   private initSvg(svgid, data) {

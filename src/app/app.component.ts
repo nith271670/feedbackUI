@@ -8,15 +8,18 @@ import { AppGlobals } from './shared/global'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [AppGlobals]
+
 })
 export class AppComponent {
   title = 'feedbackForm';
   otherUser;
+  superAdmin;
   constructor(public router: Router, private _global: AppGlobals) {
   }
 
   ngOnInit(){
     this.otherUser = Object.values(this._global.currentUser).includes('other');
+    this.superAdmin = Object.values(this._global.currentUser).includes('superadmin');
     if(Object.values(this._global.currentUser).includes('other')){
       this.router.navigate(['/list'])
     }

@@ -48,6 +48,10 @@ svg .axis--x .tick {
    
 }
 
+/* .axis--x .tick text {
+    transform: rotate(-90deg) translateX(-15px) translateY(-7px) !important;
+} */
+
 .tooltip{
     background: #fff;
     padding: 10px;

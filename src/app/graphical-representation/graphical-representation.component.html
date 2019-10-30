@@ -3,7 +3,7 @@
       <a class="nav-link disabled py-4" href="#">Training List</a>
     </li>
     <li class="nav-item" *ngFor="let training of feedBackListGrouped let i = index" [ngClass]="{ 'active':activeTab===i}">
-      <a class="nav-link py-3" data-toggle="tab" (click)="tabSwitch(i)"   >{{training.trainingName}}</a>
+      <a class="nav-link py-3" data-toggle="tab" (click)="tabSwitch(i)"   >{{training.trainingData[0].training}}<br><span style="font-size: 11px">{{training.trainingData[0].date}}</span></a>
     </li>
      
   </ul>
@@ -11,7 +11,7 @@
   <div  class="graph_container justify-content-center">
   <div class="tab-content">
     <div  *ngFor="let training of feedBackListGrouped let i = index" id="{{'menu'+i}}" class="tab-pane fade in" [ngClass]="{ 'active':activeTab===i}">
-      <h3>{{training.trainingName}}</h3>
+      <h3>{{training.trainingData[0].training}}</h3>
       <div style="width: 900px !important">
         <div class="float-left gh_div" id="{{'graph1'+i}}" >
                 <h5>Training Content</h5>
