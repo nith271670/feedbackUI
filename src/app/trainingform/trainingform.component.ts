@@ -14,6 +14,8 @@ import {
 import {
   Router
 } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -44,6 +46,9 @@ export class TrainingformComponent implements OnInit {
   e_rating = false;
   i_rating = false;
   submitBtn_disabled = false;
+  ipAddress;
+  cookieValue;
+  cookieValueTrainingId;
 
   form = this.fb.group({
     participantName: this.fb.group({
@@ -122,13 +127,37 @@ export class TrainingformComponent implements OnInit {
     })
   });
   constructor(private fb: FormBuilder, private httpService: HttpService,
-    private router: Router) { }
+    private router: Router, private http: HttpClient, private cookieService: CookieService) { }
 
+    ngAfterViewInit(){
+   
+    }
+    
+    
   ngOnInit() {
     // document.getElementById('main_hd').style.display = "none";
+
+    console.log("ngOnInit()")
+   
+
+
+
     this.href = this.router.url;
     this.trainingform = this.href.split("/").pop();
-    console.log(this.trainingform);
+    this.http.get<{ip:string}>('https://jsonip.com')
+    .subscribe( data => {
+      console.log('th data', data.ip);
+      this.ipAddress = data.ip
+      debugger;
+      if(this.ipAddress === this.cookieService.get('ipAddress') && this.cookieService.get('trainingId') === this.trainingform ){
+        location.href = "authPage"
+    }
+    })
+
+
+    console.log(this.cookieService.get('ipAddress'));
+   
+
     this.httpService.getTrainingDetails(this.trainingform).subscribe(response => {
       console.log(response);
       this.TrainingDetails = response as {};
@@ -152,7 +181,9 @@ export class TrainingformComponent implements OnInit {
 
     });
   }
-
+componentDidMount(){
+  
+}
   onSubmit() {
     this.submitted = true;
     this.p_rating = false;
@@ -181,8 +212,20 @@ export class TrainingformComponent implements OnInit {
       this.submitBtn_disabled = true;
       this.convertResponseToPost(this.form.value);
       console.log("success");
-    }
+      //if(!this.cookieValue){
+        this.cookieService.set( 'ipAddress', this.ipAddress );
+        //this.cookieValue = this.cookieService.get('ipAddress');
 
+        this.cookieService.set( 'trainingId', this.trainingform );
+        //this.cookieValueTrainingId = this.cookieService.get('trainingId');
+          console.log(this.cookieValueTrainingId);
+
+      //}
+      
+
+    }
+  
+ 
   }
 
   handleChange(evt, index, topic) {

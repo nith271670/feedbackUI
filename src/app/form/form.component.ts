@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpService } from '../shared/http.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-form',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-
+  
   form = this.fb.group({
     question_1: this.fb.group({
       quality: ['', Validators.required],
@@ -66,9 +67,10 @@ export class FormComponent implements OnInit {
     })
   });
   constructor(private fb: FormBuilder, private httpService: HttpService,
-    private router: Router) { }
+    private router: Router,private http: HttpClient) { }
 
   ngOnInit() {
+   
   }
   onSubmit() {
     console.log(JSON.stringify(this.form.value));
