@@ -15,6 +15,7 @@ export class EBGuideFormComponent {
   href = '';
   TrainingDetails = {};
   trainingName = '';
+  group = "";
   trainerNames = '';
   trainingLocation = '';
   trainingDate = '';
@@ -40,6 +41,9 @@ export class EBGuideFormComponent {
     }),
     training_date: this.fb.group({
       t_date: [''],
+    }),
+    group: this.fb.group({
+      group: [''],
     }),
     question_1: this.fb.group({
       arch_overview_content: ['', Validators.required],
@@ -110,7 +114,7 @@ export class EBGuideFormComponent {
       this.TrainingDetails = response as {};
       this.trainingName = this.TrainingDetails['training'];
       this.trainerNames = this.TrainingDetails['trainers'].toString();
-
+      this.group = this.TrainingDetails['group'];
       this.trainingLocation = this.TrainingDetails['location'];
       if (this.TrainingDetails['from_date'] === this.TrainingDetails['to_date']) {
         this.trainingDate = this.TrainingDetails['from_date'];
@@ -143,6 +147,7 @@ export class EBGuideFormComponent {
       'training': this.trainingName,
       'trainers': this.trainerNames,
       'location': this.trainingLocation,
+      'group': this.group,
       'date': this.trainingDate,
       'questions': [{
         'question': 'Content',

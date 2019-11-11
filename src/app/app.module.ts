@@ -14,6 +14,10 @@ import { TrainingformComponent } from './trainingform/trainingform.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { SelectboxPipe } from './selectbox.pipe';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+
+
+
 
 import { AddTrainingComponent } from './list-trainings/add-training/add-training.component';
 
@@ -43,6 +47,9 @@ import { NgxUiLoaderModule } from  'ngx-ui-loader';
 import { GraphEbguideComponent } from './graph-ebguide/graph-ebguide.component';
 import { CookieService } from 'ngx-cookie-service';
 import { FeedbackPresentComponent } from './feedback-present/feedback-present.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+
 
 const routes: Routes = [
   { path: '', component:LoginComponent},
@@ -61,11 +68,12 @@ const routes: Routes = [
   { path: 'ebguideform/:id', component: EBGuideFormComponent},
   { path: 'success', component: SuccessComponent },
   { path: 'graphs', component: GraphicalpresentationComponent },
-  { path: 'graphicalRepresentation', component: GraphicalRepresentationComponent },
-  { path: 'list-ebguide', component: ListEBGuideComponent },
+  //{ path: 'graphicalRepresentation', component: GraphicalRepresentationComponent },
+  { path: 'graphicalRepresentation', component: DashboardComponent },
+   { path: 'list-ebguide', component: ListEBGuideComponent },
   { path: 'users', component: UsersComponent },
   { path: 'trainingGroups', component:  TrainingGroupsComponent},
-  { path: 'home/:users/:trainingGroups/:list/:list-ebguide', component: LoginComponent, canActivate: [DirectAccessGuard] },
+  //{ path: 'home/:users/:trainingGroups/:list/:list-ebguide', component: LoginComponent, canActivate: [DirectAccessGuard] },
   //{ path: 'users', component: LoginComponent, canActivate: [DirectAccessGuard] },
   //{ path: 'trainingGroups', component: LoginComponent, canActivate: [DirectAccessGuard] },
   { path: 'list', component: ListComponent, canActivate: [DirectAccessGuard] },
@@ -101,13 +109,18 @@ const routes: Routes = [
     UsersComponent,
     TrainingGroupsComponent,
     GraphEbguideComponent,
-    FeedbackPresentComponent
+    FeedbackPresentComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     ReactiveFormsModule,
+    NgxDaterangepickerMd.forRoot({
+      separator: ' - ', 
+      applyLabel: 'Okay',
+  }),
     FormsModule,
     BrowserAnimationsModule,
     MatDialogModule,

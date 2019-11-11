@@ -1,0 +1,91 @@
+
+
+
+<ul class=" float-left side_nav nav-tabs" >              
+    <li class="nav-item" style="border-bottom: 2px solid #fff">
+      <a class="nav-link disabled py-4" href="#">Training List</a>
+    </li>
+    <li class="nav-item" *ngFor="let training of feedBackListGrouped let i = index" [ngClass]="{ 'active':activeTab===i}">
+      <a class="nav-link py-3" data-toggle="tab" (click)="tabSwitch(i)"   >{{training.trainingData[0].training}}<br><span style="font-size: 11px">{{training.trainingData[0].date}}</span></a>
+    </li>
+     
+  </ul>
+
+  <div  class="graph_container justify-content-center">
+    
+  <div class="tab-content">
+      <div style="float: right;width: 900px">
+          <input type="text"
+            ngxDaterangepickerMd
+            [(ngModel)]="selectedDate"
+            [showCustomRangeLabel]="true"
+            [alwaysShowCalendars]="alwaysShowCalendars"
+            [ranges]="ranges"
+            [showClearButton]="true"
+            [showCancel]="true"
+            [maxDate]="maxDate"
+            [minDate]="minDate"
+            (ngModelChange)="ngModelChange($event)"
+            [linkedCalendars]="true"
+            [locale]="{applyLabel: 'Done'}"   
+            class="form-control"
+            placeholder="Select please..."/></div>
+            
+            <select class="custom-select"  name="training_group" id="training_group" [(ngModel)]="filter.selectedGroup" (change)="getGroupId($event.target.value)">
+                <option value="" disabled>Choose Training group</option>
+                <option *ngFor="let group of trainingGroupList" [value]="group.groupId" >{{group.group_name}}</option>
+                </select>
+            
+            <select class="custom-select col-6"  name="training_name" id="training_name"  [(ngModel)]="filter.selectedTraining">
+              <option [ngValue]="undefined">all</option>
+              <option *ngFor="let training of TrainingList | filter : trainingListByGroupId">{{training.training}}</option>
+          </select>
+
+         
+          <div style="float: right;">
+            <button (click)="getFilterData()">Apply</button>
+          </div>
+
+
+
+    <div  *ngFor="let training of feedBackListGrouped let i = index" id="{{'menu'+i}}" class="tab-pane fade in" [ngClass]="{ 'active':activeTab===i}">
+      <h3>{{training.trainingData[0].training}}</h3>
+      <div style="width: 900px !important">
+        <div class="float-left gh_div" id="{{'graph1'+i}}" >
+                <h5>Training Content</h5>
+        <svg id="{{'svg1'+i}}" width="400" height="350"></svg>
+        </div>
+        <div class="float-left gh_div gh_txt_0" id="{{'graph1'+i}}" >
+          <h5>Training Experience</h5>
+          <svg id="{{'svg2'+i}}" width="400" height="350"></svg>
+        </div>
+        <div class="float-left gh_div gh_txt_0" id="{{'graph1'+i}}" >
+          <h5>Did the training meet expectation?</h5>
+          <svg id="{{'svg3'+i}}" width="400" height="350"></svg>
+        </div>
+        <div class="float-left gh_div gh_txt_0" id="{{'graph1'+i}}" >
+          <h5>Improvements/Suggestions/Comments:</h5>
+          <ul>
+            <li  *ngFor="let comment of comment[i];" >{{comment}}</li>
+          </ul>
+        </div>
+        <div class="clearfix"></div>
+
+       <div id="{{'trainerQ'+i}}" >
+         
+          <div *ngFor="let trainer of feedBackListGrouped[i].trainingData[feedBackListGrouped[i].trainingData.length -1].questions[1].subquestions[0]?.trainerrating; let j=index" class="float-left gh_div" id="{{'graph1'+i+j}}">
+              <h5 *ngIf="j==0" style="margin-bottom: 20px; margin-top:-44px;">Trainer Qualification</h5>
+            <h6>{{trainer?.name}}</h6>
+            <svg id="{{'svg4'+i+j}}" width="400" height="350"></svg>
+         
+            
+          </div>
+        
+     
+         
+        <div class="clearfix"></div>
+        </div>
+     </div>
+    </div>
+
+    </div>

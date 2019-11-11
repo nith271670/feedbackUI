@@ -30,6 +30,7 @@ export class TrainingformComponent implements OnInit {
   TrainingDetails = {};
   trainingName = '';
   trainerNames = '';
+  group="";
   trainingLocation = '';
   trainingDate = '';
   submitted = false;
@@ -138,17 +139,13 @@ export class TrainingformComponent implements OnInit {
     // document.getElementById('main_hd').style.display = "none";
 
     console.log("ngOnInit()")
-   
-
-
-
     this.href = this.router.url;
     this.trainingform = this.href.split("/").pop();
     this.http.get<{ip:string}>('https://jsonip.com')
     .subscribe( data => {
       console.log('th data', data.ip);
       this.ipAddress = data.ip
-      debugger;
+      
       if(this.ipAddress === this.cookieService.get('ipAddress') && this.cookieService.get('trainingId') === this.trainingform ){
         location.href = "authPage"
     }
@@ -163,7 +160,7 @@ export class TrainingformComponent implements OnInit {
       this.TrainingDetails = response as {};
       this.trainingName = this.TrainingDetails["training"];
       this.trainerNames = this.TrainingDetails["trainers"].toString();
-
+      this.group = this.TrainingDetails["group"];
       this.trainingLocation = this.TrainingDetails["location"];
       if (this.TrainingDetails["from_date"] == this.TrainingDetails["to_date"]) {
         this.trainingDate = this.TrainingDetails["from_date"];
@@ -287,6 +284,7 @@ componentDidMount(){
       "training": this.trainingName,
       "trainers": this.trainerNames,
       "location": this.trainingLocation,
+      "group": this.group,
       "date": this.trainingDate,
       "questions": [{
         "question": "How would you rate the quality of the training with regards to its contents?",

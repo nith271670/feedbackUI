@@ -21,13 +21,13 @@ export class ListEBGuideComponent implements OnInit {
     // this.selectedValue = event;
     // console.log(this.selectedValue);
   }
-
+ 
   ngOnInit() {
     this.httpService.getEBGuideFeedbackList().subscribe(response => {
       console.log(response);
       this.feedBackListTabulated = response as [];
-console.log(this.feedBackListTabulated[0].formValue.questions[0].subQuestions[0])
-this.subQuestObj = this.feedBackListTabulated[0].formValue.questions[0].subQuestions[0];
+      console.log(this.feedBackListTabulated[0].formValue.questions[0].subQuestions[0])
+      this.subQuestObj = this.feedBackListTabulated[0].formValue.questions[0].subQuestions[0];
       // this.feedBackListTabulated.pop();
       // console.log(this.feedBackListTabulated);
       // console.log(this.feedbackWholeData);

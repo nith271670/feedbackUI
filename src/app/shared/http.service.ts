@@ -3,26 +3,26 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-const api_url = 'https://feedback-eb-new.herokuapp.com';
-//const api_url = 'http://localhost:1337';
+//const api_url = 'https://feedback-eb-new.herokuapp.com';
+const api_url = 'http://localhost:1337';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-
-
-
   constructor(private http: HttpClient) { }
-
-
 
   getList() {
     return this.http.get(api_url+'/feedback/list');
   }
-
+  getFeedbackReport(reqBody){
+    console.log(reqBody);
+    let data: Object = {"training":reqBody.selectedTraining,"date":reqBody.selecteddate,"trainer":reqBody.selectedTrainer}
+    return this.http.post(api_url+'/feedback/getFeedbackReport',data);
+  }
 
   sendFeedback(payLoad): Observable<any> {
+    console.log(payLoad);
     return this.http
       .post<any>(api_url+'/feedback/create', payLoad,
         { headers: headers, observe: 'response' }).pipe(

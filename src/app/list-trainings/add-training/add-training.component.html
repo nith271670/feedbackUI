@@ -28,16 +28,7 @@
               <mat-select placeholder="Select Training" name="training_name" id="training_name" ([ngModel])="value" formControlName="training_name">
                 <mat-option *ngFor="let training of trainingList | filter : trainingListByGroupId" [value]="training.training">{{training.training}}
                 </mat-option>
-                <!-- <mat-option disabled="disabled" class="filter-option">
-                      <form [formGroup]="training">
-                         
-                          <div formGroupName="newTraining" class="form-group my-2">
-                              <input name="new_training" id="new_training" formControlName="new_training" placeholder="Enter Value" class="form-control col-lg-10 float-left" ><button type="button" (click)="addTraining()" class="btn btn-secondary float-left ml-2" >add</button>
-                              <div class="clearfix"></div>
-                          </div>  
-                    </form>
-                      <mat-option (click)="selectAll(yearSelect, years)" #checkAll> Select All
-                    </mat-option> -->
+               
                 <mat-option disabled="disabled" class="filter-option">
                   <div class="form-group my-2">
                     <button type="button" class="btn btn-secondary" style="width: 100%;"
