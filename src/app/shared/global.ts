@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class AppGlobals {
-    constructor(public router: Router) {
+    constructor(public router: Router, public activatedRoute: ActivatedRoute) {
     }
-    readonly currentUser: string = (localStorage.getItem('currentUser')) ? JSON.parse(localStorage.getItem('currentUser')) : this.router.navigate(['/login']) ;
-    
+    debugger;
+    readonly currentUser: string = (localStorage.getItem('currentUser') || window.location.href.includes('/trainingform') ||  window.location.href.includes('/ebguideform')) ? JSON.parse(localStorage.getItem('currentUser')) : this.router.navigate(['/login']) ;
 }
