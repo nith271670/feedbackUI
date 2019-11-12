@@ -17,7 +17,7 @@ export class HttpService {
   }
   getFeedbackReport(reqBody){
     console.log(reqBody);
-    let data: Object = {"training":reqBody.selectedTraining,"date":reqBody.selecteddate,"trainer":reqBody.selectedTrainer}
+    let data: Object = {"training":reqBody.selectedTraining,"date":reqBody.selectedDate,"group":reqBody.selectedGroup,fromDate:reqBody.fromDate,toDate:reqBody.toDate}
     return this.http.post(api_url+'/feedback/getFeedbackReport',data);
   }
 

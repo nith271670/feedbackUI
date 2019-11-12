@@ -62,7 +62,9 @@ export class DashboardComponent implements OnInit {
     filter = {
       selectedTraining:'',
       selectedGroup:'',
-      selectedDate:''
+      selectedDate:'',
+      fromDate:'',
+      toDate:''
     }
     TrainingList;
     //selectedTraining;
@@ -154,7 +156,8 @@ export class DashboardComponent implements OnInit {
     ////console.log(moment(date.endDate._d).format('YYYY-MM-DD'))
     var StartDate = moment(date.startDate._d).format('YYYY-MM-DD')
     var endDate = moment(date.endDate._d).format('YYYY-MM-DD')
-
+    this.filter.fromDate = StartDate;
+    this.filter.toDate = endDate;
 
 
     this.filter.selectedDate = StartDate + ' to ' + endDate;
@@ -162,12 +165,12 @@ export class DashboardComponent implements OnInit {
   }
 
   getFilterData(){
-    //console.log(this.filter);    
+    console.log(this.filter);    
 
     this.httpService.getFeedbackReport(this.filter).subscribe(response => {
 
       //console.log("filterd list");
-      //console.log(response);
+      console.log(response);
 
 
       this.feedBackList = response as [];
@@ -185,14 +188,14 @@ export class DashboardComponent implements OnInit {
         for(var j=0;j<this.feedbackBasedOnDate[i].length;j++){
           // //console.log(this.feedbackBasedOnDate[i][j].trainingData);
             this.feedBackListGrouped.push({"trainingData":this.feedbackBasedOnDate[i][j].trainingData});
-            this.getDataForGraph()
+            //this.getTrainingContent()
         }
       }
-    //console.log(this.feedBackListGrouped);
+   // console.log(this.feedBackListGrouped);
     
 
     });
- 
+   setTimeout(()=>this.getDataForGraph(),5000) 
 
   }
 
@@ -378,9 +381,9 @@ if(this.TrainingList[trng].training == training){
 //console.log("j --" + j)
 
     if(QId == 4 ){
-      if(j!=0){
-        this.initSvg('#svg'+QId+j+ graphId, data);
-      }
+     // if(j!=0){
+       this.initSvg('#svg'+QId+j+ graphId, data);
+      //}
       
     }
     else{
