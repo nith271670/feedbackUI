@@ -49,11 +49,10 @@ export class ListComponent implements OnInit {
 
 
   exportAsXLSX():void {
-
-    // this.httpService.getList().subscribe(response => {
-    //    console.log(response);
-    //   this.feedBackList = response as [];
-    // });
+    this.httpService.getList().subscribe(response => {
+      // console.log(response);
+      this.feedBackList = response as [];
+    });
 
 
     if(this.selectedValue !== undefined){
