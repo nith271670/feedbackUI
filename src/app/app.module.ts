@@ -41,8 +41,6 @@ import { DirectAccessGuard } from './shared/directAccessGuard';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
 import { GraphEbguideComponent } from './graph-ebguide/graph-ebguide.component';
-import { CookieService } from 'ngx-cookie-service';
-import { FeedbackPresentComponent } from './feedback-present/feedback-present.component';
 
 const routes: Routes = [
   { path: '', component:LoginComponent},
@@ -69,7 +67,7 @@ const routes: Routes = [
   //{ path: 'users', component: LoginComponent, canActivate: [DirectAccessGuard] },
   //{ path: 'trainingGroups', component: LoginComponent, canActivate: [DirectAccessGuard] },
   { path: 'list', component: ListComponent, canActivate: [DirectAccessGuard] },
-  { path: 'authPage', component: FeedbackPresentComponent },
+ 
   { path: 'ebguide-graph', component: GraphEbguideComponent }
   
 ];
@@ -100,8 +98,7 @@ const routes: Routes = [
     ListEBGuideComponent,
     UsersComponent,
     TrainingGroupsComponent,
-    GraphEbguideComponent,
-    FeedbackPresentComponent
+    GraphEbguideComponent
   ],
   imports: [
     BrowserModule,
@@ -124,7 +121,7 @@ const routes: Routes = [
 
   ],
   exports: [SelectboxPipe,FilterPipe],
-  providers: [ExcelService,AppGlobals,DirectAccessGuard, CookieService  ],
+  providers: [ExcelService,AppGlobals,DirectAccessGuard ],
   bootstrap: [AppComponent],
   entryComponents: [
     AddTrainingComponent
