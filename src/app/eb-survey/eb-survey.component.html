@@ -102,7 +102,7 @@
           </div>
          
           <div class="float-left col-lg-4" > <!-- *ngIf="selected_department != 'CF' && selected_department != 'Sales'"> -->
-             <select class="custom-select"  name="sub_department" id="sub_department" formControlName="sub_department"  [(ngModel)]='selected_sub_department' (ngModelChange)="onChange_sub_department($event)">
+             <select class="custom-select"  name="sub_department" id="sub_department" formControlName="sub_department"  [(ngModel)]='selected_sub_department' (ngModelChange)="onChange_sub_department($event)" *ngIf="selected_department == 'PI' || selected_department == 'PJ'">
                 <option *ngIf="selected_department == 'PI'" value="IFS PJ">IFS PJ</option>
                 <option *ngIf="selected_department == 'PI'" value="IFS PI (1)">IFS PI (1)</option>
                 <option *ngIf="selected_department == 'PI'" value="IFS PI (2)">IFS PI (2)</option>
@@ -118,7 +118,7 @@
           </div>
           <div class="float-left col-lg-4">
            <!-- *ngIf="selected_sub_department != 'IAD' && selected_department != 'CF' && selected_department != 'Sales' && selected_department != 'PJ'"> -->
-             <select class="custom-select"  name="sub_department_services" id="sub_department_services" formControlName="sub_department_services" [(ngModel)]='selected_sub_department_services' (ngModelChange)="onChange_sub_department_services($event)">
+             <select class="custom-select"  name="sub_department_services" id="sub_department_services" formControlName="sub_department_services" [(ngModel)]='selected_sub_department_services' (ngModelChange)="onChange_sub_department_services($event)" *ngIf="selected_sub_department != 'IAD' && selected_department == 'PI'" >
                 <option *ngIf="selected_sub_department == 'IFS PJ'" value="Standard services">Standard services</option>
                 <option *ngIf="selected_sub_department == 'IFS PJ'" value="Conti BU">Conti BU</option>
                 <option *ngIf="selected_sub_department == 'IFS PJ'" value="BL-PJ">BL-PJ</option>
