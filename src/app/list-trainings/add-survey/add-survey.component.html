@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>{{modalTitle}}</h2>
+<mat-dialog-content>
+
+
+  <div>
+    <div class="container mx-auto my-3">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div>
+          <div class="my-3 float-left col-lg-10">
+            <h4 class="title">
+              Create New Survey
+            </h4>
+          </div>
+        </div>
+
+        <div class="my-3 float-left col-lg-6">
+          <h6>Survey Name</h6>
+          <div formGroupName="survey">
+            <input type="text" name="survey_name" id="survey_name" class="form-control" formControlName="survey_name" required> 
+          </div>
+        </div>
+        <div class="my-3 float-left col-lg-4" style="display: none;">
+          <h6>Location</h6>
+          <div formGroupName="location">
+            <input type="text" name="location_name" id="location_name" class="form-control"
+              formControlName="location_name" required>
+          </div>
+        </div>
+        <div class="my-3 float-left col-lg-3 form-group">
+          <h6>From Date</h6>
+          <div formGroupName="sel_from_date">
+            <input type="date" name="from_date" id="from_date" class="form-control" formControlName="from_date"
+              required>
+          </div>
+        </div>
+        <div class="my-3 float-left col-lg-3 form-group">
+          <h6>To Date</h6>
+          <div formGroupName="sel_to_date">
+            <input type="date" name="to_date" id="to_date" class="form-control" formControlName="to_date" required>
+          </div>
+        </div>
+        <div class="my-3 float-left col-lg-12">
+          <button class="btn btn-success float-left my-2 mr-2" type="submit"> Submit </button>
+          <mat-dialog-actions>
+            <button type="button" [mat-dialog-close]="true" class="btn  btn-secondary float-left">Close</button>
+          </mat-dialog-actions>
+        </div>
+      </form>
+    </div>
+  </div>
+</mat-dialog-content>

@@ -6,5 +6,5 @@ export class AppGlobals {
     constructor(public router: Router, public activatedRoute: ActivatedRoute) {
     }
     debugger;
-    readonly currentUser: string = (localStorage.getItem('currentUser') || window.location.href.includes('/trainingform') ||  window.location.href.includes('/ebguideform')) ? JSON.parse(localStorage.getItem('currentUser')) : this.router.navigate(['/login']) ;
+    readonly currentUser: string = (localStorage.getItem('currentUser') || window.location.href.includes('/trainingform') ||  window.location.href.includes('/ebguideform')) || window.location.href.includes('/ebsurvey') ? JSON.parse(localStorage.getItem('currentUser')) : this.router.navigate(['/login']) ;
 }

@@ -411,8 +411,16 @@
             <div class="err_class" *ngIf="submitted == true && form.controls.question_9.value.satisfaction_comment == ''">Please enter a comment</div>
         </div>
       </div>
+      
       <div class="my-3 float-left col-lg-12">
         <button class="btn btn-success" type="submit"  [disabled]="submitBtn_disabled"> Submit </button>
+      </div>
+
+      <div class="my-3 float-left col-lg-12">
+        "<b>Thank you for your feedback! </b><br/>
+
+By filling out this form you are giving consent to the handling of your personal data for evaluation purposes. You can revoke your consent at any time. All data is used for quality assurance purposes only and will not be disclosed to third parties.<br/> <br/>For more information go to <a href="https://www.elektrobit.com/dataprotection-information/" target="_blank">https://www.elektrobit.com/dataprotection-information/.</a>"
+
       </div>
     </form>
 

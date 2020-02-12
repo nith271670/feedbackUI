@@ -1,4 +1,4 @@
-    <div class="container">
+    <div class="container" *ngIf="_global.currentUser.username != 'EBsurvey'">
       <div class="my-3">
         <div class="col-8 float-left"><h4>Training List</h4></div>
         <button type="button" (click)="addTraining()" class="btn btn-success float-right">Add new training</button>
@@ -25,6 +25,30 @@
       </table>
     </div>
 
+    <div class="container" *ngIf="_global.currentUser.username == 'EBsurvey'">
+      <div class="my-3">
+        <div class="col-8 float-left"><h4>Survey List</h4></div>
+        <button type="button" (click)="addSurvey()" class="btn btn-success float-right">Add new Survey</button>
+        <div class="clearfix"></div>
+        </div>
+      <table class="table">
+        <thead>
+          <th>Survey</th>
+          <th>Location</th>
+          <th>Date</th>
+          <th style="text-align: center">Actions</th>
+        </thead>
+
+        <tr *ngFor="let ebsurvey of SurveyList | orderBy: order :true ">
+          <td><a [routerLink]="['/ebsurvey',ebsurvey?.id]">{{ebsurvey?.survey}}</a></td>
+          <td>{{ebsurvey?.location}} </td>
+          <td><p *ngIf = "ebsurvey?.to_date == ebsurvey?.from_date">{{ebsurvey?.from_date}} </p>
+            <p *ngIf = "ebsurvey?.to_date != ebsurvey?.from_date">{{ebsurvey?.from_date}} to {{ebsurvey?.to_date}}</p></td>
+          <td style="text-align: center;"><button type="button" (click)="editSurvey(ebsurvey?.id)" class="btn btn-default material-icons" style="color: #00A200; font-size:25px">edit</button> <button type="button" (click)="showConfirmSurveyPopUp(ebsurvey?.id,ebsurvey?.survey)" class="btn btn-default material-icons" style="color: red; font-size:25px">&#xe92b;</button></td>
+         </tr>
+      </table>
+    </div>
+
     <div id="confirmOverlay" *ngIf="confirmStatus">
         <div id="confirmBox">
     
@@ -37,6 +61,18 @@
             </div>
         </div>
     </div>
+
+    <div id="confirmOverlay" *ngIf="confirmSurveyStatus">
+      <div id="confirmBox">
+  
+          <h1>Delete Survey</h1>
+          <p>Are you sure you want to delete <span>{{surveyName}} </span> ?</p>
+          <div id="confirmButtons">
+              <button class="button blue" (click)="deleteSurvey()">Yes<span></span></button>
+              <button class="button gray" (click)="cancelDeleteSurvey()">No<span></span></button>
+          </div>
+      </div>
+  </div>
 
 
    

@@ -41,6 +41,9 @@ import { DirectAccessGuard } from './shared/directAccessGuard';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
 import { GraphEbguideComponent } from './graph-ebguide/graph-ebguide.component';
+import { EbSurveyComponent } from './eb-survey/eb-survey.component';
+import { AddSurveyComponent } from './list-trainings/add-survey/add-survey.component';
+import { ListSurveyComponent } from './list-survey/list-survey.component';
 
 const routes: Routes = [
   { path: '', component:LoginComponent},
@@ -63,13 +66,13 @@ const routes: Routes = [
   { path: 'list-ebguide', component: ListEBGuideComponent },
   { path: 'users', component: UsersComponent },
   { path: 'trainingGroups', component:  TrainingGroupsComponent},
-  { path: 'home/:users/:trainingGroups/:list/:list-ebguide', component: LoginComponent, canActivate: [DirectAccessGuard] },
+  { path: 'ebsurvey/:id', component: EbSurveyComponent},
   //{ path: 'users', component: LoginComponent, canActivate: [DirectAccessGuard] },
   //{ path: 'trainingGroups', component: LoginComponent, canActivate: [DirectAccessGuard] },
   { path: 'list', component: ListComponent, canActivate: [DirectAccessGuard] },
- 
-  { path: 'ebguide-graph', component: GraphEbguideComponent }
-  
+  { path: 'list-survey', component: ListSurveyComponent },
+  { path: 'ebguide-graph', component: GraphEbguideComponent },
+  { path: 'home/:users/:trainingGroups/:list/:list-ebguide', component: LoginComponent, canActivate: [DirectAccessGuard] } 
 ];
 @NgModule({
   declarations: [
@@ -98,7 +101,10 @@ const routes: Routes = [
     ListEBGuideComponent,
     UsersComponent,
     TrainingGroupsComponent,
-    GraphEbguideComponent
+    GraphEbguideComponent,
+    EbSurveyComponent,
+    AddSurveyComponent,
+    ListSurveyComponent
   ],
   imports: [
     BrowserModule,
@@ -124,10 +130,9 @@ const routes: Routes = [
   providers: [ExcelService,AppGlobals,DirectAccessGuard ],
   bootstrap: [AppComponent],
   entryComponents: [
-    AddTrainingComponent
+    AddTrainingComponent,
+    AddSurveyComponent
   ]
 })
 export class AppModule {
-
-  
  }

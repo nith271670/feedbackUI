@@ -1,0 +1,147 @@
+<div class="container-fluid mx-auto my-3">
+  <div>
+    <div class="col-lg-12">
+      <h4 class="title float-left ">
+        Survey Report
+      </h4>
+      <button class="btn btn-success download-btn float-right" (click)="exportAsXLSX()">Download Excel Report</button>
+      <!-- <a href="/graphicalRepresentation" class="btn btn-success graph-btn float-right">Graphical Presentation</a> -->
+    </div>
+    
+
+  </div>
+  </div>
+
+<table class="mt-1 table table-bordered table-striped">
+<thead>
+  <tr>
+    <th>#</th>
+    <th>Survey</th>
+    <th>Location</th>
+    <th>Date</th>
+    <th>Gender</th>
+    <th>Employee Age</th>
+    <th>Years of working in this Company</th>
+    <th>Department</th>
+    <th>Sub Department 1</th>
+    <th>Sub Department 2</th>
+    <th>Designation</th>
+    <th>In my opinion I, as an employee, am well informed about matters affecting me</th>
+    <th>I think I have sufficient authority to do my job well</th>
+    <th>I think the people I work with are willing to help each other, even if it means doing something outside their usual activities</th>
+    <th>I think my direct supervisor treats me with respect</th>
+    <th>In my opinion Continental brings leading technology to the markets</th>
+    <th>I think Continentals' internal processes are geared towards providing the best possible solution to our external customers</th>
+    <th>I think employees and leaders respect the Code of Conduct of Continental</th>
+    <th>In my opinion I have sufficient opportunities to improve my skills through trainings at Continental</th>
+    <th>I think I have the opportunity for personal development and growth within Continental</th>
+    <th>I am satisfied with my involvement in decisions that affect my work</th>
+    <th>I understand how my work contributes to Continental's business objectives</th>
+    <th>In my opinion we have a culture where one can challenge our traditional ways of doing things</th>
+    <th>I think my direct supervisor encourages people to learn from mistakes</th>
+    <th>We celebrate our successes at Continental</th>
+    <th>I think leaders at Continental support diversity (e.g. diverse perspectives, gender, different cultures etc.) in the workplace (by recognizing and respecting the value of human differences.)</th>
+    <th>I think there is good cooperation between my department and other departments</th>
+    <th>I am encouraged to share best practices with colleagues</th>
+    <th>I think leaders at Continental offer equal opportunities for all employees</th>
+    <th>In my direct working environment we take the time to learn from our success</th>
+    <th>I think leaders will take results of this survey seriously</th>
+    <th>I think I have a clear understanding of the goals of my department</th>
+    <th>In my opinion the leadership style at Continental encourages employees to give their best</th>
+    <th>In my opinion we live our values (For One Another, Passion to Win, Freedom to Act, Trust) at Continental</th>
+    <th>I think we are doing a good job of retaining people at Continental</th>
+    <th>In my opinion Continental pays me fairly for the work I do (fixed pay, bonus/incentive, benefits)</th>
+    <th>In my opinion my relevant work goals and objectives are clearly defined</th>
+    <th>I think my job performance is evaluated fairly</th>
+    <th>In my opinion my direct supervisor discusses my performance and progress with me on a regular basis</th>
+    <th>In my opinion my direct supervisor provides me with feedback that helps me improve my performance</th>
+    <th>In my opinion Continental recognizes and rewards good performance not just with money</th>
+    <th>In my opinion I am able to balance my work-life and my private-life (e.g. via a flexible work schedule) at Continental</th>
+    <th>I think at Continental the health and safety of its employees is cared for</th>
+    <th>I think the stress levels at work are usually manageable</th>
+    <th>I think at Continental priority is given to safety even if there was a conflict between safety and other business objectives</th>
+    <th>I think my direct supervisor takes appropriate action when unsafe conditions are brought to his attention</th>
+    <th>I think leaders in Continental are interested in the well-being of employees</th>
+    <th>I have enough energy to deliver my work well</th>
+    <th>I am proud to work for Continental</th>
+    <th>I feel motivated to go “above and beyond” my job responsibilities to get the job done</th>
+    <th>I fully support the values (Freedom to Act, Passion to Win, For One Another, Trust) for which Continental stands</th>
+    <th>I have the equipment/tools/resources that I need to do my job effectively</th>
+    <th>My work gives me a sense of personal accomplishment</th>
+    <th>In my opinion the people I work with usually get along well together</th>
+    <th>In my opinion there are no substantial obstacles that keep me from doing my job well</th>
+    <th>In my opinion at Continental an excellent job is done in standardizing processes to ensure consistent quality</th>
+    <th>I have confidence in the decisions made by the top management team of Continental</th>
+    <th>I think Continental's commitment to quality is apparent in what we do on a daily basis</th>
+    <th>In my opinion the quality of work done in my department is excellent</th>
+    <th>I think I have a good understanding of Continental's strategy</th>
+    <th>Our vision creates excitement and motivation for our organization</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr *ngFor="let list of SurveyListHeader; let i = index" >
+    <td>{{i+1}}</td>
+    <td>{{list["Survey"]}}</td>
+    <td>{{list["Location"]}}</td>
+    <td>{{list["Date"]}}</td>
+    <td>{{list["Gender"]}}</td>
+    <td>{{list["Employee Age"]}}</td>
+    <td>{{list["Years of working in this Company"]}}</td>
+    <td>{{list["Department"]}}</td>
+    <td>{{list["Sub Department1"]}}</td>
+    <td>{{list["Sub Department2"]}}</td>
+    <td>{{list["Designation"]}}</td>
+    <td>{{list["In my opinion I, as an employee, am well informed about matters affecting me"]}}</td>
+    <td>{{list["I think I have sufficient authority to do my job well"]}}</td>
+    <td>{{list["I think the people I work with are willing to help each other, even if it means doing something outside their usual activities"]}}</td>
+    <td>{{list["I think my direct supervisor treats me with respect"]}}</td>
+    <td>{{list["In my opinion Continental brings leading technology to the markets"]}}</td>
+    <td>{{list["I think Continentals' internal processes are geared towards providing the best possible solution to our external customers"]}}</td>
+    <td>{{list["I think employees and leaders respect the Code of Conduct of Continental"]}}</td>
+    <td>{{list["In my opinion I have sufficient opportunities to improve my skills through trainings at Continental"]}}</td>
+    <td>{{list["I think I have the opportunity for personal development and growth within Continental"]}}</td>
+    <td>{{list["I am satisfied with my involvement in decisions that affect my work"]}}</td>
+    <td>{{list["I understand how my work contributes to Continental's business objectives"]}}</td>
+    <td>{{list["In my opinion we have a culture where one can challenge our traditional ways of doing things"]}}</td>
+    <td>{{list["I think my direct supervisor encourages people to learn from mistakes"]}}</td>
+    <td>{{list["We celebrate our successes at Continental"]}}</td>
+    <td>{{list["I think leaders at Continental support diversity (e.g. diverse perspectives, gender, different cultures etc.) in the workplace (by recognizing and respecting the value of human differences.)"]}}</td>
+    <td>{{list["I think there is good cooperation between my department and other departments"]}}</td>
+    <td>{{list["I am encouraged to share best practices with colleagues"]}}</td>
+    <td>{{list["I think leaders at Continental offer equal opportunities for all employees"]}}</td>
+    <td>{{list["In my direct working environment we take the time to learn from our success"]}}</td>
+    <td>{{list["I think leaders will take results of this survey seriously"]}}</td>
+    <td>{{list["I think I have a clear understanding of the goals of my department"]}}</td>
+    <td>{{list["In my opinion the leadership style at Continental encourages employees to give their best"]}}</td>
+    <td>{{list["In my opinion we live our values (For One Another, Passion to Win, Freedom to Act, Trust) at Continental"]}}</td>
+    <td>{{list["I think we are doing a good job of retaining people at Continental"]}}</td>
+    <td>{{list["In my opinion Continental pays me fairly for the work I do (fixed pay, bonus/incentive, benefits)"]}}</td>
+    <td>{{list["In my opinion my relevant work goals and objectives are clearly defined"]}}</td>
+    <td>{{list["I think my job performance is evaluated fairly"]}}</td>
+    <td>{{list["In my opinion my direct supervisor discusses my performance and progress with me on a regular basis"]}}</td>
+    <td>{{list["In my opinion my direct supervisor provides me with feedback that helps me improve my performance"]}}</td>
+    <td>{{list["In my opinion Continental recognizes and rewards good performance not just with money"]}}</td>
+    <td>{{list["In my opinion I am able to balance my work-life and my private-life (e.g. via a flexible work schedule) at Continental"]}}</td>
+    <td>{{list["I think at Continental the health and safety of its employees is cared for"]}}</td>
+    <td>{{list["I think the stress levels at work are usually manageable"]}}</td>
+    <td>{{list["I think at Continental priority is given to safety even if there was a conflict between safety and other business objectives"]}}</td>
+    <td>{{list["I think my direct supervisor takes appropriate action when unsafe conditions are brought to his attention"]}}</td>
+    <td>{{list["I think leaders in Continental are interested in the well-being of employees"]}}</td>
+    <td>{{list["I have enough energy to deliver my work well"]}}</td>
+    <td>{{list["I am proud to work for Continental"]}}</td>
+    <td>{{list["I feel motivated to go “above and beyond” my job responsibilities to get the job done"]}}</td>
+    <td>{{list["I fully support the values (Freedom to Act, Passion to Win, For One Another, Trust) for which Continental stands"]}}</td>
+    <td>{{list["I have the equipment/tools/resources that I need to do my job effectively"]}}</td>
+    <td>{{list["My work gives me a sense of personal accomplishment"]}}</td>
+    <td>{{list["In my opinion the people I work with usually get along well together"]}}</td>
+    <td>{{list["In my opinion there are no substantial obstacles that keep me from doing my job well"]}}</td>
+    <td>{{list["In my opinion at Continental an excellent job is done in standardizing processes to ensure consistent quality"]}}</td>
+    <td>{{list["I have confidence in the decisions made by the top management team of Continental"]}}</td>
+    <td>{{list["I think Continental's commitment to quality is apparent in what we do on a daily basis"]}}</td>
+    <td>{{list["In my opinion the quality of work done in my department is excellent"]}}</td>
+    <td>{{list["I think I have a good understanding of Continental's strategy"]}}</td>
+    <td>{{list["Our vision creates excitement and motivation for our organization"]}}</td>
+  </tr>
+</tbody>
+</table>

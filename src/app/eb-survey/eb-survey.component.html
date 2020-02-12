@@ -1,0 +1,1086 @@
+<div>
+  <div class="container mx-auto my-0" style="margin-top: -100px !important">
+     <img src="assets/images/header_survey.png" alt="header" srcset="" width="100%">
+     <form [formGroup]="form" (ngSubmit)="onSubmit()">
+     <div>
+        <!-- <div class="my-3 col-lg-12">
+           <h4 class="title">EB Survey</h4>
+        </div> -->
+        <!-- <div class="float-right mx-3">
+           <img src="assets/images/eb logo.jpg" alt="eb_logo" srcset="" height=100px width=100px>
+           </div> -->
+     </div>
+     <div class="my-3 col-lg-8 py-2 my-2" *ngIf="pageNo == 0" id="page1">
+        <p class="black">We need your feedback to continue improving our organisation. Your responses will be confidential. You will not be individually identified. When you are done submit your response by clicking "Submit" below. Thank you for your participation.</p>
+        <button type="button" (click)="nextPage()" class="btn btn-success">Start Survey</button>
+        <div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
+      <div *ngIf="pageNo == 1" id="page2">
+        <div class="my-3 float-left col-lg-6" >
+          <p>Survey Name</p>
+          <div formGroupName="survey_n">
+             <input type="text" name="survey_name" id="survey_name" formControlName="survey_name"  readonly [value]=SurveyDetails?.survey>
+          </div>
+       </div>
+       <div class="my-3 float-left col-lg-6">
+          <p>Location</p>
+          <div formGroupName="survey_location">
+             <input type="text" name="location_name" id="location_name" formControlName="location_name"  readonly [value]=SurveyDetails?.location>
+          </div>
+       </div>
+       <div class="my-3 float-left col-lg-6">
+          <p>Date</p>
+          <div formGroupName="survey_date">
+             <input type="text" name="t_date" id="t_date" formControlName="t_date"  readonly [value]=surveyDate>
+          </div>
+       </div>
+       <div class="clearfix"></div>
+       <div class="col-lg-1 "><button type="button" (click)="nextPage()" class="btn btn-success">Next</button></div>
+      </div>
+     <div class="clearfix"></div>
+     
+      <div  *ngIf="pageNo == 2" id="page3">
+        <div class="mt-2 col-lg-12">
+          <p class="black">Personal Information</p>
+       </div>
+       <div class="my-3 float-left col-lg-6" formGroupName="emp_gender">
+          <p>1.What's your gender?</p>
+          <select class="custom-select"  name="gender" id="gender"  formControlName="gender" [(ngModel)]='selected_gender'>
+             <option value="male">Male</option>
+             <option value="female">Female</option>
+          </select>
+       </div>
+       <div class="my-3 float-left col-lg-6"  formGroupName="emp_age">
+          <p>2.What's your age?</p>
+          <select class="custom-select"  name="age" id="age"  formControlName="age"  [(ngModel)]='selected_age'>
+             <option  value="21-29">21 - 29</option>
+             <option value="30-39">30 - 39</option>
+             <option value="40-55">40 - 55</option>
+          </select>
+       </div>
+       <div class="my-3 float-left col-lg-6" formGroupName="emp_years_company">
+          <p>3.How many years you have been in this company?</p>
+          <select class="custom-select"  name="years_company" id="years_company"  formControlName="years_company" [(ngModel)]='selected_years_company'>
+             <option value="Less than a year">Less than a year</option>
+             <option value="1-2 Years">1-2 Years</option>
+             <option value="2-3 Years">2-3 Years</option>
+             <option value="More than 3 Years">More than 3 Years</option>
+          </select>
+       </div>
+       <div class="my-3 float-left col-lg-6" formGroupName="emp_designation">
+          <p>4.What's your Designation?</p>
+          <select class="custom-select"  name="designation" id="designation" formControlName="designation"  [(ngModel)]='selected_designation'>
+             <option value="Executive Assistant">Executive Assistant</option>
+             <option value="Chief Architect">Chief Architect</option>
+             <option value="Lead Technical Architect">Lead Technical Architect</option>
+             <option value="Senior Technical Architect">Senior Technical Architect</option>
+             <option value="Technical Architect">Technical Architect</option>
+             <option value="Senior Technical Specialist">Senior Technical Specialist</option>
+             <option value="Technical Specialist">Technical Specialist</option>
+             <option value="Module Lead">Module Lead</option>
+             <option value="Senior Engineer">Senior Engineer</option>
+             <option value="Executive Engineer">Executive Engineer</option>
+             <option value="Associate Engineer">Associate Engineer</option>
+             <option value="Graduate Engineer Trainee">Graduate Engineer Trainee</option>
+             <option value="Executive Vice President">Executive Vice President</option>
+             <option value="Senior Director, Vice President">Senior Director, Vice President</option>
+             <option value="Director, Senior Manager">Director, Senior Manager</option>
+             <option value="Team Manager">Team Manager</option>
+             <option value="Service Manager">Service Manager</option>
+          </select>
+       </div>
+       <div class="my-3 float-left col-lg-12" formGroupName="emp_department">
+          <p>5.Which department do you work?</p>
+          <div class="float-left col-lg-4 pl-0">
+             <select class="custom-select"  name="department" id="department" formControlName="department" [(ngModel)]='selected_department' (ngModelChange)="onChange_department($event)">
+                <option value="PI">PI</option>
+                <option value="PJ">PJ</option>
+                <option value="CF">CF</option>
+                <option value="Sales">Sales</option>
+             </select>
+          </div>
+         
+          <div class="float-left col-lg-4" > <!-- *ngIf="selected_department != 'CF' && selected_department != 'Sales'"> -->
+             <select class="custom-select"  name="sub_department" id="sub_department" formControlName="sub_department"  [(ngModel)]='selected_sub_department' (ngModelChange)="onChange_sub_department($event)">
+                <option *ngIf="selected_department == 'PI'" value="IFS PJ">IFS PJ</option>
+                <option *ngIf="selected_department == 'PI'" value="IFS PI (1)">IFS PI (1)</option>
+                <option *ngIf="selected_department == 'PI'" value="IFS PI (2)">IFS PI (2)</option>
+                <option *ngIf="selected_department == 'PI'" value="IAD">IAD</option>
+                <option *ngIf="selected_department == 'PI'" value="PTO">PTO</option>
+                <option *ngIf="selected_department == 'PJ'" value="CDS">CDS</option>
+                <option *ngIf="selected_department == 'PJ'" value="VAL">VAL</option>
+                <option *ngIf="selected_department == 'PJ'" value="COS">COS</option>
+                <option *ngIf="selected_department == 'PJ'" value="ISS">ISS</option>
+                <option *ngIf="selected_department == 'PJ'" value="UEX">UEX</option>
+                <option *ngIf="selected_department == 'CF' || selected_department == 'Sales'" value="-">nothing</option>
+             </select>
+          </div>
+          <div class="float-left col-lg-4">
+           <!-- *ngIf="selected_sub_department != 'IAD' && selected_department != 'CF' && selected_department != 'Sales' && selected_department != 'PJ'"> -->
+             <select class="custom-select"  name="sub_department_services" id="sub_department_services" formControlName="sub_department_services" [(ngModel)]='selected_sub_department_services' (ngModelChange)="onChange_sub_department_services($event)">
+                <option *ngIf="selected_sub_department == 'IFS PJ'" value="Standard services">Standard services</option>
+                <option *ngIf="selected_sub_department == 'IFS PJ'" value="Conti BU">Conti BU</option>
+                <option *ngIf="selected_sub_department == 'IFS PJ'" value="BL-PJ">BL-PJ</option>
+                <option *ngIf="selected_sub_department == 'IFS PJ'" value="HPC">HPC</option>
+                <option *ngIf="selected_sub_department == 'IFS PI (1)'" value="Tresos Studio">Tresos Studio</option>
+                <option *ngIf="selected_sub_department == 'IFS PI (1)'" value="OsP">OsP</option>
+                <option *ngIf="selected_sub_department == 'IFS PI (1)'" value="IVT">IVT</option>
+                <option *ngIf="selected_sub_department == 'IFS PI (1)'" value="Adaptive Autosar">Adaptive Autosar</option>
+                <option *ngIf="selected_sub_department == 'IFS PI (2)'" value="OS">OS</option>
+                <option *ngIf="selected_sub_department == 'IFS PI (2)'" value="BL PI">BL PI</option>
+                <option *ngIf="selected_sub_department == 'IFS PI (2)'" value="OSS">OSS</option>
+                <option *ngIf="selected_sub_department == 'IFS PI (2)'" value="SW factory">SW factory</option>
+                <option *ngIf="selected_sub_department == 'IFS PI (2)'" value="BSW">BSW</option>
+                <option *ngIf="selected_sub_department == 'PTO'" value="OTA">OTA</option>
+                <option *ngIf="selected_sub_department == 'PTO'" value="UMCA">UMCA</option>
+                <option *ngIf="selected_sub_department == 'IAD' || selected_department == 'CF' || selected_department == 'Sales' || selected_department == 'PJ'" value="-">nothing</option>
+             </select>
+          </div>
+       </div>
+       <div class="col-lg-2  btn_div" ><button type="button" (click)="prevPage()" class="btn btn-success  float-left">Previous</button>  <button type="button" (click)="nextPage()" class="btn btn-success  float-right">Next</button></div>
+      </div>
+
+     <div  *ngIf="pageNo == 3" class="my-3 float-left col-lg-12">
+        <p>Trust <span class="float-right">1 = Strongly Disagree; 2 = Disagree; 3 = Neutral; 4 = Agree; 5 = Strongly Agree</span></p>
+        <table  class="table table-bordered table-secondary" formGroupName="trust">
+           <tbody>
+              <tr>
+                 <td>1</td>
+                 <td>In my opinion I, as an employee, am well informed about matters affecting me.</td>
+                 <td>
+                    <input type="radio" id="trust11" name="q1" formControlName="q1" value=1>
+                    <label for="trust11">1</label>
+                    <input type="radio" id="trust12" name="q1" formControlName="q1" value=2>
+                    <label for="trust12">2 </label>
+                    <input type="radio" id="trust13" name="q1" formControlName="q1" value=3>
+                    <label for="trust13">3 </label>
+                    <input type="radio" id="trust14" name="q1" formControlName="q1" value=4>
+                    <label for="trust14">4 </label>
+                    <input type="radio" id="trust15" name="q1" formControlName="q1" value=5>
+                    <label for="trust15">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.trust.value.q1 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>2</td>
+                 <td>I think I have sufficient authority to do my job well.</td>
+                 <td>
+                    <input type="radio" id="trust21" name="q2" formControlName="q2" value=1>
+                    <label for="trust21">1</label>
+                    <input type="radio" id="trust22" name="q2" formControlName="q2" value=2>
+                    <label for="trust22">2 </label>
+                    <input type="radio" id="trust23" name="q2" formControlName="q2" value=3>
+                    <label for="trust23">3 </label>
+                    <input type="radio" id="trust24" name="q2" formControlName="q2" value=4>
+                    <label for="trust24">4 </label>
+                    <input type="radio" id="trust25" name="q2" formControlName="q2" value=5>
+                    <label for="trust25">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.trust.value.q2 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>3</td>
+                 <td>I think the people I work with are willing to help each other, even if it means doing something outside their usual activities.</td>
+                 <td>
+                    <input type="radio" id="trust31" name="q3" formControlName="q3" value=1>
+                    <label for="trust31">1</label>
+                    <input type="radio" id="trust32" name="q3" formControlName="q3" value=2>
+                    <label for="trust32">2 </label>
+                    <input type="radio" id="trust33" name="q3" formControlName="q3" value=3>
+                    <label for="trust33">3 </label>
+                    <input type="radio" id="trust34" name="q3" formControlName="q3" value=4>
+                    <label for="trust34">4 </label>
+                    <input type="radio" id="trust35" name="q3" formControlName="q3" value=5>
+                    <label for="trust35">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.trust.value.q3 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>4</td>
+                 <td>I think my direct supervisor treats me with respect.</td>
+                 <td>
+                    <input type="radio" id="trust41" name="q4" formControlName="q4" value=1>
+                    <label for="trust41">1</label>
+                    <input type="radio" id="trust42" name="q4" formControlName="q4" value=2>
+                    <label for="trust42">2 </label>
+                    <input type="radio" id="trust43" name="q4" formControlName="q4" value=3>
+                    <label for="trust43">3 </label>
+                    <input type="radio" id="trust44" name="q4" formControlName="q4" value=4>
+                    <label for="trust44">4 </label>
+                    <input type="radio" id="trust45" name="q4" formControlName="q4" value=5>
+                    <label for="trust45">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.trust.value.q4 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+           </tbody>
+        </table>
+        <div class="col-lg-2 btn_div" ><button type="button" (click)="prevPage()" class="btn btn-success  float-left">Previous</button>  <button type="button"  [disabled]="form.controls.trust.value.q1 == '' || form.controls.trust.value.q2 == '' || form.controls.trust.value.q3 == '' || form.controls.trust.value.q4 == ''" (click)="nextPage()" class="btn btn-success  float-right">Next</button></div>
+     </div>
+     <div class="my-3 float-left col-lg-12" *ngIf="pageNo == 4" >
+        <p>Passion to Win <span class="float-right">1 = Strongly Disagree; 2 = Disagree; 3 = Neutral; 4 = Agree; 5 = Strongly Agree</span></p>
+        <table  class="table table-bordered table-secondary" formGroupName="passion">
+           <tbody>
+              <tr>
+                 <td>5</td>
+                 <td>In my opinion Continental brings leading technology to the markets.+</td>
+                 <td>
+                    <input type="radio" id="passion11" name="q5" formControlName="q5" value=1>
+                    <label for="passion11">1</label>
+                    <input type="radio" id="passion12" name="q5" formControlName="q5" value=2>
+                    <label for="passion12">2 </label>
+                    <input type="radio" id="passion13" name="q5" formControlName="q5" value=3>
+                    <label for="passion13">3 </label>
+                    <input type="radio" id="passion14" name="q5" formControlName="q5" value=4>
+                    <label for="passion14">4 </label>
+                    <input type="radio" id="passion15" name="q5" formControlName="q5" value=5>
+                    <label for="passion15">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.passion.value.q5 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>6</td>
+                 <td>I think Continentals' internal processes are geared towards providing the best possible solution to our external customers.</td>
+                 <td>
+                    <input type="radio" id="passion21" name="q6" formControlName="q6" value=1>
+                    <label for="passion21">1</label>
+                    <input type="radio" id="passion22" name="q6" formControlName="q6" value=2>
+                    <label for="passion22">2 </label>
+                    <input type="radio" id="passion23" name="q6" formControlName="q6" value=3>
+                    <label for="passion23">3 </label>
+                    <input type="radio" id="passion24" name="q6" formControlName="q6" value=4>
+                    <label for="passion24">4 </label>
+                    <input type="radio" id="passion25" name="q6" formControlName="q6" value=5>
+                    <label for="passion25">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.passion.value.q6 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>7</td>
+                 <td>I think employees and leaders respect the Code of Conduct of Continental.++++</td>
+                 <td>
+                    <input type="radio" id="passion31" name="q7" formControlName="q7" value=1>
+                    <label for="passion31">1</label>
+                    <input type="radio" id="passion32" name="q7" formControlName="q7" value=2>
+                    <label for="passion32">2 </label>
+                    <input type="radio" id="passion33" name="q7" formControlName="q7" value=3>
+                    <label for="passion33">3 </label>
+                    <input type="radio" id="passion34" name="q7" formControlName="q7" value=4>
+                    <label for="passion34">4 </label>
+                    <input type="radio" id="passion35" name="q7" formControlName="q7" value=5>
+                    <label for="passion35">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.passion.value.q7 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>8</td>
+                 <td>In my opinion I have sufficient opportunities to improve my skills through trainings at Continental.</td>
+                 <td>
+                    <input type="radio" id="passion41" name="q8" formControlName="q8" value=1>
+                    <label for="passion41">1</label>
+                    <input type="radio" id="passion42" name="q8" formControlName="q8" value=2>
+                    <label for="passion42">2 </label>
+                    <input type="radio" id="passion43" name="q8" formControlName="q8" value=3>
+                    <label for="passion43">3 </label>
+                    <input type="radio" id="passion44" name="q8" formControlName="q8" value=4>
+                    <label for="passion44">4 </label>
+                    <input type="radio" id="passion45" name="q8" formControlName="q8" value=5>
+                    <label for="passion45">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.passion.value.q8 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>9</td>
+                 <td>I think I have the opportunity for personal development and growth within Continental.</td>
+                 <td>
+                    <input type="radio" id="passion51" name="q9" formControlName="q9" value=1>
+                    <label for="passion51">1</label>
+                    <input type="radio" id="passion52" name="q9" formControlName="q9" value=2>
+                    <label for="passion52">2 </label>
+                    <input type="radio" id="passion53" name="q9" formControlName="q9" value=3>
+                    <label for="passion53">3 </label>
+                    <input type="radio" id="passion54" name="q9" formControlName="q9" value=4>
+                    <label for="passion54">4 </label>
+                    <input type="radio" id="passion55" name="q9" formControlName="q9" value=5>
+                    <label for="passion55">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.passion.value.q9 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+           </tbody>
+        </table>
+        <div class="col-lg-2 btn_div" ><button type="button" (click)="prevPage()" class="btn btn-success  float-left">Previous</button>  <button type="button" (click)="nextPage()" [disabled]="form.controls.passion.value.q5 == '' || form.controls.passion.value.q6 == '' || form.controls.passion.value.q7 == '' || form.controls.passion.value.q8 == '' || form.controls.passion.value.q9 == ''" class="btn btn-success  float-right">Next</button></div>
+     </div>
+     <div class="my-3 float-left col-lg-12" *ngIf="pageNo == 5">
+        <p>Freedom to Act <span class="float-right">1 = Strongly Disagree; 2 = Disagree; 3 = Neutral; 4 = Agree; 5 = Strongly Agree</span></p>
+        <table  class="table table-bordered table-secondary" formGroupName="freedom">
+           <tbody>
+              <tr>
+                 <td>10</td>
+                 <td>I am satisfied with my involvement in decisions that affect my work.</td>
+                 <td>
+                    <input type="radio" id="freedom11" name="q10" formControlName="q10" value=1>
+                    <label for="freedom11">1</label>
+                    <input type="radio" id="freedom12" name="q10" formControlName="q10" value=2>
+                    <label for="freedom12">2 </label>
+                    <input type="radio" id="freedom13" name="q10" formControlName="q10" value=3>
+                    <label for="freedom13">3 </label>
+                    <input type="radio" id="freedom14" name="q10" formControlName="q10" value=4>
+                    <label for="freedom14">4 </label>
+                    <input type="radio" id="freedom15" name="q10" formControlName="q10" value=5>
+                    <label for="freedom15">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.freedom.value.q10 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>11</td>
+                 <td>I understand how my work contributes to Continental's business objectives.</td>
+                 <td>
+                    <input type="radio" id="freedom21" name="q11" formControlName="q11" value=1>
+                    <label for="freedom21">1</label>
+                    <input type="radio" id="freedom22" name="q11" formControlName="q11" value=2>
+                    <label for="freedom22">2 </label>
+                    <input type="radio" id="freedom23" name="q11" formControlName="q11" value=3>
+                    <label for="freedom23">3 </label>
+                    <input type="radio" id="freedom24" name="q11" formControlName="q11" value=4>
+                    <label for="freedom24">4 </label>
+                    <input type="radio" id="freedom25" name="q11" formControlName="q11" value=5>
+                    <label for="freedom25">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.freedom.value.q11 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>12</td>
+                 <td>In my opinion we have a culture where one can challenge our traditional ways of doing things.</td>
+                 <td>
+                    <input type="radio" id="freedom31" name="q12" formControlName="q12" value=1>
+                    <label for="freedom31">1</label>
+                    <input type="radio" id="freedom32" name="q12" formControlName="q12" value=2>
+                    <label for="freedom32">2 </label>
+                    <input type="radio" id="freedom33" name="q12" formControlName="q12" value=3>
+                    <label for="freedom33">3 </label>
+                    <input type="radio" id="freedom34" name="q12" formControlName="q12" value=4>
+                    <label for="freedom34">4 </label>
+                    <input type="radio" id="freedom35" name="q12" formControlName="q12" value=5>
+                    <label for="freedom35">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.freedom.value.q12 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>13</td>
+                 <td>I think my direct supervisor encourages people to learn from mistakes.</td>
+                 <td>
+                    <input type="radio" id="freedom41" name="q13" formControlName="q13" value=1>
+                    <label for="freedom41">1</label>
+                    <input type="radio" id="freedom42" name="q13" formControlName="q13" value=2>
+                    <label for="freedom42">2 </label>
+                    <input type="radio" id="freedom43" name="q13" formControlName="q13" value=3>
+                    <label for="freedom43">3 </label>
+                    <input type="radio" id="freedom44" name="q13" formControlName="q13" value=4>
+                    <label for="freedom44">4 </label>
+                    <input type="radio" id="freedom45" name="q13" formControlName="q13" value=5>
+                    <label for="freedom45">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.freedom.value.q13 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+           </tbody>
+        </table>
+        <div class="col-lg-2 btn_div" ><button type="button" (click)="prevPage()" class="btn btn-success  float-left">Previous</button>  <button type="button" (click)="nextPage()" class="btn btn-success  float-right" [disabled]="form.controls.freedom.value.q10 == '' || form.controls.freedom.value.q11 == '' || form.controls.freedom.value.q12 == '' || form.controls.freedom.value.q13 == ''">Next</button></div>
+     </div>
+     <div class="my-3 float-left col-lg-12" *ngIf="pageNo==6">
+        <p>For One Another <span class="float-right">1 = Strongly Disagree; 2 = Disagree; 3 = Neutral; 4 = Agree; 5 = Strongly Agree</span></p>
+        <table  class="table table-bordered table-secondary" formGroupName="foroneanother">
+           <tbody>
+              <tr>
+                 <td>14</td>
+                 <td>We celebrate our successes at Continental.</td>
+                 <td>
+                    <input type="radio" id="foroneanother11" name="q14" formControlName="q14" value=1>
+                    <label for="foroneanother11">1</label>
+                    <input type="radio" id="foroneanother12" name="q14" formControlName="q14" value=2>
+                    <label for="foroneanother12">2 </label>
+                    <input type="radio" id="foroneanother13" name="q14" formControlName="q14" value=3>
+                    <label for="foroneanother13">3 </label>
+                    <input type="radio" id="foroneanother14" name="q14" formControlName="q14" value=4>
+                    <label for="foroneanother14">4 </label>
+                    <input type="radio" id="foroneanother15" name="q14" formControlName="q14" value=5>
+                    <label for="foroneanother15">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.foroneanother.value.q14 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>15</td>
+                 <td>I think leaders at Continental support diversity (e.g. diverse perspectives, gender, different cultures etc.) in the workplace (by recognizing and respecting the value of human differences.)++</td>
+                 <td>
+                    <input type="radio" id="foroneanother21" name="q15" formControlName="q15" value=1>
+                    <label for="foroneanother21">1</label>
+                    <input type="radio" id="foroneanother22" name="q15" formControlName="q15" value=2>
+                    <label for="foroneanother22">2 </label>
+                    <input type="radio" id="foroneanother23" name="q15" formControlName="q15" value=3>
+                    <label for="foroneanother23">3 </label>
+                    <input type="radio" id="foroneanother24" name="q15" formControlName="q15" value=4>
+                    <label for="foroneanother24">4 </label>
+                    <input type="radio" id="foroneanother25" name="q15" formControlName="q15" value=5>
+                    <label for="foroneanother25">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.foroneanother.value.q15 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>16</td>
+                 <td>I think there is good cooperation between my department and other departments.+++</td>
+                 <td>
+                    <input type="radio" id="foroneanother31" name="q16" formControlName="q16" value=1>
+                    <label for="foroneanother31">1</label>
+                    <input type="radio" id="foroneanother32" name="q16" formControlName="q16" value=2>
+                    <label for="foroneanother32">2 </label>
+                    <input type="radio" id="foroneanother33" name="q16" formControlName="q16" value=3>
+                    <label for="foroneanother33">3 </label>
+                    <input type="radio" id="foroneanother34" name="q16" formControlName="q16" value=4>
+                    <label for="foroneanother34">4 </label>
+                    <input type="radio" id="foroneanother35" name="q16" formControlName="q16" value=5>
+                    <label for="foroneanother35">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.foroneanother.value.q16 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>17</td>
+                 <td>I am encouraged to share best practices with colleagues.</td>
+                 <td>
+                    <input type="radio" id="foroneanother41" name="q17" formControlName="q17" value=1>
+                    <label for="foroneanother41">1</label>
+                    <input type="radio" id="foroneanother42" name="q17" formControlName="q17" value=2>
+                    <label for="foroneanother42">2 </label>
+                    <input type="radio" id="foroneanother43" name="q17" formControlName="q17" value=3>
+                    <label for="foroneanother43">3 </label>
+                    <input type="radio" id="foroneanother44" name="q17" formControlName="q17" value=4>
+                    <label for="foroneanother44">4 </label>
+                    <input type="radio" id="foroneanother45" name="q17" formControlName="q17" value=5>
+                    <label for="foroneanother45">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.foroneanother.value.q17 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>18</td>
+                 <td>I think leaders at Continental offer equal opportunities for all employees.++</td>
+                 <td>
+                    <input type="radio" id="foroneanother51" name="q18" formControlName="q18" value=1>
+                    <label for="foroneanother51">1</label>
+                    <input type="radio" id="foroneanother52" name="q18" formControlName="q18" value=2>
+                    <label for="foroneanother52">2 </label>
+                    <input type="radio" id="foroneanother53" name="q18" formControlName="q18" value=3>
+                    <label for="foroneanother53">3 </label>
+                    <input type="radio" id="foroneanother54" name="q18" formControlName="q18" value=4>
+                    <label for="foroneanother54">4 </label>
+                    <input type="radio" id="foroneanother55" name="q18" formControlName="q18" value=5>
+                    <label for="foroneanother55">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.foroneanother.value.q18 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>19</td>
+                 <td>In my direct working environment we take the time to learn from our success.</td>
+                 <td>
+                    <input type="radio" id="foroneanother61" name="q19" formControlName="q19" value=1>
+                    <label for="foroneanother61">1</label>
+                    <input type="radio" id="foroneanother62" name="q19" formControlName="q19" value=2>
+                    <label for="foroneanother62">2 </label>
+                    <input type="radio" id="foroneanother63" name="q19" formControlName="q19" value=3>
+                    <label for="foroneanother63">3 </label>
+                    <input type="radio" id="foroneanother64" name="q19" formControlName="q19" value=4>
+                    <label for="foroneanother64">4 </label>
+                    <input type="radio" id="foroneanother65" name="q19" formControlName="q19" value=5>
+                    <label for="foroneanother65">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.foroneanother.value.q19 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+           </tbody>
+        </table>
+        <div class="col-lg-2 btn_div" ><button type="button" (click)="prevPage()" class="btn btn-success  float-left">Previous</button>  <button type="button" (click)="nextPage()" class="btn btn-success  float-right" [disabled]="form.controls.foroneanother.value.q14 == '' || form.controls.foroneanother.value.q15 == '' || form.controls.foroneanother.value.q16 == '' || form.controls.foroneanother.value.q17 == '' || form.controls.foroneanother.value.q18 == '' || form.controls.foroneanother.value.q19 == ''">Next</button></div>
+     </div>
+     <div class="my-3 float-left col-lg-12" *ngIf="pageNo==7">
+        <p>Leadership <span class="float-right">1 = Strongly Disagree; 2 = Disagree; 3 = Neutral; 4 = Agree; 5 = Strongly Agree</span></p>
+        <table  class="table table-bordered table-secondary" formGroupName="leadership">
+           <tbody>
+              <tr>
+                 <td>20</td>
+                 <td>I think leaders will take results of this survey seriously.++</td>
+                 <td>
+                    <input type="radio" id="leadership11" name="q20" formControlName="q20" value=1>
+                    <label for="leadership11">1</label>
+                    <input type="radio" id="leadership12" name="q20" formControlName="q20" value=2>
+                    <label for="leadership12">2 </label>
+                    <input type="radio" id="leadership13" name="q20" formControlName="q20" value=3>
+                    <label for="leadership13">3 </label>
+                    <input type="radio" id="leadership14" name="q20" formControlName="q20" value=4>
+                    <label for="leadership14">4 </label>
+                    <input type="radio" id="leadership15" name="q20" formControlName="q20" value=5>
+                    <label for="leadership15">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.leadership.value.q20 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>21</td>
+                 <td>I think I have a clear understanding of the goals of my department.+++</td>
+                 <td>
+                 <input type="radio" id="leadership21" name="q21" formControlName="q21" value=1>
+                 <label for="leadership21">1</label>
+                 <input type="radio" id="leadership22" name="q21" formControlName="q21" value=2>
+                 <label for="leadership22">2 </label>
+                 <input type="radio" id="leadership23" name="q21" formControlName="q21" value=3>
+                 <label for="leadership23">3 </label>
+                 <input type="radio" id="leadership24" name="q21" formControlName="q21" value=4>
+                 <label for="leadership24">4 </label>
+                  <input type="radio" id="leadership25" name="q21" formControlName="q21" value=5>
+                  <label for="leadership25">5 </label>
+                  <div class="err_class" *ngIf="submitted == true && form.controls.leadership.value.q21 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>22</td>
+                 <td>In my opinion the leadership style at Continental encourages employees to give their best.</td>
+                 <td>
+                    <input type="radio" id="leadership31" name="q22" formControlName="q22" value=1>
+                    <label for="leadership31">1</label>
+                    <input type="radio" id="leadership32" name="q22" formControlName="q22" value=2>
+                    <label for="leadership32">2 </label>
+                    <input type="radio" id="leadership33" name="q22" formControlName="q22" value=3>
+                    <label for="leadership33">3 </label>
+                    <input type="radio" id="leadership34" name="q22" formControlName="q22" value=4>
+                    <label for="leadership34">4 </label>
+                    <input type="radio" id="leadership35" name="q22" formControlName="q22" value=5>
+                    <label for="leadership35">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.leadership.value.q22 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>23</td>
+                 <td>In my opinion we live our values (For One Another, Passion to Win, Freedom to Act, Trust) at Continental.</td>
+                 <td>
+                    <input type="radio" id="leadership41" name="q23" formControlName="q23" value=1>
+                    <label for="leadership41">1</label>
+                    <input type="radio" id="leadership42" name="q23" formControlName="q23" value=2>
+                    <label for="leadership42">2 </label>
+                    <input type="radio" id="leadership43" name="q23" formControlName="q23" value=3>
+                    <label for="leadership43">3 </label>
+                    <input type="radio" id="leadership44" name="q23" formControlName="q23" value=4>
+                    <label for="leadership44">4 </label>
+                    <input type="radio" id="leadership45" name="q23" formControlName="q23" value=5>
+                    <label for="leadership45">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.leadership.value.q23 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>24</td>
+                 <td>I think we are doing a good job of retaining people at Continental.</td>
+                 <td>
+                    <input type="radio" id="leadership51" name="q24" formControlName="q24" value=1>
+                    <label for="leadership51">1</label>
+                    <input type="radio" id="leadership52" name="q24" formControlName="q24" value=2>
+                    <label for="leadership52">2 </label>
+                    <input type="radio" id="leadership53" name="q24" formControlName="q24" value=3>
+                    <label for="leadership53">3 </label>
+                    <input type="radio" id="leadership54" name="q24" formControlName="q24" value=4>
+                    <label for="leadership54">4 </label>
+                    <input type="radio" id="leadership55" name="q24" formControlName="q24" value=5>
+                    <label for="leadership55">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.leadership.value.q24 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+           </tbody>
+        </table>
+        <div class="col-lg-2 btn_div" ><button type="button" (click)="prevPage()" class="btn btn-success  float-left">Previous</button>  <button type="button" (click)="nextPage()" class="btn btn-success  float-right"  [disabled]="form.controls.leadership.value.q20 == '' || form.controls.leadership.value.q21 == '' || form.controls.leadership.value.q22 == '' || form.controls.leadership.value.q23 == '' || form.controls.leadership.value.q24 == ''">Next</button></div>
+     </div>
+     <div class="my-3 float-left col-lg-12" *ngIf="pageNo == 8">
+        <p>Performance & Rewards <span class="float-right">1 = Strongly Disagree; 2 = Disagree; 3 = Neutral; 4 = Agree; 5 = Strongly Agree</span></p>
+        <table  class="table table-bordered table-secondary" formGroupName="performance">
+           <tbody>
+              <tr>
+                 <td>25</td>
+                 <td>In my opinion Continental pays me fairly for the work I do (fixed pay, bonus/incentive, benefits).</td>
+                 <td>
+                    <input type="radio" id="performance11" name="q25" formControlName="q25" value=1>
+                    <label for="performance11">1</label>
+                    <input type="radio" id="performance12" name="q25" formControlName="q25" value=2>
+                    <label for="performance12">2 </label>
+                    <input type="radio" id="performance13" name="q25" formControlName="q25" value=3>
+                    <label for="performance13">3 </label>
+                    <input type="radio" id="performance14" name="q25" formControlName="q25" value=4>
+                    <label for="performance14">4 </label>
+                    <input type="radio" id="performance15" name="q25" formControlName="q25" value=5>
+                    <label for="performance15">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.performance.value.q25 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>26</td>
+                 <td>In my opinion my relevant work goals and objectives are clearly defined.</td>
+                 <td>
+                 <input type="radio" id="performance21" name="q26" formControlName="q26" value=1>
+                 <label for="performance21">1</label>
+                 <input type="radio" id="performance22" name="q26" formControlName="q26" value=2>
+                 <label for="performance22">2 </label>
+                 <input type="radio" id="performance23" name="q26" formControlName="q26" value=3>
+                 <label for="performance23">3 </label>
+                 <input type="radio" id="performance24" name="q26" formControlName="q26" value=4>
+                 <label for="performance24">4 </label>
+                    <input type="radio" id="performance25" name="q26" formControlName="q26" value=5>
+                    <label for="performance25">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.performance.value.q26 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>27</td>
+                 <td>I think my job performance is evaluated fairly.</td>
+                 <td>
+                    <input type="radio" id="performance31" name="q27" formControlName="q27" value=1>
+                    <label for="performance31">1</label>
+                    <input type="radio" id="performance32" name="q27" formControlName="q27" value=2>
+                    <label for="performance32">2 </label>
+                    <input type="radio" id="performance33" name="q27" formControlName="q27" value=3>
+                    <label for="performance33">3 </label>
+                    <input type="radio" id="performance34" name="q27" formControlName="q27" value=4>
+                    <label for="performance34">4 </label>
+                    <input type="radio" id="performance35" name="q27" formControlName="q27" value=5>
+                    <label for="performance35">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.performance.value.q27 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>28</td>
+                 <td>In my opinion my direct supervisor discusses my performance and progress with me on a regular basis.</td>
+                 <td>
+                    <input type="radio" id="performance41" name="q28" formControlName="q28" value=1>
+                    <label for="performance41">1</label>
+                    <input type="radio" id="performance42" name="q28" formControlName="q28" value=2>
+                    <label for="performance42">2 </label>
+                    <input type="radio" id="performance43" name="q28" formControlName="q28" value=3>
+                    <label for="performance43">3 </label>
+                    <input type="radio" id="performance44" name="q28" formControlName="q28" value=4>
+                    <label for="performance44">4 </label>
+                    <input type="radio" id="performance45" name="q28" formControlName="q28" value=5>
+                    <label for="performance45">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.performance.value.q28 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>29</td>
+                 <td>In my opinion my direct supervisor provides me with feedback that helps me improve my performance.</td>
+                 <td>
+                    <input type="radio" id="performance51" name="q29" formControlName="q29" value=1>
+                    <label for="performance51">1</label>
+                    <input type="radio" id="performance52" name="q29" formControlName="q29" value=2>
+                    <label for="performance52">2 </label>
+                    <input type="radio" id="performance53" name="q29" formControlName="q29" value=3>
+                    <label for="performance53">3 </label>
+                    <input type="radio" id="performance54" name="q29" formControlName="q29" value=4>
+                    <label for="performance54">4 </label>
+                    <input type="radio" id="performance55" name="q29" formControlName="q29" value=5>
+                    <label for="performance55">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.performance.value.q29 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>30</td>
+                 <td>In my opinion Continental recognizes and rewards good performance not just with money.</td>
+                 <td>
+                    <input type="radio" id="performance61" name="q30" formControlName="q30" value=1>
+                    <label for="performance61">1</label>
+                    <input type="radio" id="performance62" name="q30" formControlName="q30" value=2>
+                    <label for="performance62">2 </label>
+                    <input type="radio" id="performance63" name="q30" formControlName="q30" value=3>
+                    <label for="performance63">3 </label>
+                    <input type="radio" id="performance64" name="q30" formControlName="q30" value=4>
+                    <label for="performance64">4 </label>
+                    <input type="radio" id="performance65" name="q30" formControlName="q30" value=5>
+                    <label for="performance65">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.performance.value.q30 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+           </tbody>
+        </table>
+        <div class="col-lg-2 btn_div" ><button type="button" (click)="prevPage()" class="btn btn-success  float-left">Previous</button>  <button type="button" (click)="nextPage()" class="btn btn-success  float-right"  [disabled]="form.controls.performance.value.q25 == '' || form.controls.performance.value.q26 == '' || form.controls.performance.value.q27 == '' || form.controls.performance.value.q28 == '' || form.controls.performance.value.q29 == '' || form.controls.performance.value.q30 == ''">Next</button></div>
+     </div>
+     <div class="my-3 float-left col-lg-12" *ngIf="pageNo == 9">
+        <p>Working Conditions <span class="float-right">1 = Strongly Disagree; 2 = Disagree; 3 = Neutral; 4 = Agree; 5 = Strongly Agree</span></p>
+        <table  class="table table-bordered table-secondary" formGroupName="w_conditions">
+           <tbody>
+              <tr>
+                 <td>31</td>
+                 <td>In my opinion I am able to balance my work-life and my private-life (e.g. via a flexible work schedule) at Continental.</td>
+                 <td>
+                    <input type="radio" id="w_conditions11" name="q31" formControlName="q31" value=1>
+                    <label for="w_conditions11">1</label>
+                    <input type="radio" id="w_conditions12" name="q31" formControlName="q31" value=2>
+                    <label for="w_conditions12">2 </label>
+                    <input type="radio" id="w_conditions13" name="q31" formControlName="q31" value=3>
+                    <label for="w_conditions13">3 </label>
+                    <input type="radio" id="w_conditions14" name="q31" formControlName="q31" value=4>
+                    <label for="w_conditions14">4 </label>
+                    <input type="radio" id="w_conditions15" name="q31" formControlName="q31" value=5>
+                    <label for="w_conditions15">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.w_conditions.value.q31 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>32</td>
+                 <td>I think at Continental the health and safety of its employees is cared for.</td>
+                 <td>
+                 <input type="radio" id="w_conditions21" name="q32" formControlName="q32" value=1>
+                 <label for="w_conditions21">1</label>
+                 <input type="radio" id="w_conditions22" name="q32" formControlName="q32" value=2>
+                 <label for="w_conditions22">2 </label>
+                 <input type="radio" id="w_conditions23" name="q32" formControlName="q32" value=3>
+                 <label for="w_conditions23">3 </label>
+                 <input type="radio" id="w_conditions24" name="q32" formControlName="q32" value=4>
+                 <label for="w_conditions24">4 </label>
+                  <input type="radio" id="w_conditions25" name="q32" formControlName="q32" value=5>
+                  <label for="w_conditions25">5 </label>
+                  <div class="err_class" *ngIf="submitted == true && form.controls.w_conditions.value.q32 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>33</td>
+                 <td>I think the stress levels at work are usually manageable.</td>
+                 <td>
+                    <input type="radio" id="w_conditions31" name="q33" formControlName="q33" value=1>
+                    <label for="w_conditions31">1</label>
+                    <input type="radio" id="w_conditions32" name="q33" formControlName="q33" value=2>
+                    <label for="w_conditions32">2 </label>
+                    <input type="radio" id="w_conditions33" name="q33" formControlName="q33" value=3>
+                    <label for="w_conditions33">3 </label>
+                    <input type="radio" id="w_conditions34" name="q33" formControlName="q33" value=4>
+                    <label for="w_conditions34">4 </label>
+                    <input type="radio" id="w_conditions35" name="q33" formControlName="q33" value=5>
+                    <label for="w_conditions35">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.w_conditions.value.q33 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>34</td>
+                 <td>I think at Continental priority is given to safety even if there was a conflict between safety and other business objectives.</td>
+                 <td>
+                    <input type="radio" id="w_conditions41" name="q34" formControlName="q34" value=1>
+                    <label for="w_conditions41">1</label>
+                    <input type="radio" id="w_conditions42" name="q34" formControlName="q34" value=2>
+                    <label for="w_conditions42">2 </label>
+                    <input type="radio" id="w_conditions43" name="q34" formControlName="q34" value=3>
+                    <label for="w_conditions43">3 </label>
+                    <input type="radio" id="w_conditions44" name="q34" formControlName="q34" value=4>
+                    <label for="w_conditions44">4 </label>
+                    <input type="radio" id="w_conditions45" name="q34" formControlName="q34" value=5>
+                    <label for="w_conditions45">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.w_conditions.value.q34 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>35</td>
+                 <td>I think my direct supervisor takes appropriate action when unsafe conditions are brought to his attention.</td>
+                 <td>
+                    <input type="radio" id="w_conditions51" name="q35" formControlName="q35" value=1>
+                    <label for="w_conditions51">1</label>
+                    <input type="radio" id="w_conditions52" name="q35" formControlName="q35" value=2>
+                    <label for="w_conditions52">2 </label>
+                    <input type="radio" id="w_conditions53" name="q35" formControlName="q35" value=3>
+                    <label for="w_conditions53">3 </label>
+                    <input type="radio" id="w_conditions54" name="q35" formControlName="q35" value=4>
+                    <label for="w_conditions54">4 </label>
+                    <input type="radio" id="w_conditions55" name="q35" formControlName="q35" value=5>
+                    <label for="w_conditions55">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.w_conditions.value.q35 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+              <tr>
+                 <td>36</td>
+                 <td>I think leaders in Continental are interested in the well-being of employees.++</td>
+                 <td>
+                    <input type="radio" id="w_conditions61" name="q36" formControlName="q36" value=1>
+                    <label for="w_conditions61">1</label>
+                    <input type="radio" id="w_conditions62" name="q36" formControlName="q36" value=2>
+                    <label for="w_conditions62">2 </label>
+                    <input type="radio" id="w_conditions63" name="q36" formControlName="q36" value=3>
+                    <label for="w_conditions63">3 </label>
+                    <input type="radio" id="w_conditions64" name="q36" formControlName="q36" value=4>
+                    <label for="w_conditions64">4 </label>
+                    <input type="radio" id="w_conditions65" name="q36" formControlName="q36" value=5>
+                    <label for="w_conditions65">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.w_conditions.value.q36 == ''">Please select a rating</div>
+                 </td>
+              </tr>
+           </tbody>
+        </table>
+        <div class="col-lg-2 btn_div" ><button type="button" (click)="prevPage()" class="btn btn-success  float-left">Previous</button>  <button type="button" (click)="nextPage()" class="btn btn-success  float-right"  [disabled]="form.controls.w_conditions.value.q31 == '' || form.controls.w_conditions.value.q32 == '' || form.controls.w_conditions.value.q33 == '' || form.controls.w_conditions.value.q34 == '' || form.controls.w_conditions.value.q35 == '' || form.controls.w_conditions.value.q36 == ''">Next</button></div>
+     </div>
+     <div class="my-3 float-left col-lg-12" *ngIf="pageNo == 10">
+      <p>Sustainable Engagement <span class="float-right">1 = Strongly Disagree; 2 = Disagree; 3 = Neutral; 4 = Agree; 5 = Strongly Agree</span></p>
+        <table  class="table table-bordered table-secondary" formGroupName="s_engagement">
+         <tbody>
+            <tr>
+               <td>37</td>
+               <td>In my opinion I am able to balance my work-life and my private-life (e.g. via a flexible work schedule) at Continental.</td>
+               <td>
+                  <input type="radio" id="s_engagement11" name="q37" formControlName="q37" value=1>
+                  <label for="s_engagement11">1</label>
+                  <input type="radio" id="s_engagement12" name="q37" formControlName="q37" value=2>
+                  <label for="s_engagement12">2 </label>
+                  <input type="radio" id="s_engagement13" name="q37" formControlName="q37" value=3>
+                  <label for="s_engagement13">3 </label>
+                  <input type="radio" id="s_engagement14" name="q37" formControlName="q37" value=4>
+                  <label for="s_engagement14">4 </label>
+                    <input type="radio" id="s_engagement15" name="q37" formControlName="q37" value=5>
+                    <label for="s_engagement15">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.s_engagement.value.q37 == ''">Please select a rating</div>
+               </td>
+            </tr>
+            <tr>
+               <td>38</td>
+               <td>I think at Continental the health and safety of its employees is cared for.</td>
+               <td>
+               <input type="radio" id="s_engagement21" name="q38" formControlName="q38" value=1>
+               <label for="s_engagement21">1</label>
+               <input type="radio" id="s_engagement22" name="q38" formControlName="q38" value=2>
+               <label for="s_engagement22">2 </label>
+               <input type="radio" id="s_engagement23" name="q38" formControlName="q38" value=3>
+               <label for="s_engagement23">3 </label>
+               <input type="radio" id="s_engagement24" name="q38" formControlName="q38" value=4>
+               <label for="s_engagement24">4 </label>
+                    <input type="radio" id="s_engagement25" name="q38" formControlName="q38" value=5>
+                    <label for="s_engagement25">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.s_engagement.value.q38 == ''">Please select a rating</div>
+               </td>
+            </tr>
+            <tr>
+               <td>39</td>
+               <td>I think the stress levels at work are usually manageable.</td>
+               <td>
+                  <input type="radio" id="s_engagement31" name="q39" formControlName="q39" value=1>
+                  <label for="s_engagement31">1</label>
+                  <input type="radio" id="s_engagement32" name="q39" formControlName="q39" value=2>
+                  <label for="s_engagement32">2 </label>
+                  <input type="radio" id="s_engagement33" name="q39" formControlName="q39" value=3>
+                  <label for="s_engagement33">3 </label>
+                  <input type="radio" id="s_engagement34" name="q39" formControlName="q39" value=4>
+                  <label for="s_engagement34">4 </label>
+                    <input type="radio" id="s_engagement35" name="q39" formControlName="q39" value=5>
+                    <label for="s_engagement35">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.s_engagement.value.q39 == ''">Please select a rating</div>
+               </td>
+            </tr>
+            <tr>
+               <td>40</td>
+               <td>I think at Continental priority is given to safety even if there was a conflict between safety and other business objectives.</td>
+               <td>
+                  <input type="radio" id="s_engagement41" name="q40" formControlName="q40" value=1>
+                  <label for="s_engagement41">1</label>
+                  <input type="radio" id="s_engagement42" name="q40" formControlName="q40" value=2>
+                  <label for="s_engagement42">2 </label>
+                  <input type="radio" id="s_engagement43" name="q40" formControlName="q40" value=3>
+                  <label for="s_engagement43">3 </label>
+                  <input type="radio" id="s_engagement44" name="q40" formControlName="q40" value=4>
+                  <label for="s_engagement44">4 </label>
+                    <input type="radio" id="s_engagement45" name="q40" formControlName="q40" value=5>
+                    <label for="s_engagement45">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.s_engagement.value.q40 == ''">Please select a rating</div>
+               </td>
+            </tr>
+            <tr>
+               <td>41</td>
+               <td>I think my direct supervisor takes appropriate action when unsafe conditions are brought to his attention.</td>
+               <td>
+                  <input type="radio" id="s_engagement51" name="q41" formControlName="q41" value=1>
+                  <label for="s_engagement51">1</label>
+                  <input type="radio" id="s_engagement52" name="q41" formControlName="q41" value=2>
+                  <label for="s_engagement52">2 </label>
+                  <input type="radio" id="s_engagement53" name="q41" formControlName="q41" value=3>
+                  <label for="s_engagement53">3 </label>
+                  <input type="radio" id="s_engagement54" name="q41" formControlName="q41" value=4>
+                  <label for="s_engagement54">4 </label>
+                    <input type="radio" id="s_engagement55" name="q41" formControlName="q41" value=5>
+                    <label for="s_engagement55">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.s_engagement.value.q41 == ''">Please select a rating</div>
+               </td>
+            </tr>
+            <tr>
+               <td>42</td>
+               <td>I think leaders in Continental are interested in the well-being of employees.++</td>
+               <td>
+                  <input type="radio" id="s_engagement61" name="q42" formControlName="q42" value=1>
+                  <label for="s_engagement61">1</label>
+                  <input type="radio" id="s_engagement62" name="q42" formControlName="q42" value=2>
+                  <label for="s_engagement62">2 </label>
+                  <input type="radio" id="s_engagement63" name="q42" formControlName="q42" value=3>
+                  <label for="s_engagement63">3 </label>
+                  <input type="radio" id="s_engagement64" name="q42" formControlName="q42" value=4>
+                  <label for="s_engagement64">4 </label>
+                    <input type="radio" id="s_engagement65" name="q42" formControlName="q42" value=5>
+                    <label for="s_engagement65">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.s_engagement.value.q42 == ''">Please select a rating</div>
+               </td>
+            </tr>
+            <tr>
+              <td>43</td>
+              <td>In my opinion the people I work with usually get along well together.</td>
+            <td>
+                 <input type="radio" id="s_engagement71" name="q43" formControlName="q43"value=1>
+                 <label for="s_engagement71">1</label>
+                 <input type="radio" id="s_engagement72" name="q43" formControlName="q43" value=2>
+                 <label for="s_engagement72">2 </label>
+                 <input type="radio" id="s_engagement73" name="q43" formControlName="q43" value=3>
+                 <label for="s_engagement73">3 </label>
+                 <input type="radio" id="s_engagement74" name="q43" formControlName="q43" value=4>
+                 <label for="s_engagement74">4 </label>
+                    <input type="radio" id="s_engagement75" name="q43" formControlName="q43" value=5>
+                    <label for="s_engagement75">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.s_engagement.value.q43 == ''">Please select a rating</div>
+              </td>
+           </tr>
+           <tr>
+              <td>44</td>
+              <td>In my opinion there are no substantial obstacles that keep me from doing my job well.</td>
+              <td>
+                 <input type="radio" id="s_engagement81" name="q44" formControlName="q44" value=1>
+                 <label for="s_engagement81">1</label>
+                 <input type="radio" id="s_engagement82" name="q44" formControlName="q44" value=2>
+                 <label for="s_engagement82">2 </label>
+                 <input type="radio" id="s_engagement83" name="q44" formControlName="q44" value=3>
+                 <label for="s_engagement83">3 </label>
+                 <input type="radio" id="s_engagement84" name="q44" formControlName="q44" value=4>
+                 <label for="s_engagement84">4 </label>
+                    <input type="radio" id="s_engagement85" name="q44" formControlName="q44" value=5>
+                    <label for="s_engagement85">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.s_engagement.value.q44 == ''">Please select a rating</div>
+              </td>
+           </tr>
+         </tbody>
+      </table>
+      <div class="col-lg-2 btn_div" ><button type="button" (click)="prevPage()" class="btn btn-success  float-left">Previous</button>  <button type="button" (click)="nextPage()" class="btn btn-success  float-right"  [disabled]="form.controls.s_engagement.value.q37 == '' || form.controls.s_engagement.value.q38 == '' || form.controls.s_engagement.value.q39 == '' || form.controls.s_engagement.value.q40 == '' || form.controls.s_engagement.value.q41 == '' || form.controls.s_engagement.value.q42 == '' || form.controls.s_engagement.value.q43 == '' || form.controls.s_engagement.value.q44 == ''">Next</button></div>
+   </div>
+
+   <div class="my-3 float-left col-lg-12" *ngIf="pageNo == 11">
+    <p>Overall Strategy & Quality <span class="float-right">1 = Strongly Disagree; 2 = Disagree; 3 = Neutral; 4 = Agree; 5 = Strongly Agree</span></p>
+        <table  class="table table-bordered table-secondary" formGroupName="strategy_quality">
+       <tbody>
+          <tr>
+             <td>45</td>
+             <td>In my opinion at Continental an excellent job is done in standardizing processes to ensure consistent quality.</td>
+             <td>
+                <input type="radio" id="strategy_quality11" name="q45" formControlName="q45" value=1>
+                <label for="strategy_quality11">1</label>
+                <input type="radio" id="strategy_quality12" name="q45" formControlName="q45" value=2>
+                <label for="strategy_quality12">2 </label>
+                <input type="radio" id="strategy_quality13" name="q45" formControlName="q45" value=3>
+                <label for="strategy_quality13">3 </label>
+                <input type="radio" id="strategy_quality14" name="q45" formControlName="q45" value=4>
+                <label for="strategy_quality14">4 </label>
+                    <input type="radio" id="strategy_quality15" name="q45" formControlName="q45" value=5>
+                    <label for="strategy_quality15">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.strategy_quality.value.q45 == ''">Please select a rating</div>
+             </td>
+          </tr>
+          <tr>
+             <td>46</td>
+             <td>I have confidence in the decisions made by the top management team of Continental.+++++</td>
+             <td>
+             <input type="radio" id="strategy_quality21" name="q46" formControlName="q46" value=1>
+             <label for="strategy_quality21">1</label>
+             <input type="radio" id="strategy_quality22" name="q46" formControlName="q46" value=2>
+             <label for="strategy_quality22">2 </label>
+             <input type="radio" id="strategy_quality23" name="q46" formControlName="q46" value=3>
+             <label for="strategy_quality23">3 </label>
+             <input type="radio" id="strategy_quality24" name="q46" formControlName="q46" value=4>
+             <label for="strategy_quality24">4 </label>
+                    <input type="radio" id="strategy_quality25" name="q46" formControlName="q46" value=5>
+                    <label for="strategy_quality25">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.strategy_quality.value.q46 == ''">Please select a rating</div>
+             </td>
+          </tr>
+          <tr>
+             <td>47</td>
+             <td>I think Continental's commitment to quality is apparent in what we do on a daily basis.</td>
+             <td>
+                <input type="radio" id="strategy_quality31" name="q47" formControlName="q47" value=1>
+                <label for="strategy_quality31">1</label>
+                <input type="radio" id="strategy_quality32" name="q47" formControlName="q47" value=2>
+                <label for="strategy_quality32">2 </label>
+                <input type="radio" id="strategy_quality33" name="q47" formControlName="q47" value=3>
+                <label for="strategy_quality33">3 </label>
+                <input type="radio" id="strategy_quality34" name="q47" formControlName="q47" value=4>
+                <label for="strategy_quality34">4 </label>
+                    <input type="radio" id="strategy_quality35" name="q47" formControlName="q47" value=5>
+                    <label for="strategy_quality35">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.strategy_quality.value.q47 == ''">Please select a rating</div>
+             </td>
+          </tr>
+          <tr>
+             <td>48</td>
+             <td>In my opinion the quality of work done in my department is excellent.+++</td>
+             <td>
+                <input type="radio" id="strategy_quality41" name="q48" formControlName="q48" value=1>
+                <label for="strategy_quality41">1</label>
+                <input type="radio" id="strategy_quality42" name="q48" formControlName="q48" value=2>
+                <label for="strategy_quality42">2 </label>
+                <input type="radio" id="strategy_quality43" name="q48" formControlName="q48" value=3>
+                <label for="strategy_quality43">3 </label>
+                <input type="radio" id="strategy_quality44" name="q48" formControlName="q48" value=4>
+                <label for="strategy_quality44">4 </label>
+                    <input type="radio" id="strategy_quality45" name="q48" formControlName="q48" value=5>
+                    <label for="strategy_quality45">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.strategy_quality.value.q48 == ''">Please select a rating</div>
+             </td>
+          </tr>
+          <tr>
+             <td>49</td>
+             <td>I think I have a good understanding of Continental's strategy.</td>
+             <td>
+                <input type="radio" id="strategy_quality51" name="q49" formControlName="q49" value=1>
+                <label for="strategy_quality51">1</label>
+                <input type="radio" id="strategy_quality52" name="q49" formControlName="q49" value=2>
+                <label for="strategy_quality52">2 </label>
+                <input type="radio" id="strategy_quality53" name="q49" formControlName="q49" value=3>
+                <label for="strategy_quality53">3 </label>
+                <input type="radio" id="strategy_quality54" name="q49" formControlName="q49" value=4>
+                <label for="strategy_quality54">4 </label>
+                    <input type="radio" id="strategy_quality55" name="q49" formControlName="q49" value=5>
+                    <label for="strategy_quality55">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.strategy_quality.value.q49 == ''">Please select a rating</div>
+             </td>
+          </tr>
+          <tr>
+             <td>50</td>
+             <td>Our vision creates excitement and motivation for our organization.</td>
+             <td>
+                <input type="radio" id="strategy_quality61" name="q50" formControlName="q50" value=1>
+                <label for="strategy_quality61">1</label>
+                <input type="radio" id="strategy_quality62" name="q50" formControlName="q50" value=2>
+                <label for="strategy_quality62">2 </label>
+                <input type="radio" id="strategy_quality63" name="q50" formControlName="q50" value=3>
+                <label for="strategy_quality63">3 </label>
+                <input type="radio" id="strategy_quality64" name="q50" formControlName="q50" value=4>
+                <label for="strategy_quality64">4 </label>
+                    <input type="radio" id="strategy_quality65" name="q50" formControlName="q50" value=5>
+                    <label for="strategy_quality65">5 </label>
+                    <div class="err_class" *ngIf="submitted == true && form.controls.strategy_quality.value.q50 == ''">Please select a rating</div>
+             </td>
+          </tr>
+       </tbody>
+    </table>
+      <div class="col-lg-3 btn_div" >
+      <button class="btn btn-success float-right" type="submit"  [disabled]="submitBtn_disabled"> Submit </button>
+      <button type="button" (click)="prevPage()" class="btn btn-success  float-right mr-1">Previous</button>  
+   </div>
+ </div>
+
+    
+     <!-- <div class="my-3 float-left col-lg-12">
+        "<b>Thank you for your feedback! </b><br/>
+        By filling out this form you are giving consent to the handling of your personal data for evaluation purposes. You can revoke your consent at any time. All data is used for quality assurance purposes only and will not be disclosed to third parties.<br/> <br/>For more information go to <a href="https://www.elektrobit.com/dataprotection-information/" target="_blank">https://www.elektrobit.com/dataprotection-information/.</a>"
+     </div> -->
+     </form>
+     <!-- <img src="assets/images/footer2.png" alt="header" srcset="" width="100%"> -->
+     <!-- <img src="assets/images/footer1.png" alt="header" srcset="" width="100%"> -->
+  </div>
+</div>
+
+<div class="overlay" *ngIf="SurveyAlreadySubmitted== true">
+    <div class="pop_up">
+      You have already submitted this Survey.
+    </div>
+</div>

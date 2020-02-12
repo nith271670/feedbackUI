@@ -1,0 +1,140 @@
+.title{
+    font-size: 36px;
+}
+
+
+p{
+  font-weight: bold;
+}
+
+table> thead > tr > th {
+    width: 300px;
+}
+
+table{
+  background: #d6d8db;
+}
+
+td label {
+  border-radius : 50%;
+  border: solid 2px #b3b7bb;
+  margin-right: 15px;
+  transition: all 0.3s;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  text-indent: 0px;
+  text-align: center !important;
+  /* background: #00A200; */
+}
+
+   
+   td input[type="radio"] {
+     display: none;
+   }
+   
+   td input[type="radio"]:checked + label {
+   border : 2px solid #00A200;
+   }
+   input[type=text]{
+    border: 0;
+    border-bottom: 2px solid dimgray;
+    width: 100%;
+    max-width: 100%;
+   }
+   input[type=text]:focus{
+     outline: none
+   }
+
+   .trainerName{
+     font-size: 11px;
+     font-weight: bold;
+     margin-right: 10px;
+   }
+
+   .err_class{
+     font-size: 10px;
+     color: red;
+     font-weight: bold;
+     text-align: left;
+     padding-left: 50px;
+   }
+
+   td:last-child{
+    width: 230px;
+    /* background: rgba(58, 71, 90, 1); */
+    padding: 0px !important;
+    margin: 0px !important;
+    text-align: right;
+    padding-top: 10px !important;
+   }
+
+   td label:first-child{
+    
+}
+
+   td label:last-child{
+       /* border: 2px solid #fff; */
+   }
+
+   .overlay{
+       position: fixed;
+       top:0px;
+       left: 0px;
+       height: 100%;
+       width:100%;
+       background: rgba(0, 0, 0, 0.7);
+   }
+
+   .pop_up{
+       width:400px;
+       background: #ffffff;
+       border: 2px solid #00A200;
+       border-radius:5px;
+       padding:15px;
+       margin:0px auto;
+       margin-top: 250px;
+       color: #00A200;
+       text-align: center;
+       font-weight: bold;
+   }
+
+   td{
+       color: #000;
+       /* background: rgba(65, 80, 101, 1); */
+       font-size: 14px;    
+   }
+
+   p{
+     color: #00A200;
+   }
+
+   p span{
+     color:#000;
+     font-size: 12px;
+   }
+
+   #page1{
+      /* width: 400px; */
+      color: #000;
+      margin:0px auto;
+      border: 2px solid #00A200;
+      text-align: center;
+      border-radius: 5px;
+   }
+
+   #page1 p{
+     text-align: center;
+   }
+
+   #page1 button{
+     margin: 0px auto;
+   }
+
+   .btn_div{
+      float: right;
+   }
+
+   p.black{
+     color: #000;
+   }

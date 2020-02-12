@@ -12,7 +12,7 @@
 
 
               ========== -->
-              <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top nav-tabs" *ngIf="router.url.includes('login') == false && router.url.includes('trainingform') == false && router.url.includes('ebguideform') == false && router.url.includes('success') == false" >
+              <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top nav-tabs" *ngIf="router.url.includes('login') == false && router.url.includes('trainingform') == false && router.url.includes('ebguideform') == false && router.url.includes('success') == false && router.url.includes('ebsurvey') == false" >
                   
                 <!-- Brand -->
                   <a class="navbar-brand" href="/home"><img src="/assets/images/eb-logo-gray.png" alt="Logo" /></a>
@@ -26,13 +26,16 @@
                   <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav"  >
                       <li class="nav-item mx-2" *ngIf=!otherUser>
-                        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">Trainings</a>
+                        <a class="nav-link"  [routerLink]="['/home']" [routerLinkActive]="['active']">Trainings</a>
                       </li>
-                      <li class="nav-item mx-2">
-                        <a class="nav-link"  [routerLink]="['/list']" [routerLinkActive]="['active']">Feed back Report</a>
+                      <li class="nav-item mx-2" *ngIf="_global.currentUser.username != 'EBsurvey'">
+                        <a class="nav-link"   [routerLink]="['/list']" [routerLinkActive]="['active']">Feed back Report</a>
                       </li>
-                      <li class="nav-item mx-2">
+                      <li class="nav-item mx-2" *ngIf="_global.currentUser.username != 'EBsurvey'">
                         <a class="nav-link"  [routerLink]="['/list-ebguide']" [routerLinkActive]="['active']">EB Guide Feedback</a>
+                      </li>
+                      <li class="nav-item mx-2" *ngIf="_global.currentUser.username == 'EBsurvey'">
+                        <a class="nav-link"  [routerLink]="['/list-survey']" [routerLinkActive]="['active']">Survey Feedback</a>
                       </li>
                     </ul>
                   </div> 

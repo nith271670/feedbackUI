@@ -15,8 +15,6 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-
-
   getList() {
     return this.http.get(api_url+'/feedback/list');
   }
@@ -43,6 +41,22 @@ export class HttpService {
   getEBGuideFeedbackList() {
     return this.http.get(api_url+'/feedback/ebguidelist');
   }
+
+  getSurveyFeedbackList() {
+    return this.http.get(api_url+'/surveyfeedback/list');
+  }
+
+
+  sendSurveyFeedback(payLoad): Observable<any> {
+    return this.http
+      .post<any>(api_url+'/surveyfeedback/create', payLoad,
+        { headers: headers, observe: 'response' }).pipe(
+          tap(e => {
+            // this.routeToList(e);
+          })
+        );
+  }
+
   createTraining(trainingDetails): Observable<any> {
     return this.http
       .post<any>(api_url+'/trainingdetails/add', trainingDetails,
@@ -64,6 +78,37 @@ export class HttpService {
     console.log(updatedData);
     return this.http.post(api_url+'/trainingdetails/update/' + updatedData.id, updatedData);
   }
+
+  createSurvey(surveyDetails): Observable<any> {
+    return this.http
+      .post<any>(api_url+'/surveydetails/add', surveyDetails,
+        { headers: headers, observe: 'response' }).pipe(
+          tap(e => {
+            // this.routeToList(e);
+          })
+        );
+  }
+
+  editSurvey(surveyId) {
+    return this.http.get(api_url+'/surveydetails/edit/' + surveyId);
+  }
+  deleteSurvey(surveyId) {
+    return this.http.post(api_url+'/surveydetails/delete/' + surveyId, 'delete');
+  }
+
+  updateSurvey(updatedData) {
+    console.log(updatedData);
+    return this.http.post(api_url+'/surveydetails/update/' + updatedData.id, updatedData);
+  }
+
+  getSurveyDetails(surveyId) {
+    return this.http.get(api_url+'/surveydetails/details/' + surveyId);
+  }
+
+  getSurveyList() {
+    return this.http.get(api_url+'/surveydetails/list');
+  }
+
   getTrainingNameList() {
     return this.http.get(api_url+'/trainingnames/list');
   }
