@@ -186,6 +186,10 @@ export class EbSurveyComponent implements OnInit {
       formValue.survey_n.survey_name = this.surveyName;
       formValue.survey_location.location_name = this.surveyLocation;
       formValue.survey_date.t_date = this.surveyDate;
+      formValue.emp_department.department = this.selected_department;
+      formValue.emp_department.sub_department = this.selected_sub_department;
+      formValue.emp_department.sub_department_services = this.selected_sub_department_services;
+
       const finalResponse = {
         "surveydetails":formValue
       };
@@ -273,5 +277,9 @@ export class EbSurveyComponent implements OnInit {
 
     nextPage(){
       this.pageNo = this.pageNo+1;
+      console.log('Next');
+      console.log(this.selected_department);
+      console.log(this.selected_sub_department);
+      console.log(this.selected_sub_department_services);
     }
   }
