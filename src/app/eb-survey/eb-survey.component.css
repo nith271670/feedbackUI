@@ -118,9 +118,9 @@ td label {
       /* width: 400px; */
       color: #000;
       margin:0px auto;
-      border: 2px solid #00A200;
+      border: 1px solid #ccc; 
       text-align: center;
-      border-radius: 5px;
+      /* border-radius: 5px; */
    }
 
    #page1 p{
@@ -139,7 +139,14 @@ td label {
      color: #000;
    }
 
+
+
    img{
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
+   }
+
+   #page1 img{
+    border-left: 0px solid #ccc;
+    border-right: 0px solid #ccc;
    }
