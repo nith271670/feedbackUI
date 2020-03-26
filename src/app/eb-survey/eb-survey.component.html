@@ -72,23 +72,30 @@
        <div class="my-3 float-left col-lg-6" formGroupName="emp_designation">
           <p>4.What's your Designation?</p>
           <select class="custom-select"  name="designation" id="designation" formControlName="designation"  [(ngModel)]='selected_designation'>
-             <option value="Executive Assistant">Executive Assistant</option>
-             <option value="Chief Architect">Chief Architect</option>
-             <option value="Lead Technical Architect">Lead Technical Architect</option>
-             <option value="Senior Technical Architect">Senior Technical Architect</option>
-             <option value="Technical Architect">Technical Architect</option>
-             <option value="Senior Technical Specialist">Senior Technical Specialist</option>
-             <option value="Technical Specialist">Technical Specialist</option>
-             <option value="Module Lead">Module Lead</option>
-             <option value="Senior Engineer">Senior Engineer</option>
-             <option value="Executive Engineer">Executive Engineer</option>
-             <option value="Associate Engineer">Associate Engineer</option>
-             <option value="Graduate Engineer Trainee">Graduate Engineer Trainee</option>
-             <option value="Executive Vice President">Executive Vice President</option>
-             <option value="Senior Director, Vice President">Senior Director, Vice President</option>
-             <option value="Director, Senior Manager">Director, Senior Manager</option>
-             <option value="Team Manager">Team Manager</option>
-             <option value="Service Manager">Service Manager</option>
+            <option value="Associate Engineer">Associate Engineer</option>
+            <option value="Executive Assistant">Executive Assistant</option>
+            <option value="Executive Engineer">Executive Engineer</option>
+            <option value="Expert">Expert</option>
+            <option value="General Manager">General Manager</option>
+            <option value="Graduate Engineer Trainee">Graduate Engineer Trainee</option>
+            <option value="IT Engineer">IT Engineer</option>
+            <option value="IT Junior Engineer">IT Junior Engineer</option>
+            <option value="IT Senior Engineer">IT Senior Engineer</option>
+            <option value="Lead Specialist">Lead Specialist</option>
+            <option value="Lead Technical Architect">Lead Technical Architect</option>
+            <option value="Module Lead">Module Lead</option>
+            <option value="Professional">Professional</option>
+            <option value="Project Manager">Project Manager</option>
+            <option value="Senior Engineer">Senior Engineer</option>
+            <option value="Senior Manager">Senior Manager</option>
+            <option value="Senior Technical Architect">Senior Technical Architect</option>
+            <option value="Senior Technical Specialist">Senior Technical Specialist</option>
+            <option value="Senior Technician">Senior Technician</option>
+            <option value="Service Manager">Service Manager</option>
+            <option value="Team Manager">Team Manager</option>
+            <option value="Technical Architect">Technical Architect</option>
+            <option value="Technical Specialist">Technical Specialist</option>
+            <option value="Vice President">Vice President</option>
           </select>
        </div>
        <div class="my-3 float-left col-lg-12" formGroupName="emp_department">
@@ -410,7 +417,7 @@
               </tr>
               <tr>
                  <td>15</td>
-                 <td>I think leaders at Elektrobit India support diversity (e.g. diverse perspectives, gender, different cultures etc.) in the workplace (by recognizing and respecting the value of human differences.)++</td>
+                 <td>I think leaders at Elektrobit India support diversity (e.g. diverse perspectives, gender, different cultures etc.) in the workplace (by recognizing and respecting the value of human differences.)</td>
                  <td>
                     <input type="radio" id="foroneanother21" name="q15" formControlName="q15" value=1>
                     <label for="foroneanother21">1</label>
@@ -740,7 +747,7 @@
               </tr>
               <tr>
                  <td>33</td>
-                 <td>I think the stress levels at work are usually manageable.</td>
+                 <td>Always I feel enthusiastic to come to work every day.</td>
                  <td>
                     <input type="radio" id="w_conditions31" name="q33" formControlName="q33" value=1>
                     <label for="w_conditions31">1</label>
@@ -915,44 +922,10 @@
                     <label for="s_engagement65">5 </label>
                     <div class="err_class" *ngIf="submitted == true && form.controls.s_engagement.value.q42 == ''">Please select a rating</div>
                </td>
-            </tr>
-            <tr>
-              <td>43</td>
-              <td>In my opinion the people I work with usually get along well together.</td>
-            <td>
-                 <input type="radio" id="s_engagement71" name="q43" formControlName="q43"value=1>
-                 <label for="s_engagement71">1</label>
-                 <input type="radio" id="s_engagement72" name="q43" formControlName="q43" value=2>
-                 <label for="s_engagement72">2 </label>
-                 <input type="radio" id="s_engagement73" name="q43" formControlName="q43" value=3>
-                 <label for="s_engagement73">3 </label>
-                 <input type="radio" id="s_engagement74" name="q43" formControlName="q43" value=4>
-                 <label for="s_engagement74">4 </label>
-                    <input type="radio" id="s_engagement75" name="q43" formControlName="q43" value=5>
-                    <label for="s_engagement75">5 </label>
-                    <div class="err_class" *ngIf="submitted == true && form.controls.s_engagement.value.q43 == ''">Please select a rating</div>
-              </td>
-           </tr>
-           <tr>
-              <td>44</td>
-              <td>In my opinion there are no substantial obstacles that keep me from doing my job well.</td>
-              <td>
-                 <input type="radio" id="s_engagement81" name="q44" formControlName="q44" value=1>
-                 <label for="s_engagement81">1</label>
-                 <input type="radio" id="s_engagement82" name="q44" formControlName="q44" value=2>
-                 <label for="s_engagement82">2 </label>
-                 <input type="radio" id="s_engagement83" name="q44" formControlName="q44" value=3>
-                 <label for="s_engagement83">3 </label>
-                 <input type="radio" id="s_engagement84" name="q44" formControlName="q44" value=4>
-                 <label for="s_engagement84">4 </label>
-                    <input type="radio" id="s_engagement85" name="q44" formControlName="q44" value=5>
-                    <label for="s_engagement85">5 </label>
-                    <div class="err_class" *ngIf="submitted == true && form.controls.s_engagement.value.q44 == ''">Please select a rating</div>
-              </td>
-           </tr>
+            </tr>           
          </tbody>
       </table>
-      <div class="col-lg-2 btn_div" ><button type="button" (click)="prevPage()" class="btn btn-success  float-left">Previous</button>  <button type="button" (click)="nextPage()" class="btn btn-success  float-right"  [disabled]="form.controls.s_engagement.value.q37 == '' || form.controls.s_engagement.value.q38 == '' || form.controls.s_engagement.value.q39 == '' || form.controls.s_engagement.value.q40 == '' || form.controls.s_engagement.value.q41 == '' || form.controls.s_engagement.value.q42 == '' || form.controls.s_engagement.value.q43 == '' || form.controls.s_engagement.value.q44 == ''">Next</button></div>
+      <div class="col-lg-2 btn_div" ><button type="button" (click)="prevPage()" class="btn btn-success  float-left">Previous</button>  <button type="button" (click)="nextPage()" class="btn btn-success  float-right"  [disabled]="form.controls.s_engagement.value.q37 == '' || form.controls.s_engagement.value.q38 == '' || form.controls.s_engagement.value.q39 == '' || form.controls.s_engagement.value.q40 == '' || form.controls.s_engagement.value.q41 == '' || form.controls.s_engagement.value.q42 == ''">Next</button></div>
    </div>
 
    <div class="my-3 float-left col-lg-12" *ngIf="pageNo == 11">
@@ -960,8 +933,8 @@
         <table  class="table table-bordered table-secondary" formGroupName="strategy_quality">
        <tbody>
           <tr>
-             <td>45</td>
-             <td>In my opinion at Elektrobit India an excellent job is done in standardizing processes to ensure consistent quality.</td>
+             <td>43</td>
+             <td>In my opinion at Elektrobit India, an excellent job is done in standardizing processes to ensure consistent quality.</td>
              <td>
                 <input type="radio" id="strategy_quality11" name="q45" formControlName="q45" value=1>
                 <label for="strategy_quality11">1</label>
@@ -977,7 +950,7 @@
              </td>
           </tr>
           <tr>
-             <td>46</td>
+             <td>44</td>
              <td>I have confidence in the decisions made by the top management team of Elektrobit India.</td>
              <td>
              <input type="radio" id="strategy_quality21" name="q46" formControlName="q46" value=1>
@@ -994,7 +967,7 @@
              </td>
           </tr>
           <tr>
-             <td>47</td>
+             <td>45</td>
              <td>I think Elektrobit India's commitment to quality is apparent in what we do on a daily basis.</td>
              <td>
                 <input type="radio" id="strategy_quality31" name="q47" formControlName="q47" value=1>
@@ -1011,7 +984,7 @@
              </td>
           </tr>
           <tr>
-             <td>48</td>
+             <td>46</td>
              <td>In my opinion the quality of work done in my department is excellent.</td>
              <td>
                 <input type="radio" id="strategy_quality41" name="q48" formControlName="q48" value=1>
@@ -1028,7 +1001,7 @@
              </td>
           </tr>
           <tr>
-             <td>49</td>
+             <td>47</td>
              <td>I think I have a good understanding of Elektrobit India's strategy.</td>
              <td>
                 <input type="radio" id="strategy_quality51" name="q49" formControlName="q49" value=1>
@@ -1045,7 +1018,7 @@
              </td>
           </tr>
           <tr>
-             <td>50</td>
+             <td>48</td>
              <td>Our vision creates excitement and motivation for our organization.</td>
              <td>
                 <input type="radio" id="strategy_quality61" name="q50" formControlName="q50" value=1>

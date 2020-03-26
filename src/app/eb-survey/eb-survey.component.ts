@@ -126,9 +126,7 @@ export class EbSurveyComponent implements OnInit {
         q39: ['', Validators.required],
         q40: ['', Validators.required],
         q41: ['', Validators.required],
-        q42: ['', Validators.required],
-        q43: ['', Validators.required],
-        q44: ['', Validators.required]
+        q42: ['', Validators.required]
       }),
       strategy_quality: this.fb.group({
         q45: ['', Validators.required],
