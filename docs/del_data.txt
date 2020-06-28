@@ -1,0 +1,569 @@
+{
+    "_id": {
+        "$oid": "5e5514ef46b82f0017fd4c28"
+    },
+    "name": "",
+    "training": "Automotive Ethernet (AR Ethernet stack)",
+    "trainers": "Sadashivaiah Chandrashekar,Gotur Prashanth",
+    "location": "Bangalore",
+    "date": "2020-02-24 to 2020-02-26",
+    "questions": [
+        {
+            "question": "How would you rate the quality of the training with regards to its contents?",
+            "question_type": "rating",
+            "answer": "",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "Quality of content",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Value of content for you",
+                    "rating": "3",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Relevance of exercises",
+                    "rating": "3",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Logical structure and comprehensibility",
+                    "rating": "4",
+                    "comments": ""
+                }
+            ]
+        },
+        {
+            "question": "How would you rate the quality of the training with regards to the trainer?",
+            "question_type": "rating",
+            "answer": "",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "Presentation Skills",
+                    "rating": "3.00",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 2
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 4
+                        }
+                    ]
+                },
+                {
+                    "sub_ques": "Understandability of Explanations",
+                    "rating": "3.00",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 2
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 4
+                        }
+                    ]
+                },
+                {
+                    "sub_ques": "Product expertise",
+                    "rating": "3.50",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 3
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 4
+                        }
+                    ]
+                },
+                {
+                    "sub_ques": "Interaction with Participants",
+                    "rating": "4.00",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 3
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "question": "Did the training meet your expectations?",
+            "question_type": "yes or No",
+            "answer": "yes",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "If yes, what did you like most? If no, where could improvements be made?",
+                    "rating": "",
+                    "comments": "Autosar Ethernet stack explained in detail. The general Ethernet topic would have been handled well. "
+                }
+            ]
+        },
+        {
+            "question": "Which was the most valuable part of the training?",
+            "question_type": "",
+            "answer": "Autosar Ethernet stack.",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "Which topics were missing in the training?",
+            "question_type": "",
+            "answer": "Exercise on general Ethernet. it should be generic to use by all the trainees. Chandrashekar told to implement, we need linux.  if it is based on windows, it will be good to follow.",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "How long did you already work with EB Product (Months r Years)",
+            "question_type": "",
+            "answer": "1 year",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "For which tasks do you use product?",
+            "question_type": "",
+            "answer": "To implement the Ethernet task for upcoming projects. ",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "Your overall training experiences?",
+            "question_type": "rating",
+            "answer": "",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "Recommendation pf this training to others",
+                    "rating": "3",
+                    "comments": "1st day training was not satisfactory. "
+                },
+                {
+                    "sub_ques": "Overall event organization",
+                    "rating": "3",
+                    "comments": "room nearby there was a generator sound. please avoid booking that room for whole day training."
+                },
+                {
+                    "sub_ques": "Applicability of what I learned",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Overall training experience",
+                    "rating": "3",
+                    "comments": ""
+                }
+            ]
+        },
+        {
+            "question": "Are you satisfied with the training? We welcome your testimonial statement?",
+            "question_type": "",
+            "answer": "Yes , I am able to understand the Autosasr Ethernet stack ,  except 1st day training. Because first day looks like reading the PPT. \nhe can improvise his presentation skills. ",
+            "comments": "",
+            "subquestions": []
+        }
+    ],
+    "createdAt": 1582634223070,
+    "updatedAt": 1582634223070
+}
+
+
+
+
+++++++++++++++++++++++++++
+
+
+{
+    "_id": {
+        "$oid": "5e55eaffb0aa180017c99597"
+    },
+    "name": "Vipul Singh Rawat",
+    "training": "Automotive Ethernet (AR Ethernet stack)",
+    "trainers": "Sadashivaiah Chandrashekar,Gotur Prashanth",
+    "location": "Bangalore",
+    "date": "2020-02-24 to 2020-02-26",
+    "questions": [
+        {
+            "question": "How would you rate the quality of the training with regards to its contents?",
+            "question_type": "rating",
+            "answer": "",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "Quality of content",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Value of content for you",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Relevance of exercises",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Logical structure and comprehensibility",
+                    "rating": "4",
+                    "comments": ""
+                }
+            ]
+        },
+        {
+            "question": "How would you rate the quality of the training with regards to the trainer?",
+            "question_type": "rating",
+            "answer": "",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "Presentation Skills",
+                    "rating": "3.50",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 3
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 4
+                        }
+                    ]
+                },
+                {
+                    "sub_ques": "Understandability of Explanations",
+                    "rating": "3.50",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 3
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 4
+                        }
+                    ]
+                },
+                {
+                    "sub_ques": "Product expertise",
+                    "rating": "3.50",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 3
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 4
+                        }
+                    ]
+                },
+                {
+                    "sub_ques": "Interaction with Participants",
+                    "rating": "4.00",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 3
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "question": "Did the training meet your expectations?",
+            "question_type": "yes or No",
+            "answer": "yes",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "If yes, what did you like most? If no, where could improvements be made?",
+                    "rating": "",
+                    "comments": "Day 2 content was good regarding Eth driver . If more hands on could be provided which relates to our projects that would be great. Training started late on both the days which can be improved because at the end we were facing shortage of time.Driver level topic need a bit more detailing."
+                }
+            ]
+        },
+        {
+            "question": "Which was the most valuable part of the training?",
+            "question_type": "",
+            "answer": "Understanding the flow of Eth Stack.",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "Which topics were missing in the training?",
+            "question_type": "",
+            "answer": "Debug to the hands On, DoIP.",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "How long did you already work with EB Product (Months r Years)",
+            "question_type": "",
+            "answer": "2 years",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "For which tasks do you use product?",
+            "question_type": "",
+            "answer": "In creation of demos, Integration.",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "Your overall training experiences?",
+            "question_type": "rating",
+            "answer": "",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "Recommendation pf this training to others",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Overall event organization",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Applicability of what I learned",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Overall training experience",
+                    "rating": "4",
+                    "comments": ""
+                }
+            ]
+        },
+        {
+            "question": "Are you satisfied with the training? We welcome your testimonial statement?",
+            "question_type": "",
+            "answer": "If day 2 content(few topics) can be some how start on Day 1 that would be great as  it is not possible to grasp all the things at once. OR you can plan 2 hours one more session later for the quarries part.",
+            "comments": "",
+            "subquestions": []
+        }
+    ],
+    "createdAt": 1582689023625,
+    "updatedAt": 1582689023625
+}
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+{
+    "_id": {
+        "$oid": "5e589efed56ab70017dcfbbd"
+    },
+    "name": "",
+    "training": "Automotive Ethernet (AR Ethernet stack)",
+    "trainers": "Sadashivaiah Chandrashekar,Gotur Prashanth",
+    "location": "Bangalore",
+    "date": "2020-02-24 to 2020-02-26",
+    "questions": [
+        {
+            "question": "How would you rate the quality of the training with regards to its contents?",
+            "question_type": "rating",
+            "answer": "",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "Quality of content",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Value of content for you",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Relevance of exercises",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Logical structure and comprehensibility",
+                    "rating": "4",
+                    "comments": ""
+                }
+            ]
+        },
+        {
+            "question": "How would you rate the quality of the training with regards to the trainer?",
+            "question_type": "rating",
+            "answer": "",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "Presentation Skills",
+                    "rating": "4.00",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 3
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 5
+                        }
+                    ]
+                },
+                {
+                    "sub_ques": "Understandability of Explanations",
+                    "rating": "4.00",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 4
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 4
+                        }
+                    ]
+                },
+                {
+                    "sub_ques": "Product expertise",
+                    "rating": "3.50",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 3
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 4
+                        }
+                    ]
+                },
+                {
+                    "sub_ques": "Interaction with Participants",
+                    "rating": "3.50",
+                    "comments": "",
+                    "trainerrating": [
+                        {
+                            "name": "Sadashivaiah Chandrashekar",
+                            "rating": 3
+                        },
+                        {
+                            "name": "Gotur Prashanth",
+                            "rating": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "question": "Did the training meet your expectations?",
+            "question_type": "yes or No",
+            "answer": "yes",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "If yes, what did you like most? If no, where could improvements be made?",
+                    "rating": "",
+                    "comments": "N/A"
+                }
+            ]
+        },
+        {
+            "question": "Which was the most valuable part of the training?",
+            "question_type": "",
+            "answer": "The contents",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "Which topics were missing in the training?",
+            "question_type": "",
+            "answer": "N/A",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "How long did you already work with EB Product (Months r Years)",
+            "question_type": "",
+            "answer": "N/A",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "For which tasks do you use product?",
+            "question_type": "",
+            "answer": "N/A",
+            "comments": "",
+            "subquestions": []
+        },
+        {
+            "question": "Your overall training experiences?",
+            "question_type": "rating",
+            "answer": "",
+            "comments": "",
+            "subquestions": [
+                {
+                    "sub_ques": "Recommendation pf this training to others",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Overall event organization",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Applicability of what I learned",
+                    "rating": "4",
+                    "comments": ""
+                },
+                {
+                    "sub_ques": "Overall training experience",
+                    "rating": "4",
+                    "comments": ""
+                }
+            ]
+        },
+        {
+            "question": "Are you satisfied with the training? We welcome your testimonial statement?",
+            "question_type": "",
+            "answer": "yes",
+            "comments": "",
+            "subquestions": []
+        }
+    ],
+    "createdAt": 1582866174651,
+    "updatedAt": 1582866174651
+}
