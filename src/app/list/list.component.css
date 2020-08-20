@@ -1,7 +1,11 @@
 table{
-    width: max-content;
+    width: 6000px;
     text-align: center;
     margin-top:20px;
+}
+
+table tr th:nth-child(5){
+    width: 150px;
 }
 
 .download-btn{

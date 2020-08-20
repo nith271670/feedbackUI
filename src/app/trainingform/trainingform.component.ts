@@ -118,6 +118,9 @@ export class TrainingformComponent implements OnInit {
       experience_comment: ['']
     }),
     question_9: this.fb.group({
+      locationPreference: ['', Validators.required],
+    }),
+    question_10: this.fb.group({
       satisfaction_comment: ['', Validators.required],
     })
   });
@@ -329,14 +332,14 @@ export class TrainingformComponent implements OnInit {
         "subquestions": []
       },
       {
-        "question": "How long did you already work with EB Product (Months r Years)",
+        "question": "FOR ONLINE TRAININGS: Which aspects do you consider positive or negative in terms of using the online training format?",
         "question_type": "",
         "answer": this.form.controls['question_6'].value.duration_comment,
         "comments": "",
         "subquestions": []
       },
       {
-        "question": "For which tasks do you use product?",
+        "question": "How long did you already work with the EB product (month or years), for which tasks do you use the product(s)?",
         "question_type": "",
         "answer": this.form.controls['question_7'].value.product_comment,
         "comments": "",
@@ -370,9 +373,16 @@ export class TrainingformComponent implements OnInit {
         ]
       },
       {
+        "question": "If you had the choice booking a similar training in the future, which would be your preference (Online, Classroom, No preference)?",
+        "question_type": "",
+        "answer": this.form.controls['question_9'].value.locationPreference,
+        "comments": "",
+        "subquestions": []
+      },
+      {
         "question": "Are you satisfied with the training? We welcome your testimonial statement?",
         "question_type": "",
-        "answer": this.form.controls['question_9'].value.satisfaction_comment,
+        "answer": this.form.controls['question_10'].value.satisfaction_comment,
         "comments": "",
         "subquestions": []
       }

@@ -285,14 +285,14 @@
         </div>
       </div>
       <div class="my-3 float-left col-lg-12">
-        <p>6. How long did you already work with the EB product (month or years)?</p>
+        <p>6. FOR ONLINE TRAININGS: Which aspects do you consider positive or negative in terms of using the online training format?</p>
         <div formGroupName="question_6">
           <input type="text" name="duration_comment" id="duration_comment" formControlName="duration_comment" required>
           <div class="err_class" *ngIf="submitted == true && form.controls.question_6.value.duration_comment == ''">Please enter a comment</div>
         </div>
       </div>
       <div class="my-3 float-left col-lg-12">
-        <p>7. For which tasks do you use the product?</p>
+        <p>7. How long did you already work with the EB product (month or years), for which tasks do you use the product(s)?</p>
         <div formGroupName="question_7">
           <input type="text" name="product_comment" id="product_comment" formControlName="product_comment" required>
           <div class="err_class" *ngIf="submitted == true && form.controls.question_7.value.product_comment == ''">Please enter a comment</div>
@@ -403,15 +403,23 @@
         </table>
       </div>
       <div class="my-3 float-left col-lg-12">
-        <p>9. Are you satisfied with the training? We welcome your testimonial statement:</p>
+        <p>9. If you had the choice booking a similar training in the future, which would be your preference (Online, Classroom, No preference)?</p>
         <div formGroupName="question_9">
+          <textarea type="text" name="locationPreference" id="locationPreference"
+            formControlName="locationPreference" style="width: 90%" required>
+            </textarea>
+            <div class="err_class" *ngIf="submitted == true && form.controls.question_9.value.locationPreference == ''">Please enter a comment</div>
+        </div>
+      </div>
+      <div class="my-3 float-left col-lg-12">
+        <p>10. Are you satisfied with the training? We welcome your testimonial statement:</p>
+        <div formGroupName="question_10">
           <textarea type="text" name="satisfaction_comment" id="satisfaction_comment"
             formControlName="satisfaction_comment" style="width: 90%" required>
             </textarea>
-            <div class="err_class" *ngIf="submitted == true && form.controls.question_9.value.satisfaction_comment == ''">Please enter a comment</div>
+            <div class="err_class" *ngIf="submitted == true && form.controls.question_10.value.satisfaction_comment == ''">Please enter a comment</div>
         </div>
       </div>
-      
       <div class="my-3 float-left col-lg-12">
         <button class="btn btn-success" type="submit"  [disabled]="submitBtn_disabled"> Submit </button>
       </div>
