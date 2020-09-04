@@ -68,7 +68,7 @@
     "fuse.js": "3.4.5",
     "hasher": "1.2.0",
     "lodash": "^4.17.15",
-    "marked": "^0.6.2",
+    "marked": "^1.1.1",
     "moment-timezone": "0.5.25",
     "ngx-order-pipe": "^2.0.3",
     "ngx-ui-loader": "^7.2.2",
